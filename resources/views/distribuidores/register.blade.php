@@ -33,7 +33,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -45,7 +45,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link">
+                <a class="nav-link" href="{{ url('/home') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -60,7 +60,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/distribuidores')}}">
+                <a class="nav-link" href="{{ url('/distribuidores') }}">
                     <i class="fas fa-fw fa-user-plus"></i>
                     <span>Distribuidores</span></a>
             </li>
@@ -286,15 +286,51 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Distribuidores</h1>
                     </div>
 
+                    <div>
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Agregar un nuevo distribuidor</h6>
+                            </div>
+                            <div class="card-body">
+                                <form action="{{route('save.distribuidor')}}" method="POST" enctype="multipart/form-data" id="saveDistribuidor">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="distribuidor_local" placeholder="Nombre de local">
+                                            <span class="text-danger error-text distribuidor_local_error"></span>
+                                        </div>
+                                        <div class="col">
+                                            <input type="email" class="form-control" name="distribuidor_correo" placeholder="Correo">
+                                            <span class="text-danger error-text distribuidor_correo_error"></span>
+                                        </div>
+                                        <div class="col">
+                                            <input type="number" class="form-control" name="distribuidor_contacto" placeholder="Numero de contacto">
+                                            <span class="text-danger error-text distribuidor_contacto_error"></span>
+                                        </div>
+                                        <div class="col">
+                                            <input class="form-control" type="file" name="distribuidor_imagen">
+                                            <span class="text-danger error-text distribuidor_imagen_error"></span>
+                                        </div>
+                                        <div class="img-holder"></div>
+                                    </div>
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </form>
+                            </div>
+                        </div>
 
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Lista de distribuidores</h6>
+                            </div>
+                            <div class="card-body" id="allDistribuidores">
 
-
-
-
-
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -345,9 +381,72 @@
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap core JavaScript-->
+    <!-- Scripts Distribuidores-->
     <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
+    <script>
+        $(function(){
+            $('#saveDistribuidor').on('submit', function(e){
+                e.preventDefault();
+
+                var saveDistribuidor = this;
+                $.ajax({
+                    url:$(saveDistribuidor).attr('action'),
+                    method:$(saveDistribuidor).attr('method'),
+                    data: new FormData(saveDistribuidor),
+                    processData:false,
+                    dataType: 'json',
+                    contentType:false,
+                    beforeSend:function(){
+                        $(saveDistribuidor).find('span.error-text').text('');
+                    },
+                    success:function(data){
+                        if(data.code == 0){
+                            $.each(data.error, function(prefix,val){
+                                $(saveDistribuidor).find('span.'+prefix+'_error').text(val[0]);
+                                console.log(data.error);
+                            });
+                        }else{
+                            $(saveDistribuidor)[0].reset();
+                            fetchAllDistribuidores();
+                        }
+                    }
+                });
+            });
+
+            //Reset input file
+            $('input[type="file"][name="distribuidor_imagen"]').val('');
+            //Image preview
+            $('input[type="file"][name="distribuidor_imagen"]').on('change', function(){
+                var img_path = $(this)[0].value;
+                var img_holder = $('.img-holder');
+                var extension = img_path.substring(img_path.lastIndexOf('.')+1).toLowerCase();
+                if(extension == 'jpeg' || extension == 'jpg' || extension == 'png'){
+                     if(typeof(FileReader) != 'undefined'){
+                          img_holder.empty();
+                          var reader = new FileReader();
+                          reader.onload = function(e){
+                              $('<img/>',{'src':e.target.result,'class':'img-fluid','style':'max-width:100px;margin-bottom:10px;'}).appendTo(img_holder);
+                          }
+                          img_holder.show();
+                          reader.readAsDataURL($(this)[0].files[0]);
+                     }else{
+                         $(img_holder).html('This browser does not support FileReader');
+                     }
+                }else{
+                    $(img_holder).empty();
+                }
+            });
+
+            //Fetch all products
+            fetchAllDistribuidores();
+            function fetchAllDistribuidores(){
+                $.get('{{route("fetch.distribuidores")}}',{}, function(data){
+                     $('#allDistribuidores').html(data.result);
+                },'json');
+            }
+        })
+    </script>
+    <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('libs/sbadmin/js/sb-admin-2.min.js') }}"></script>
