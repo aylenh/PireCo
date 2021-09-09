@@ -12,6 +12,7 @@ class DistribuidorController extends Controller
            'distribuidor_local'=>'required',
            'distribuidor_correo'=>'required',
            'distribuidor_contacto'=>'required',
+           'distribuidor_ubicacion'=>'required',
            'distribuidor_imagen'=>'required|image'
         ],[
             'distribuidor_imagen.required'=>'Distribuidor image is required',
@@ -33,6 +34,7 @@ class DistribuidorController extends Controller
                     'distribuidor_local'=>$request->distribuidor_local,
                     'distribuidor_correo'=>$request->distribuidor_correo,
                     'distribuidor_contacto'=>$request->distribuidor_contacto,
+                    'distribuidor_ubicacion'=>$request->distribuidor_ubicacion,
                     'distribuidor_imagen'=>$file_name,
                 ]);
                 return response()->json(['code'=>1,'msg'=>'Nuevo distribuidor agregado con exito.']);

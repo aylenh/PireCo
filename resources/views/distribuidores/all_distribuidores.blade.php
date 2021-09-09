@@ -1,17 +1,27 @@
 @forelse ($distribuidores as $item)
-    <div class="media mb-4">
-        <img src="/storage/files/{{ $item->distribuidor_imagen }}" alt="" class="d-flex align-self-start rounded mr-3"
-            height="64">
-        <div class="media-body">
-            <h5 class="mt-0 font-16">Nombre Local: {{ $item->distribuidor_local }}</h5>
-            <h5 class="mt-0 font-16">Correo Electronico: {{ $item->distribuidor_correo }}</h5>
-            <h5 class="mt-0 font-16">Telefono: {{ $item->distribuidor_contacto }}</h5>
-            <div class="btn-group">
-                <button class="btn btn-sm btn-primary">Edit</button>
-                <button class="btn btn-sm btn-danger">Delete</button>
-            </div>
-        </div>
-    </div>
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Nombre Local</th>
+                <th>Correo</th>
+                <th>Numero de contacto</th>
+                <th>Ubicacion</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{$item->distribuidor_local}}</td>
+                <td>{{$item->distribuidor_correo}}</td>
+                <td>{{$item->distribuidor_contacto}}</td>
+                <td>{{$item->distribuidor_ubicacion}}</td>
+                <td><img src="/storage/files/{{ $item->distribuidor_imagen }}" alt="" class="d-flex align-self-start rounded mr-3"
+                    height="64"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 @empty
     <code>Ningun distribuidor encontrado.</code>
 @endforelse
