@@ -1,20 +1,30 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DistribuidorController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+//RUTAS DE DISTRIBUIDORES
+Route::post('/save', 'DistribuidorController@save')->name('save.distribuidor');
+Route::get('/fetchDistribuidores', 'DistribuidorController@fetchDistribuidores')->name('fetch.distribuidores');
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.log');
+});
+
+Route::get('/admin', function () {
+    return view('layouts.admin');
+});
+
+Route::get('/registro', function () {
+    return view('auth.register');
+});
+
+Route::get('/distribuidores', function () {
+    return view('distribuidores.register');
+});
+
+Route::get('/login', function () {
+    return view('auth.log');
 });
 
 Auth::routes();
