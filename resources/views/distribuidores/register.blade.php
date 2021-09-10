@@ -320,11 +320,14 @@
                                         </div>
                                         <div class="img-holder"></div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="autocomplete"></label>
-                                        <input type="text" name="distribuidor_ubicacion" id="autocomplete" class="form-control"
-                                            placeholder="Seleccionar Ubicacion">
+                                    <br>
+                                    <div class="col">
+                                        <input id="location" type="text" class="form-control"
+                                            name="distribuidor_ubicacion" placeholder="Ubicacion">
+                                        <span class="text-danger error-text distribuidor_ubicacion_error"></span>
                                     </div>
+                                    <br>
+                                    <div id="us2" style="width: 500px; height: 400px;"></div>
                                     <br>
                                     <button type="submit" class="btn btn-primary">Guardar</button>
                                 </form>
@@ -462,36 +465,42 @@
         })
     </script>
 
+
     {{-- javascript code --}}
     <script
         src="https://maps.google.com/maps/api/js?key=AIzaSyDby2E_JbzX-Rmb0v4lE9z62T5TAdkLyh8&libraries=places&callback=initAutocomplete"
         type="text/javascript"></script>
+    <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('libs/sbadmin/js/sb-admin-2.min.js') }}"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript"
+        src="https://rawgit.com/Logicify/jquery-locationpicker-plugin/master/dist/locationpicker.jquery.js"></script>
+
     <script>
-        $(document).ready(function() {
-            $("#lat_area").addClass("d-none");
-            $("#long_area").addClass("d-none");
+        $(function() {
+
+            $('#us2').locationpicker({
+                location: {
+                    latitude: -34.60568597314354,
+                    longitude: -58.39267297656248
+                },
+                radius: 0,
+                inputBinding: {
+                    latitudeInput: $('#lat'),
+                    longitudeInput: $('#lng'),
+                    locationNameInput: $('#location')
+                },
+                enableAutocomplete: true,
+                onchanged: function(currentLocation, radius, isMarkerDropped) {
+                    //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+                }
+            });
+
+
         });
     </script>
-    <script>
-        google.maps.event.addDomListener(window, 'load', initialize);
-
-        function initialize() {
-            var input = document.getElementById('autocomplete');
-            var autocomplete = new google.maps.places.Autocomplete(input);
-            autocomplete.addListener('place_changed', function() {
-                var place = autocomplete.getPlace();
-                $('#latitude').val(place.geometry['location'].lat());
-                $('#longitude').val(place.geometry['location'].lng());
-                // --------- show lat and long ---------------
-                $("#lat_area").removeClass("d-none");
-                $("#long_area").removeClass("d-none");
-            });
-        }
-    </script>
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('libs/sbadmin/js/sb-admin-2.min.js') }}"></script>
 
 </body>
 
