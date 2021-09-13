@@ -22,6 +22,16 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('libs/sbadmin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    <script
+        src="https://maps.google.com/maps/api/js?key=AIzaSyDby2E_JbzX-Rmb0v4lE9z62T5TAdkLyh8&libraries=places&callback=initAutocomplete"
+        type="text/javascript"></script>
+
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
+
 </head>
 
 <body id="page-top">
@@ -320,11 +330,14 @@
                                         </div>
                                         <div class="img-holder"></div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="autocomplete"></label>
-                                        <input type="text" name="distribuidor_ubicacion" id="autocomplete" class="form-control"
-                                            placeholder="Seleccionar Ubicacion">
+                                    <br>
+                                    <div class="col">
+                                        <input id="location" type="text" class="form-control"
+                                            name="distribuidor_ubicacion" placeholder="Ubicacion">
+                                        <span class="text-danger error-text distribuidor_ubicacion_error"></span>
                                     </div>
+                                    <br>
+                                    <div id="us2" style="width: 500px; height: 400px;"></div>
                                     <br>
                                     <button type="submit" class="btn btn-primary">Guardar</button>
                                 </form>
@@ -339,6 +352,7 @@
 
                             </div>
                         </div>
+                        @include('distribuidores.edit-distribuidor-modal')
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -390,8 +404,8 @@
             </div>
         </div>
     </div>
-    <!-- Scripts Distribuidores-->
-    <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
+
+
     <script>
         $(function() {
             $('#saveDistribuidor').on('submit', function(e) {
@@ -459,39 +473,146 @@
                     $('#allDistribuidores').html(data.result);
                 }, 'json');
             }
+
+            //Funcion Boton Editar Distribuidor
+            $(document).on('click', '#editarBtn', function() {
+                var distribuidor_id = $(this).data('id');
+                var url = '{{ route('get.distribuidores.details') }}';
+                $.get(url, {
+                    distribuidor_id: distribuidor_id
+                }, function(data) {
+                    //alert(data.result.distribuidor_local);
+                    var distribuidor_modal = $('.editDistribuidorModal');
+
+                    $(distribuidor_modal).find('form').find('input[name="pid"]').val(data.result.id);
+                    $(distribuidor_modal).find('form').find('input[name="distribuidor_local"]').val(data.result.distribuidor_local);
+                    $(distribuidor_modal).find('form').find('input[name="distribuidor_correo"]').val(data.result.distribuidor_correo);
+                    $(distribuidor_modal).find('form').find('input[name="distribuidor_contacto"]').val(data.result.distribuidor_contacto);
+                    $(distribuidor_modal).find('form').find('input[name="distribuidor_ubicacion"]').val(data.result.distribuidor_ubicacion);
+                    $(distribuidor_modal).find('form').find('.img-holder-update').html('<img src="/storage/files/'+data.result.distribuidor_imagen+'" class="img-fluid" style="max-width:100px;margin-botton:10px;">');
+                    $(distribuidor_modal).find('form').find('input[type="file"]').attr('data-value', '<img src="/storage/files/'+data.result.distribuidor_imagen+'" class="img-fluid" style="max-width:100px;margin-botton:10px;">');
+                    $(distribuidor_modal).find('form').find('input[type="file"]').val('');
+                    $(distribuidor_modal).find('form').find('span.error-text').text('');
+                    $(distribuidor_modal).modal('show');
+                }, 'json');
+                //alert(distribuidor_id);
+            });
+
+            $('input[type="file"][name="distribuidor_imagen_update"]').on('change', function(){
+                var img_path = $(this)[0].value;
+                var img_holder = $('.img-holder-update');
+                var currentImagePath = $(this).data('value');
+                var extension = img_path.substring(img_path.lastIndexOf('.')+1).toLowerCase();
+                if(extension == 'jpg' || extension == 'jpeg' || extension == 'png'){
+                    if(typeof(FileReader) != 'undefined'){
+                        img_holder.empty();
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            $('<img/>',{'src':e.target.result, 'class':'img-fluid', 'style':'max-width:100px;margin-bottom:10px;'}).appendTo(img_holder);
+                        }
+                        img_holder.show();
+                        reader.readAsDataURL($(this)[0].files[0]);
+                    }else{
+                        $(img_holder).html('Este explorador no soporta Archivos');
+                    }
+                }else{
+                    $(img_holder).html(currentImagePath);
+                }
+            });
+
+            $(document).on('click', '#clearInputFile', function(){
+                var form = $(this).closest('form');
+                $(form).find('input[type="file"]').val('');
+                $(form).find('.img-holder-update').html($(form).find('input[type="file"]').data('value'));
+            });
+
+            //Update distribuidor modal
+            $('#update_form').on('submit', function(e){
+                e.preventDefault();
+                var form = this;
+                $.ajax({
+                    url:$(form).attr('action'),
+                    method:$(form).attr('method'),
+                    data:new FormData(form),
+                    processData:false,
+                    dataType:'json',
+                    contentType:false,
+                    beforeSend:function(){
+                        $(form).find('span.error-text').text('');
+                    },
+                    success:function(data){
+                        if(data.code == 0){
+                            $.each(data.error, function(prefix, val){
+                                $(form).find('span'+prefix+'_error').text(val[0]);
+                            });
+                        }else{
+                            alert(data.msg);
+                            fetchAllDistribuidores();
+                            $('.editDistribuidorModal').modal('hide');
+                        }
+                    }
+                })
+            });
+
+            //Funcion boton eliminar distribuidor
+
+            $(document).on('click', '#eliminarBtn', function(){
+                var distribuidor_id = $(this).data('id');
+                var url = '{{route("delete.distribuidor")}}';
+
+                if(confirm('Estas seguro de eliminar esta distribuidora?')){
+                    $.ajax({
+                        headers:{
+                            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                        },
+                        url:url,
+                        method:'POST',
+                        data:{distribuidor_id:distribuidor_id},
+                        dataType:'json',
+                        success:function(data){
+                            if(data.code == 1){
+                                fetchAllDistribuidores();
+                            }else{
+                                alert(data.msg);
+                            }
+                        }
+                    });
+                }
+                
+            });
         })
     </script>
 
-    {{-- javascript code --}}
-    <script
-        src="https://maps.google.com/maps/api/js?key=AIzaSyDby2E_JbzX-Rmb0v4lE9z62T5TAdkLyh8&libraries=places&callback=initAutocomplete"
-        type="text/javascript"></script>
+    <script type="text/javascript"
+        src="https://rawgit.com/Logicify/jquery-locationpicker-plugin/master/dist/locationpicker.jquery.js"></script>
     <script>
-        $(document).ready(function() {
-            $("#lat_area").addClass("d-none");
-            $("#long_area").addClass("d-none");
+        $(function() {
+
+            $('#us2').locationpicker({
+                location: {
+                    latitude: -34.60568597314354,
+                    longitude: -58.39267297656248
+                },
+                radius: 0,
+                inputBinding: {
+                    latitudeInput: $('#lat'),
+                    longitudeInput: $('#lng'),
+                    locationNameInput: $('#location')
+                },
+                enableAutocomplete: true,
+                onchanged: function(currentLocation, radius, isMarkerDropped) {
+                    //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+                }
+            });
+
+
         });
     </script>
-    <script>
-        google.maps.event.addDomListener(window, 'load', initialize);
 
-        function initialize() {
-            var input = document.getElementById('autocomplete');
-            var autocomplete = new google.maps.places.Autocomplete(input);
-            autocomplete.addListener('place_changed', function() {
-                var place = autocomplete.getPlace();
-                $('#latitude').val(place.geometry['location'].lat());
-                $('#longitude').val(place.geometry['location'].lng());
-                // --------- show lat and long ---------------
-                $("#lat_area").removeClass("d-none");
-                $("#long_area").removeClass("d-none");
-            });
-        }
-    </script>
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- Custom scripts for all pages-->
+
+    <!--SCRIPTS-->
     <script src="{{ asset('libs/sbadmin/js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 </body>
 

@@ -8,6 +8,7 @@
                 <th>Numero de contacto</th>
                 <th>Ubicacion</th>
                 <th>Imagen</th>
+                <th>Acción</th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +19,10 @@
                 <td>{{$item->distribuidor_ubicacion}}</td>
                 <td><img src="/storage/files/{{ $item->distribuidor_imagen }}" alt="" class="d-flex align-self-start rounded mr-3"
                     height="64"></td>
+                <td>
+                    <button class="btn btn-sm btn-primary" data-id="{{$item->id}}" id="editarBtn">Editar</button>
+                    <button class="btn btn-sm btn-danger" data-id="{{$item->id}}" id="eliminarBtn">Delete</button>
+                </td>
             </tr>
         </tbody>
     </table>

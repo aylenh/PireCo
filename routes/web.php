@@ -5,7 +5,10 @@ use App\Http\Controllers\DistribuidorController;
 
 //RUTAS DE DISTRIBUIDORES
 Route::post('/save', 'DistribuidorController@save')->name('save.distribuidor');
+Route::post('/updateDistribuidor', 'DistribuidorController@updateDistribuidor')->name('update.distribuidor');
+Route::post('/deleteDistribuidor', 'DistribuidorController@deleteDistribuidor')->name('delete.distribuidor');
 Route::get('/fetchDistribuidores', 'DistribuidorController@fetchDistribuidores')->name('fetch.distribuidores');
+Route::get('/getDistribuidoresDetails', 'DistribuidorController@getDistribuidoresDetails')->name('get.distribuidores.details');
 
 Route::get('/', function () {
     return view('auth.log');
