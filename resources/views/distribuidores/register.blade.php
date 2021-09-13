@@ -29,6 +29,8 @@
 
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    
+
 
     <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
 
@@ -609,8 +611,38 @@
         });
     </script>
 
+<script>
+    $(function() {
+
+        $('#updateMap').locationpicker({
+            location: {
+                latitude: -34.60568597314354,
+                longitude: -58.39267297656248
+            },
+            radius: 0,
+            inputBinding: {
+                latitudeInput: $('#updateLat'),
+                longitudeInput: $('#updateLng'),
+                locationNameInput: $('#updateLocation')
+            },
+            enableAutocomplete: true,
+            onchanged: function(currentLocation, radius, isMarkerDropped) {
+            }
+        });
+
+
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+</script>
+
 
     <!--SCRIPTS-->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('libs/sbadmin/js/sb-admin-2.min.js') }}"></script>
     <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
