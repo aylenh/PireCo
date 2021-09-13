@@ -32,16 +32,19 @@
                     </div>
                     <div class="form-group">
                         <label for="">Ubicacion</label>
-                        <input type="text" class="form-control" name="distribuidor_ubicacion"
+                        <input id="updateLocation" type="text" class="form-control" name="distribuidor_ubicacion"
                             placeholder="Ingresa la ubicacion nueva">
                         <span class="text-danger error-text distribuidor_ubicacion_error"></span>
                     </div>
+                    <div id="updateMap" style="width: 400px; height: 300px;"></div>
+                    <br>
                     <div class="form-group">
                         <label for="">Imagen Distribuidor <button id="clearInputFile" type="button" class="btn btn-danger btn-sm">Eliminar</button></label>
                         <input type="file" name="distribuidor_imagen_update" class="form-control" data-value="">
                         <span class="text-danger error-text istribuidor_imagen_update_error"></span>
                     </div>
                     <div class="img-holder-update"></div>
+                    <br>
                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                 </form>
             </div>

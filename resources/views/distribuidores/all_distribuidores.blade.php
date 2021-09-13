@@ -1,32 +1,41 @@
-@forelse ($distribuidores as $item)
-<div class="table-responsive">
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <table id="tblDistribuidores" class="table table-striped" style="width:100%">
         <thead>
             <tr>
-                <th>Nombre Local</th>
+                <th>Local</th>
                 <th>Correo</th>
-                <th>Numero de contacto</th>
-                <th>Ubicacion</th>
+                <th>Contacto</th>
+                <th>Ubicación</th>
                 <th>Imagen</th>
-                <th>Acción</th>
+                <th>Accion</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>{{$item->distribuidor_local}}</td>
-                <td>{{$item->distribuidor_correo}}</td>
-                <td>{{$item->distribuidor_contacto}}</td>
-                <td>{{$item->distribuidor_ubicacion}}</td>
-                <td><img src="/storage/files/{{ $item->distribuidor_imagen }}" alt="" class="d-flex align-self-start rounded mr-3"
-                    height="64"></td>
-                <td>
-                    <button class="btn btn-sm btn-primary" data-id="{{$item->id}}" id="editarBtn">Editar</button>
-                    <button class="btn btn-sm btn-danger" data-id="{{$item->id}}" id="eliminarBtn">Delete</button>
-                </td>
-            </tr>
+            @foreach ($distribuidores as $distribuidor)
+
+
+                <tr>
+                    <td>{{ $distribuidor->distribuidor_local }}</td>
+                    <td>{{ $distribuidor->distribuidor_correo }}</td>
+                    <td>{{ $distribuidor->distribuidor_contacto }}</td>
+                    <td>{{ $distribuidor->distribuidor_ubicacion }}</td>
+                    <td><img src="/storage/files/{{ $distribuidor->distribuidor_imagen }}" alt=""
+                            class="d-flex align-self-start rounded mr-3" height="64"></td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" data-id="{{ $distribuidor->id }}"
+                            id="editarBtn">Editar</button>
+                        <button class="btn btn-sm btn-danger" data-id="{{ $distribuidor->id }}"
+                            id="eliminarBtn">Eliminar</button>
+                    </td>
+                </tr>
+
+            @endforeach
         </tbody>
     </table>
-</div>
-@empty
-    <code>Ningun distribuidor encontrado.</code>
-@endforelse
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('#tblDistribuidores').DataTable();
+        });
+    </script>
