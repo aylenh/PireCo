@@ -36,6 +36,19 @@
 
     <script>
         $(document).ready(function() {
-            $('#tblDistribuidores').DataTable();
+            $('#tblDistribuidores').DataTable({
+                "language": {
+                    "search": "Buscar Distribuidor:",
+                    "lengthMenu": "Mostrando _MENU_ distribuidores por pagina.",
+                    "zeroRecords": "Upss! Parece que aun no hay ningun distribuidor.",
+                    "info": "Pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "Sin distribuidores añadidos.",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "paginate": {
+                        "previous": "Anterior",
+                        "next": "Siguiente"
+                    }
+                }
+            });
         });
     </script>

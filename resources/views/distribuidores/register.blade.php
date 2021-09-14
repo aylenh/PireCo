@@ -15,6 +15,9 @@
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('libs/fontawesome/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href=" https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
+   
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -312,33 +315,38 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col">
+                                            <label for="floatingInputGrid">Nombre Local</label>
                                             <input type="text" class="form-control" name="distribuidor_local"
-                                                placeholder="Nombre de local">
+                                                placeholder="Ingresar Nombre del Local">
                                             <span class="text-danger error-text distribuidor_local_error"></span>
                                         </div>
                                         <div class="col">
+                                            <label for="floatingInputGrid">Correo Electrónico</label>
                                             <input type="email" class="form-control" name="distribuidor_correo"
-                                                placeholder="Correo">
+                                                placeholder="Ingresar Correo Electrónico">
                                             <span class="text-danger error-text distribuidor_correo_error"></span>
                                         </div>
                                         <div class="col">
+                                            <label for="floatingInputGrid">Numero de Contacto</label>
                                             <input type="number" class="form-control" name="distribuidor_contacto"
-                                                placeholder="Numero de contacto">
+                                                placeholder="Ingresar Numero de contacto">
                                             <span class="text-danger error-text distribuidor_contacto_error"></span>
                                         </div>
                                         <div class="col">
+                                            <label for="floatingInputGrid">Ubicación del Local</label>
+                                            <input id="location" type="text" class="form-control"
+                                                name="distribuidor_ubicacion" placeholder="Ubicacion">
+                                            <span class="text-danger error-text distribuidor_ubicacion_error"></span>
+                                        </div>
+                                        <div class="col">
+                                            <label for="floatingInputGrid">Imagen del Local</label>
                                             <input class="form-control" type="file" name="distribuidor_imagen">
                                             <span class="text-danger error-text distribuidor_imagen_error"></span>
                                         </div>
                                         <div class="img-holder"></div>
                                     </div>
                                     <br>
-                                    <div class="col">
-                                        <input id="location" type="text" class="form-control"
-                                            name="distribuidor_ubicacion" placeholder="Ubicacion">
-                                        <span class="text-danger error-text distribuidor_ubicacion_error"></span>
-                                    </div>
-                                    <br>
+                                    <label for="floatingInputGrid">Selecciona la ubicación del local en el mapa</label>
                                     <div id="us2" style="width: 500px; height: 400px;"></div>
                                     <br>
                                     <button type="submit" class="btn btn-primary">Guardar</button>
