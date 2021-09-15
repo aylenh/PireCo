@@ -38,10 +38,10 @@
         $(document).ready(function() {
             $('#tblDistribuidores').DataTable({
                 "language": {
-                    "search": "Buscar Distribuidor:",
-                    "lengthMenu": "Mostrando _MENU_ distribuidores por pagina.",
-                    "zeroRecords": "Upss! Parece que aun no hay ningun distribuidor.",
-                    "info": "Pagina _PAGE_ de _PAGES_",
+                    "search": "Buscar distribuidor:",
+                    "lengthMenu": "Mostrando _MENU_ distribuidores por página.",
+                    "zeroRecords": "Upss! Parece que aun no hay ningun distribuidor agregado.",
+                    "info": "Página _PAGE_ de _PAGES_",
                     "infoEmpty": "Sin distribuidores añadidos.",
                     "infoFiltered": "(filtered from _MAX_ total records)",
                     "paginate": {
