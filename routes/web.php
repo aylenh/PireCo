@@ -58,6 +58,7 @@ Route::post('/deleteDistribuidor', 'DistribuidorController@deleteDistribuidor')-
 Route::get('/fetchDistribuidores', 'DistribuidorController@fetchDistribuidores')->name('fetch.distribuidores');
 Route::get('/getDistribuidoresDetails', 'DistribuidorController@getDistribuidoresDetails')->name('get.distribuidores.details');
 
+
 Route::get('/', function () { return view('auth.log');});
 
 Route::get('/admin', function () {
