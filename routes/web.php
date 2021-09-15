@@ -12,7 +12,7 @@ use App\Http\Controllers\SendinBlueController;
 use Illuminate\Http\Request;
 
 //RUTAS DE CAJA
-//Route::get('/', function () { return redirect('/dashboard'); });
+Route::get('/', function () { return redirect('/dashboard'); });
 
 Route::post('/login/superadmin/',  'LoginController@superAdmin')->name('superadmin');
 Route::resource('/login',   'LoginController');
@@ -59,7 +59,7 @@ Route::get('/fetchDistribuidores', 'DistribuidorController@fetchDistribuidores')
 Route::get('/getDistribuidoresDetails', 'DistribuidorController@getDistribuidoresDetails')->name('get.distribuidores.details');
 
 
-Route::get('/', function () { return view('auth.log');});
+//Route::get('/', function () { return view('auth.log');});
 
 Route::get('/admin', function () {
     return view('layouts.admin');
