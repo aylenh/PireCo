@@ -12,7 +12,7 @@ use App\Http\Controllers\SendinBlueController;
 use Illuminate\Http\Request;
 
 //RUTAS DE CAJA
-//Route::get('/', function () { return redirect('/dashboard'); });
+Route::get('/', function () { return redirect('/dashboard'); });
 
 Route::post('/login/superadmin/',  'LoginController@superAdmin')->name('superadmin');
 Route::resource('/login',   'LoginController');
@@ -52,11 +52,18 @@ Route::resource('/remitosprint',    'RemitosprintController');
 
 
 //RUTAS DE DISTRIBUIDORES
-Route::post('/save', 'DistribuidorController@save')->name('save.distribuidor');
+Route::post('/saveDistribuidor', 'DistribuidorController@save')->name('save.distribuidor');
 Route::post('/updateDistribuidor', 'DistribuidorController@updateDistribuidor')->name('update.distribuidor');
 Route::post('/deleteDistribuidor', 'DistribuidorController@deleteDistribuidor')->name('delete.distribuidor');
 Route::get('/fetchDistribuidores', 'DistribuidorController@fetchDistribuidores')->name('fetch.distribuidores');
 Route::get('/getDistribuidoresDetails', 'DistribuidorController@getDistribuidoresDetails')->name('get.distribuidores.details');
+
+//RUTAS DE PRODUCTOS
+Route::post('/saveProducto', 'ProductoController@save')->name('save.producto');
+Route::post('/updateProducto', 'ProductoController@updateProducto')->name('update.producto');
+Route::post('/deleteProducto', 'ProductoController@deleteProducto')->name('delete.producto');
+Route::get('/fetchProductos', 'ProductoController@fetchProductos')->name('fetch.productos');
+Route::get('/getProductosDetails', 'ProductoController@getProductosDetails')->name('get.productos.details');
 
 
 Route::get('/', function () { return view('auth.log');});
@@ -71,6 +78,10 @@ Route::get('/registro', function () {
 
 Route::get('/distribuidores', function () {
     return view('distribuidores.register');
+});
+
+Route::get('/productos', function () {
+    return view('productos.agua');
 });
 
 Route::get('/login', function () {

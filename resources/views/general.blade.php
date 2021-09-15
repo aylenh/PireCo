@@ -104,11 +104,11 @@
                                         <script type="text/javascript">
                                             function exit() {
                                                 $.ajax({
-                                                    url: '{{route("login.destroy", 1)}}',
+                                                    url: '{{route("login", 1)}}',
                                                     type: 'DELETE',
                                                     success: function(result) {
                                                         if(result == '1'){
-                                                            window.location.href="{{route('login.index')}}";
+                                                            window.location.href="{{route('login')}}";
                                                         }
                                                     }
                                                 });
@@ -213,7 +213,7 @@
 
                     @else
                         <script>
-                            window.location.href="{{route('login.index')}}";
+                            window.location.href="{{route('login')}}";
                         </script>
                     @endif
                 </div>

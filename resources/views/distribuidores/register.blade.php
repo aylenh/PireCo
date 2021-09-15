@@ -79,6 +79,11 @@
                     <i class="fas fa-fw fa-user-plus"></i>
                     <span>Distribuidores</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/productos') }}">
+                    <i class="fas fa-fw fa-box"></i>
+                    <span>Productos</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
