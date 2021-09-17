@@ -66,9 +66,9 @@ Route::get('/fetchProductos', 'ProductoController@fetchProductos')->name('fetch.
 Route::get('/getProductosDetails', 'ProductoController@getProductosDetails')->name('get.productos.details');
 
 //RUTAS PEDIDOS
-Route::get('/pedidos', function () {
-    return view('pedidos.clientes');
-});
+
+Route::resource('pedidos','PedidoController');
+
 
 
 Route::get('/', function () { return view('auth.log');});
