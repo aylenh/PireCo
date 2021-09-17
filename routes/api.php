@@ -20,5 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //API Pedidos
-Route::resource('pedidos', 'PedidoController');
+Route::resource('getPedidos', 'PedidoController');
 
