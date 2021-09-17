@@ -67,7 +67,7 @@ Route::get('/getProductosDetails', 'ProductoController@getProductosDetails')->na
 
 //RUTAS PEDIDOS
 
-Route::resource('pedidos','PedidoController');
+Route::resource('pedidos','AplicacionController');
 
 
 
