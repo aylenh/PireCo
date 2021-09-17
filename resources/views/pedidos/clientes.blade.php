@@ -15,6 +15,9 @@
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('libs/fontawesome/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href=" https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
+   
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -22,9 +25,18 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('libs/sbadmin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    
+
+
+    <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
+
 </head>
 
 <body id="page-top">
+
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -303,7 +315,29 @@
                             <h6 class="m-0 font-weight-bold text-primary">Lista de pedidos</h6>
                         </div>
                         <div class="card-body">
-
+                            <table id="tblPedidos" class="table table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Detalle</th>
+                                        <th>Monto</th>
+                                        <th>Pago</th>
+                                        <th>Distribuidora</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($pedidos as $pedido)
+                            
+                            
+                                        <tr>
+                                            <td>{{ $pedido->pedido_detalle }}</td>
+                                            <td>{{ $pedido->pedido_monto }}</td>
+                                            <td>{{ $pedido->pedido_pago }}</td>
+                                            <td>{{ $pedido->pedido_distribuidora }}</td>
+                                        </tr>
+                            
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
@@ -364,11 +398,30 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- Custom scripts for all pages-->
+    <script>
+        $(document).ready(function() {
+            $('#tblPedidos').DataTable({
+                "language": {
+                    "search": "Buscar pedido:",
+                    "lengthMenu": "Mostrando _MENU_ pedidos por página.",
+                    "zeroRecords": "Upss! Parece que aun no hay ningun pedido agregado.",
+                    "info": "Página _PAGE_ de _PAGES_",
+                    "infoEmpty": "Sin pedidos añadidos.",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "paginate": {
+                        "previous": "Anterior",
+                        "next": "Siguiente"
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!--SCRIPTS-->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="{{ asset('libs/sbadmin/js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 </body>
 
