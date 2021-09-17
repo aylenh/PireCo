@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDistribuidoresTable extends Migration
+class CreatePedidosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateDistribuidoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('distribuidores', function (Blueprint $table) {
+        Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->string('distribuidor_local');
-            $table->string('distribuidor_correo');
-            $table->string('distribuidor_contacto');
-            $table->string('distribuidor_ubicacion');
+            $table->string('pedido_detalle');
+            $table->string('pedido_monto');
+            $table->string('pedido_pago');
+            $table->string('pedido_distribuidora');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateDistribuidoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('distribuidores');
+        Schema::dropIfExists('pedidos');
     }
 }

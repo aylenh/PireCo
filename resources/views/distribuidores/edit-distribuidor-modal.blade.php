@@ -38,12 +38,12 @@
                     </div>
                     <div id="updateMap" style="width: 400px; height: 300px;"></div>
                     <br>
-                    <div class="form-group">
+                   <!-- <div class="form-group">
                         <label for="">Imagen Distribuidor <button id="clearInputFile" type="button" class="btn btn-danger btn-sm">Eliminar</button></label>
                         <input type="file" name="distribuidor_imagen_update" class="form-control" data-value="">
                         <span class="text-danger error-text istribuidor_imagen_update_error"></span>
                     </div>
-                    <div class="img-holder-update"></div>
+                    <div class="img-holder-update"></div> -->
                     <br>
                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                 </form>

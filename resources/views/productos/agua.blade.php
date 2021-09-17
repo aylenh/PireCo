@@ -80,6 +80,11 @@
                     <i class="fas fa-fw fa-box"></i>
                     <span>Productos</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/pedidos') }}">
+                    <i class="fas fa-fw fa-dolly"></i>
+                    <span>Pedidos</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -316,12 +321,9 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col">
-                                            <label for="floatingInputGrid">Selecciona bidon o botella</label>
-                                            <select class="form-select" aria-label="Default select example" name="producto_botella">
-                                                <option selected>Selecciona bidon o botella</option>
-                                                <option value="Bidon">Bidon</option>
-                                                <option value="Botella">Botella</option>
-                                              </select>
+                                            <label for="floatingInputGrid">Seleccionar envase</label>
+                                            <input type="text" class="form-control" name="producto_botella"
+                                                placeholder="Ingresar tipo de envase">
                                             <span class="text-danger error-text producto_botella_error"></span>
                                         </div>
                                         <div class="col">
