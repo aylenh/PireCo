@@ -5,7 +5,7 @@
                 <th>Correo</th>
                 <th>Contacto</th>
                 <th>Ubicación</th>
-                <th>Imagen</th>
+                <!--<th>Imagen</th>-->
                 <th>Accion</th>
             </tr>
         </thead>
@@ -18,8 +18,8 @@
                     <td>{{ $distribuidor->distribuidor_correo }}</td>
                     <td>{{ $distribuidor->distribuidor_contacto }}</td>
                     <td>{{ $distribuidor->distribuidor_ubicacion }}</td>
-                    <td><img src="/storage/files/{{ $distribuidor->distribuidor_imagen }}" alt=""
-                            class="d-flex align-self-start rounded mr-3" height="64"></td>
+                    <!--<td><img src="/storage/files/{{ $distribuidor->distribuidor_imagen }}" alt=""
+                            class="d-flex align-self-start rounded mr-3" height="64"></td>-->
                     <td>
                         <button class="btn btn-sm btn-primary" data-id="{{ $distribuidor->id }}"
                             id="editarBtn">Editar</button>

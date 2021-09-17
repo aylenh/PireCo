@@ -30,21 +30,18 @@ class DatabaseSeeder extends Seeder
             'distribuidor_local' => 'Dubai',
             'distribuidor_correo' => 'admin@admin.com',
             'distribuidor_contacto' => '998 127 7438',
-            'distribuidor_imagen' => '1631652632_pexels-jack-winbow-1559486.jpg',
             'distribuidor_ubicacion' => 'Dubai Emiratos Arabes',
         ]);
             DB::table('distribuidores')->insert([
             'distribuidor_local' => 'Dubai',
             'distribuidor_correo' => 'admin@admin.com',
             'distribuidor_contacto' => '998 127 7438',
-            'distribuidor_imagen' => '1631652632_pexels-jack-winbow-1559486.jpg',
             'distribuidor_ubicacion' => 'Dubai Emiratos Arabes',
         ]);
             DB::table('distribuidores')->insert([
             'distribuidor_local' => 'Dubai',
             'distribuidor_correo' => 'admin@admin.com',
             'distribuidor_contacto' => '998 127 7438',
-            'distribuidor_imagen' => '1631652632_pexels-jack-winbow-1559486.jpg',
             'distribuidor_ubicacion' => 'Dubai Emiratos Arabes',
         ]);
     }

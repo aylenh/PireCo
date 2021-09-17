@@ -18,7 +18,6 @@ class CreateDistribuidoresTable extends Migration
             $table->string('distribuidor_local');
             $table->string('distribuidor_correo');
             $table->string('distribuidor_contacto');
-            $table->string('distribuidor_imagen');
             $table->string('distribuidor_ubicacion');
             $table->timestamps();
         });

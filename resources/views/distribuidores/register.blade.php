@@ -343,12 +343,12 @@
                                                 name="distribuidor_ubicacion" placeholder="Ubicacion">
                                             <span class="text-danger error-text distribuidor_ubicacion_error"></span>
                                         </div>
-                                        <div class="col">
+                                       <!-- <div class="col">
                                             <label for="floatingInputGrid">Imagen del Local</label>
                                             <input class="form-control" type="file" name="distribuidor_imagen">
                                             <span class="text-danger error-text distribuidor_imagen_error"></span>
                                         </div>
-                                        <div class="img-holder"></div>
+                                        <div class="img-holder"></div> -->
                                     </div>
                                     <br>
                                     <label for="floatingInputGrid">Selecciona la ubicación del local en el mapa</label>
