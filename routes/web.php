@@ -65,6 +65,11 @@ Route::post('/deleteProducto', 'ProductoController@deleteProducto')->name('delet
 Route::get('/fetchProductos', 'ProductoController@fetchProductos')->name('fetch.productos');
 Route::get('/getProductosDetails', 'ProductoController@getProductosDetails')->name('get.productos.details');
 
+//RUTAS PEDIDOS
+Route::get('/pedidos', function () {
+    return view('pedidos.clientes');
+});
+
 
 Route::get('/', function () { return view('auth.log');});
 
