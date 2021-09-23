@@ -1,11 +1,11 @@
-@extends('general')
+@extends('caja.general')
 
 @section('content')
 
       <script>
         function create_income() {
             $.ajax({
-                  url: '{{route("cash.addincome")}}',
+                  url: '{{route("cash2.addincome")}}',
                   type: 'GET',
                   data: {
                     concept:                 $('#ingreso_tipo option:selected').val(),
@@ -27,7 +27,7 @@
 
           function create_outcome() {
             $.ajax({
-                  url: '{{route("cash.addoutcome")}}',
+                  url: '{{route("cash2.addoutcome")}}',
                   type: 'GET',
                   data: {
                     concept:                 $('#egreso_tipo option:selected').val(),
@@ -46,22 +46,16 @@
       </script>
 
       <div class="container my-lg">
-          <h2 class="doc-section-title" id="title">Caja Interna<a class="section-link" href="#examples"></a><span class="border-bottom"></span></h2>
+          <h2 class="doc-section-title" id="title">Caja Operador <a class="section-link" href="#examples"></a><span class="border-bottom"></span></h2>
           <div class="doc-example">
               <div class="row">
 
                   <script type="text/javascript">
                     function resumenRender(date) 
                     {
-                      let url = "{{ route('cash.render', ['day' => 22222]) }}".replace('22222', date);
+                      let url = "{{ route('cash2.render', ['day' => 22222]) }}".replace('22222', date);
                           window.location.href = url;
                     }
-
-                    @php
-                      if(!isset($day)):
-                        $day = date('Y-m-d');
-                      endif;
-                    @endphp
 
                     function closeDay() 
                     {
@@ -73,14 +67,12 @@
                         {
                           /* Guardar faltante */
                           $.ajax({
-                            url: '{{route("cash.addoutcome")}}',
+                            url: '{{route("cash2.addoutcome")}}',
                             type: 'GET',
                             data: {
-                              day:                     '{{$day}}',
                               concept:                 'Cierre y Ajuste de Caja',
-                              monto:                    faltante,
-                              ammount:                  1,
-                              ingreso_mercadopago:      '',
+                              ammount:                 faltante,
+                              ingreso_mercadopago:     '',
                               lastAmmount:             $('#lastAmmount').val()
                             },
                             success: function(result) {
@@ -93,13 +85,11 @@
                         }else{
                           /* Guardar SIN FALTANTES */
                           $.ajax({
-                            url: '{{route("cash.addoutcome")}}',
+                            url: '{{route("cash2.addoutcome")}}',
                             type: 'GET',
                             data: {
-                              day:                     '{{$day}}',
                               concept:                 'Cierre y Ajuste de Caja (Sin Faltantes)',
-                              monto:                   0,
-                              ammount:                1,
+                              ammount:                 0,
                               ingreso_mercadopago:     '',
                               lastAmmount:             $('#lastAmmount').val()
                             },
@@ -114,13 +104,11 @@
                       }else{
                         /* Guardar excedente */
                         $.ajax({
-                            url: '{{route("cash.addincome")}}',
+                            url: '{{route("cash2.addincome")}}',
                             type: 'GET',
                             data: {
-                              day:                     '{{$day}}',
                               concept:                 'Cierre y Ajuste de Caja',
-                              ammount:                 1,
-                              monto:                    excedente,
+                              ammount:                 excedente,
                               ingreso_mercadopago:     '',
                               lastAmmount:             $('#lastAmmount').val()
                             },
@@ -137,7 +125,7 @@
 
                   </script>
 
-                  @if(session('profiletype')=="1")
+                  
                   <button style="height: fit-content; margin-top: 20px; margin-left: 20px;" type="button" class="btn btn-raised-primary mr-3" onclick="resumenRender('{{date('Y-m-d')}}');">Hoy</button>
                   <div id="selectoption" class="form-group" style="padding-left: 20px;">
                       <label for="exampleFormControlInput1">Fecha</label>
@@ -145,7 +133,7 @@
                         if(isset($day)): echo $day; else: echo date('Y-m-d'); endif;
                       @endphp" placeholder="Fecha">
                   </div>
-                  @endif
+                  
 
                   @if(!$mainview)
                 
@@ -294,18 +282,18 @@
                                   </tr>
                                 </thead>
                                 <tbody id="tableCash">
-                                    @php $cash = $prevC->result; @endphp
+                                    @php $cash = 0; @endphp
                                     <tr @php if($prevC->concept == 'Cierre y Ajuste de Caja ()' || $prevC->concept == 'Cierre y Ajuste de Caja'): echo 'style="background: lightgray;"'; endif; @endphp>
                                       <td>{{$prevC->id}}</td>
                                       <td>{{$prevC->concept}} <strong>PREVIO</strong></td>
                                       @if($prevC->type == 'debe')
-                                        @php $cash -= $prevC->finalammout; @endphp
-                                        <td>$ {{$prevC->finalammout}}</td>
+                                        <td>$ {{$prevC->result}}</td>
+                                        @php $cash = $prevC->result; @endphp
                                         <td></td>
                                       @else
                                         <td></td>
-                                        @php $cash += $prevC->finalammout; @endphp
-                                        <td>$ {{$prevC->finalammout}}</td>
+                                        <td>$ {{$prevC->result}}</td>
+                                        @php $cash = $prevC->result; @endphp
                                       @endif
                                       <td></td>
                                       <td>$ {{$cash}}</td>
@@ -338,6 +326,80 @@
                       </div>
                     @endif
 
+                  @endif
+
+                  @if(session('profiletype')=="1")
+                    <hr style="border-top: 1px solid lightgray; width: 100%;">
+
+                    <div class="row w-100">
+                      <div class="col-4">
+                        <h4>Ingresos</h4>
+                        @if(isset($incomesResume))
+                        <table class="table borderless table-hover" style="max-width: 350px;">
+                            <thead>
+                              <tr>
+                                <th scope="col" class="text" style="font-weight: bold; background: lightgray;">Concepto</th>
+                                <th scope="col" class="text" style="font-weight: bold; background: lightgray;">Monto Total</th>
+                              </tr>
+                            </thead>
+                            <tbody id="tableCash">
+                              @foreach($incomesResume as $iR)
+                                <tr>
+                                  <td>{{$iR->concept}}</td>
+                                  <td>$ {{$iR->Suma}}</td>
+                                </tr>
+                              @endforeach
+                            </tbody>
+                        </table>
+                        @endif
+                      </div>
+                      <div class="col-4">
+                        <h4>Egresos</h4>
+                        @if(isset($outcomesResume))
+                        <table class="table borderless table-hover" style="max-width: 350px;">
+                            <thead>
+                              <tr>
+                                <th scope="col" class="text" style="font-weight: bold; background: lightgray;">Concepto</th>
+                                <th scope="col" class="text" style="font-weight: bold; background: lightgray;">Monto Total</th>
+                              </tr>
+                            </thead>
+                            <tbody id="tableCash">
+                              @foreach($outcomesResume as $oR)
+                                <tr>
+                                  <td>{{$oR->concept}}</td>
+                                  <td>$ {{$oR->Suma}}</td>
+                                </tr>
+                              @endforeach
+                            </tbody>
+                        </table>
+                        @endif
+                      </div>
+                      <div class="col-4">
+                        <h4>Pago Digital</h4>
+                        @if(isset($mpResume))
+                        <table class="table borderless table-hover" style="max-width: 350px;">
+                            <thead>
+                              <tr>
+                                <th scope="col" class="text" style="font-weight: bold; background: lightgray;">Forma de Pago</th>
+                                <th scope="col" class="text" style="font-weight: bold; background: lightgray;">Monto Total</th>
+                              </tr>
+                            </thead>
+                            <tbody id="tableCash">
+                              @foreach($mpResume as $mp)
+                                <tr>
+                                  <td>{{$mp->paymentmethod}}</td>
+                                  <td>$ {{$mp->Suma}}</td>
+                                </tr>
+                              @endforeach
+                            </tbody>
+                        </table>
+                        @endif
+                      </div>
+                    </div>
+                  @else
+                    <div class="alert alert-danger" role="alert">
+                      No puedes ver los movimientos de caja ya que estás con un usuario limitado. Si necesitás mas información, contactá a un administrador.
+                    </div>
                   @endif
 
                   @if(session('profiletype')=="1")
@@ -377,6 +439,7 @@
                       </div>
                     @endif
                   @endif
+
 
               </div>
           </div>
