@@ -24,7 +24,7 @@ class CashController extends Controller
             $cc[$client->nfanstasia]['id'] = $client->id;
         endforeach;
 
-        return view('cash', ['generalModul'=> 'General', 'parenModul' => 'General', 'modulName' => 'Caja Diaria'
+        return view('caja.caja', ['generalModul'=> 'General', 'parenModul' => 'General', 'modulName' => 'Caja Diaria'
         ,'mainview' => true
         ,'clientes' => DB::table('clients')->get()
         ]);
@@ -88,7 +88,7 @@ class CashController extends Controller
         ");
 
         # Get Cash movements of the day
-        return view('cash', ['generalModul'=> 'General', 'parenModul' => 'General', 'modulName' => 'Caja Diaria'
+        return view('caja.caja', ['generalModul'=> 'General', 'parenModul' => 'General', 'modulName' => 'Caja Diaria'
             ,'mainview' => false
             ,'incomes' => DB::table('cashincome')->get()
             ,'outcomes' => DB::table('cashoutcome')->get()

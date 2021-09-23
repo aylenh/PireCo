@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class DatabaseSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,12 +18,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'AlbertoDev',
             'email' => 'alberto@dev.com',
             'password' => Hash::make('password'),
+            'profiletype' => 1,
         ]);
 
         DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => Hash::make('password'),
+            'profiletype' => 1,
         ]);
     }
 }
