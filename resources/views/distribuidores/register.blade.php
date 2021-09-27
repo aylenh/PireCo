@@ -102,6 +102,19 @@
                     <i class="fas fa-fw fa-cash-register"></i>
                     <span>Resumen Caja</span></a>
             </li>
+            <div class="sidebar-heading">
+                Cajas Botellas
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/botellas') }}">
+                    <i class="fas fa-fw fa-cash-register"></i>
+                    <span>Caja</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/resumenbotellas') }}">
+                    <i class="fas fa-fw fa-cash-register"></i>
+                    <span>Resumen Caja</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

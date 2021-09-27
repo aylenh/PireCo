@@ -6,27 +6,5 @@ use Illuminate\Support\Facades\Schema;
 
 class AddProfiletypeToUsers extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::table('users', function (Blueprint $table) {
-            $table->smallInteger('profiletype')->after('password');
-        });
-    }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('profiletype');
-        });
-    }
 }
