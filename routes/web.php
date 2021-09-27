@@ -28,6 +28,13 @@ Route::resource('/resumenmonthly',    'ResumenmonthlyController');
     Route::get('/resumenmonthy_render/{day?}',    'ResumenmonthlyController@render')->name('resumenmonthly.render');
     Route::get('/resumenmonthy_addrecibo',    'ResumenmonthlyController@addrecibo')->name('resumenmonthly.addrecibo');
 
+    Route::resource('/remitos',    'RemitosController');
+    Route::get('/remitos_render/{client}/{day?}',    'RemitosController@render')->name('remitos.render');
+
+//RUTAS DE CAJA BOTELLA
+Route::resource('/botellas', 'BotellaController');
+Route::resource('/resumenbotellas',    'ResumenbotellasController');
+
 
 
 

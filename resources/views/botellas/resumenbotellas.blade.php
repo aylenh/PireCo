@@ -334,21 +334,15 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Resumen Mensual</h1>
-                    </div>
 
                     <div>
+
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Resumen Mensual</h6>
+                                <h3 class="m-0 font-weight-bold text-primary">Resumen Mensual Botellas</h3>
                             </div>
                             <div class="card-body">
-                                <form></form>
                                 <div class="container my-lg">
-                                    <h2 class="m-0 font-weight-bold text-primary" id="title">Resumen Mensual<a
-                                            class="section-link" href="#examples"></a><span
-                                            class="border-bottom"></span></h2>
                                     <div class="doc-example">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -514,7 +508,7 @@
                                         });
                                     }
                                 </script>
-
+                    
                                 <div class="container my-lg">
                                     <h2 class="m-0 font-weight-bold text-primary" id="title">Cuentas Corrientes<a
                                             class="section-link" href="#examples"></a><span

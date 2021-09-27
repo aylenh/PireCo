@@ -333,11 +333,11 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Caja</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Caja Botellas</h1>
                     </div>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Caja Interna</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Caja Interna botellas</h6>
                         </div>
                         <div class="card-body">
                             <script>
@@ -384,7 +384,7 @@
                               </script>
                         
                               <div class="container my-lg">
-                                  <h2 class="doc-section-title" id="title">Caja Interna<a class="section-link" href="#examples"></a><span class="border-bottom"></span></h2>
+                                  <h2 class="doc-section-title" id="title">Caja Interna Botellas<a class="section-link" href="#examples"></a><span class="border-bottom"></span></h2>
                                   <div class="doc-example">
                                       <div class="">
                         
@@ -620,61 +620,21 @@
                         
                                                   
                                               <div class="col-md-12">
-                                                <br>
-                                                <table class="table borderless table-hover">
-                                                    <thead>
-                                                      <tr>
-                                                        <th scope="col" class="text" style="font-weight: bold; background: lightgray;">MovID</th>
-                                                        <th scope="col" class="text" style="font-weight: bold; background: lightgray;">Concepto</th>
-                                                        <th scope="col" class="text" style="font-weight: bold; background: lightgray;">Debe</th>
-                                                        <th scope="col" class="text" style="font-weight: bold; background: lightgray;">Haber</th>
-                                                        <th scope="col" class="text" style="font-weight: bold; background: lightgray;">Forma de Pago</th>
-                                                        <th scope="col" class="text" style="font-weight: bold; background: lightgray;">Saldo</th>
-                                                      </tr>
-                                                    </thead>
-                                                    <tbody id="tableCash">
-                                                        @php $cash = $prevC->result; @endphp
-                                                        <tr @php if($prevC->concept == 'Cierre y Ajuste de Caja ()' || $prevC->concept == 'Cierre y Ajuste de Caja'): echo 'style="background: lightgray;"'; endif; @endphp>
-                                                          <td>{{$prevC->id}}</td>
-                                                          <td>{{$prevC->concept}} <strong>PREVIO</strong></td>
-                                                          @if($prevC->type == 'debe')
-                                                            @php $cash -= $prevC->finalammout; @endphp
-                                                            <td>$ {{$prevC->finalammout}}</td>
-                                                            <td></td>
-                                                          @else
-                                                            <td></td>
-                                                            @php $cash += $prevC->finalammout; @endphp
-                                                            <td>$ {{$prevC->finalammout}}</td>
-                                                          @endif
-                                                          <td></td>
-                                                          <td>$ {{$cash}}</td>
-                                                        </tr>
-                                                        @foreach($movements as $movD)
-                                                          <tr @php if($movD->concept == 'Cierre y Ajuste de Caja ()' || $movD->concept == 'Cierre y Ajuste de Caja' || $movD->concept == 'Cierre y Ajuste de Caja (Sin Faltantes) ()'): echo 'style="background: red; color: white;"'; endif; @endphp>
-                                                            <td>{{$movD->id}}</td>
-                                                            <td>{{$movD->concept}}</td>
-                                                            @if($movD->type == 'debe')
-                                                              <td>$ {{$movD->finalammout}}</td>
-                                                              @php $cash -= $movD->finalammout; @endphp
-                                                              <td></td>
-                                                            @else
-                                                              <td></td>
-                                                              <td>$ {{$movD->finalammout}}</td>
-                                                              @php 
-                                                                if($movD->paymentmethod == 'Efectivo'):
-                                                                  $cash += $movD->finalammout; 
-                                                                endif;
-                                                              @endphp
-                                                            @endif
-                                                            <td>{{$movD->paymentmethod}}</td>
-                                                            <td>$ {{$cash}}</td>
+                                                  <br>
+                                                    <table class="table borderless table-hover">
+                                                        <thead>
+                                                          <tr>
+                                                            <th scope="col" class="text font-weight-bold text-primary" style="font-weight: bold; background: lightgray;">MovID</th>
+                                                            <th scope="col" class="text font-weight-bold text-primary" style="font-weight: bold; background: lightgray;">Concepto</th>
+                                                            <th scope="col" class="text font-weight-bold text-primary" style="font-weight: bold; background: lightgray;">Debe</th>
+                                                            <th scope="col" class="text font-weight-bold text-primary" style="font-weight: bold; background: lightgray;">Haber</th>
+                                                            <th scope="col" class="text font-weight-bold text-primary" style="font-weight: bold; background: lightgray;">Forma de Pago</th>
+                                                            <th scope="col" class="text font-weight-bold text-primary" style="font-weight: bold; background: lightgray;">Saldo</th>
                                                           </tr>
-                                                        @endforeach
-                                                    </tbody>
-                    
-                                                    <input type="hidden" id="lastAmmount" value="{{$cash}}">
-                                                </table>
-                                          </div>
+                                                        </thead>
+
+                                                    </table>
+                                              </div>
                                             
                         
                                           
