@@ -45,6 +45,8 @@ class PedidoController extends Controller
         $pedido->pedido_pago = $request->input('pedido_pago');
         $pedido->pedido_distribuidora = $request->input('pedido_distribuidora');
         $pedido->save();
+
+        return('Pedido guardado con exito!');
     }
 
     /**
@@ -91,5 +93,7 @@ class PedidoController extends Controller
     {
         $pedido = Pedido::findOrFail($id);
         $pedido->delete();
+        
+        return('Pedido borrado con exito!');
     }
 }
