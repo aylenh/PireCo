@@ -30,6 +30,10 @@
         <br><br><br><br><br>
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center">
+                    <img src="/images/logo.png" height="75">
+                  </a>
+                  <br>
                 <div class="card">
                     <div style="text-align: center;" class="card-header">{{ __('Panel de Administración') }}</div>
 

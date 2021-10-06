@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Pedido;
 
+use App\Mail\PedidosEmail;
+use Illuminate\Support\Facades\Mail;
+
 class PedidoController extends Controller
 {
     /**
@@ -45,6 +48,9 @@ class PedidoController extends Controller
         $pedido->pedido_pago = $request->input('pedido_pago');
         $pedido->pedido_distribuidora = $request->input('pedido_distribuidora');
         $pedido->save();
+
+        $correo = new PedidosEmail($pedido);
+        Mail::to($pedido->pedido_distribuidora)->send($correo);
 
         return('Pedido guardado con exito!');
     }
