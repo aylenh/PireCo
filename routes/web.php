@@ -56,6 +56,9 @@ Route::get('/getProductosDetails', 'ProductoController@getProductosDetails')->na
 
 Route::resource('pedidos','AplicacionController');
 
+Route::get('/correo', function () {
+    return view('correos.pedidos');
+});
 
 
 Route::get('/', function () { return view('auth.log');});

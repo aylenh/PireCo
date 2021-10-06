@@ -45,12 +45,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home') }}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Pireco</div>
+              <img src="/images/logo.png" height="75">
             </a>
-
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
@@ -99,17 +95,17 @@
                   <span>Resumen Caja</span></a>
           </li>
           <div class="sidebar-heading">
-            Cajas Botellas
+            Cajas Bidones
         </div>
         <li class="nav-item">
             <a class="nav-link" href="{{ url('/botellas') }}">
                 <i class="fas fa-fw fa-cash-register"></i>
-                <span>Caja</span></a>
+                <span>Caja Bidones</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ url('/resumenbotellas') }}">
                 <i class="fas fa-fw fa-cash-register"></i>
-                <span>Resumen Caja</span></a>
+                <span>Resumen Caja Bidones</span></a>
         </li>
 
             <!-- Divider -->
@@ -333,11 +329,11 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Caja Botellas</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Caja Bidones</h1>
                     </div>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Caja Interna botellas</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Caja Interna bidones</h6>
                         </div>
                         <div class="card-body">
                           <script>
@@ -384,7 +380,7 @@
                           </script>
                     
                           <div class="container my-lg">
-                              <h2 class="doc-section-title" id="title">Caja Interna Botellas<a class="section-link" href="#examples"></a><span class="border-bottom"></span></h2>
+                              <h2 class="doc-section-title" id="title">Caja Interna Bidones<a class="section-link" href="#examples"></a><span class="border-bottom"></span></h2>
                               <div class="doc-example">
                                   <div class="">
                     
@@ -747,7 +743,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; PireCo 2021</span>
+                        <span>Copyright &copy; PirenCo 2021</span>
                     </div>
                 </div>
             </footer>

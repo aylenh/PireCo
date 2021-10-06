@@ -45,12 +45,9 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home')}}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Pireco</div>
-            </a>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home') }}">
+                <img src="/images/logo.png" height="75">
+              </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -100,17 +97,17 @@
                     <span>Resumen Caja</span></a>
             </li>
             <div class="sidebar-heading">
-                Cajas Botellas
+                Cajas Bidones
             </div>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/botellas') }}">
                     <i class="fas fa-fw fa-cash-register"></i>
-                    <span>Caja</span></a>
+                    <span>Caja Bidones</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/resumenbotellas') }}">
                     <i class="fas fa-fw fa-cash-register"></i>
-                    <span>Resumen Caja</span></a>
+                    <span>Resumen Caja Bidones</span></a>
             </li>
 
             <!-- Divider -->
@@ -383,7 +380,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; PireCo 2021</span>
+                        <span>Copyright &copy; PirenCo 2021</span>
                     </div>
                 </div>
             </footer>
