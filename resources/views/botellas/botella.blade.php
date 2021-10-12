@@ -37,6 +37,25 @@
 
 <body id="page-top">
 
+  @php
+      // SDK de Mercado Pago
+      require base_path('vendor/autoload.php');
+      // Agrega credenciales
+      MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
+
+      // Crea un objeto de preferencia
+      $preference = new MercadoPago\Preference();
+
+      // Crea un ítem en la preferencia
+      $item = new MercadoPago\Item();
+      $item->title = 'Mi producto';
+      $item->quantity = 1;
+      $item->unit_price = 75.56;
+      $preference->items = array($item);
+      $preference->save();
+
+  @endphp
+
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -334,6 +353,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Caja Interna bidones</h6>
+                            <div class="cho-container"></div>
                         </div>
                         <div class="card-body">
                           <script>
@@ -783,6 +803,29 @@
             </div>
         </div>
     </div>
+
+    // SDK MercadoPago.js V2
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+
+<script>
+  // Agrega credenciales de SDK
+    const mp = new MercadoPago("{{config('services.mercadopago.key')}}", {
+          locale: 'es-AR'
+    });
+  
+    // Inicializa el checkout
+    mp.checkout({
+        preference: {
+            id: '{{ $preference->id }}'
+        },
+        render: {
+              container: '.cho-container', // Indica el nombre de la clase donde se mostrará el botón de pago
+              label: 'Pagar', // Cambia el texto del botón de pago (opcional)
+        }
+  });
+  </script>
+  
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
