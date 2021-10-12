@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//API Pedidos
+//Api Pedidos
 Route::resource('getPedidos', 'PedidoController');
+//Api Pedidos
+Route::resource('getDistribuidores', 'ApiDistribuidorController');
 

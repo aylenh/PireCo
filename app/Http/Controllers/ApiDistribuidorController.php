@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Pedido;
-//
-use App\Mail\PedidosEmail;
-use Illuminate\Support\Facades\Mail;
+use App\Distribuidor;
 
-class PedidoController extends Controller
+class ApiDistribuidorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +14,8 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        return Pedido::all();
+        return Distribuidor::all();
     }
-
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -42,17 +35,14 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        $pedido = new Pedido;
-        $pedido->pedido_detalle = $request->input('pedido_detalle');
-        $pedido->pedido_monto = $request->input('pedido_monto');
-        $pedido->pedido_pago = $request->input('pedido_pago');
-        $pedido->pedido_distribuidora = $request->input('pedido_distribuidora');
-        $pedido->save();
+        $distribuidor = new Distribuidor;
+        $distribuidor->distribuidor_local = $request->input('distribuidor_local');
+        $distribuidor->distribuidor_correo = $request->input('distribuidor_correo');
+        $distribuidor->distribuidor_contacto = $request->input('distribuidor_contacto');
+        $distribuidor->distribuidor_ubicacion = $request->input('distribuidor_ubicacion');
+        $distribuidor->save();
 
-        $correo = new PedidosEmail($pedido);
-        Mail::to($pedido->pedido_distribuidora)->send($correo);
-
-        return('Pedido guardado con exito!');
+        return('Distribuidor guardado con exito!');
     }
 
     /**
@@ -63,7 +53,7 @@ class PedidoController extends Controller
      */
     public function show($id)
     {
-        return Pedido::findOrFail($id)->get();
+        return Distribuidor::findOrFail($id)->get();
     }
 
     /**
@@ -97,9 +87,9 @@ class PedidoController extends Controller
      */
     public function destroy($id)
     {
-        $pedido = Pedido::findOrFail($id);
-        $pedido->delete();
+        $distribuidor = Distribuidor::findOrFail($id);
+        $distribuidor->delete();
         
-        return('Pedido borrado con exito!');
+        return('Distribuidor borrado con exito!');
     }
 }
