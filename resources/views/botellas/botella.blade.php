@@ -37,6 +37,35 @@
 
 <body id="page-top">
 
+  @php
+        // SDK de Mercado Pago
+        require base_path('vendor/autoload.php');
+        // Agrega credenciales
+        MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
+        //Bidon 20 ltrs
+        $item1 = new MercadoPago\Item();
+        $item1->title = 'Bidon 20 ltrs';
+        $item1->quantity = 1;
+        $item1->unit_price = 300.00;
+        //Bidon 10 ltrs
+        $item2 = new MercadoPago\Item();
+        $item2->title = 'Bidon 10 ltrs';
+        $item2->quantity = 1;
+        $item2->unit_price = 150.00;
+        //Botella 1 ltrs
+        $item3 = new MercadoPago\Item();
+        $item3->title = 'Botella 1 ltrs';
+        $item3->quantity = 1;
+        $item3->unit_price = 50.00;
+  
+        $preference = new MercadoPago\Preference();
+  
+        $preference->items = array($item1,$item2,$item3);
+        //$preference->init_point;
+        //Guardar y postear la preferencia
+        $preference->save();
+  @endphp
+
 
 
 
