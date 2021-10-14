@@ -24,3 +24,6 @@ Route::resource('getPedidos', 'PedidoController');
 //Api Pedidos
 Route::resource('getDistribuidores', 'ApiDistribuidorController');
 
+Route::resource('payments', 'PaymentController');
+
+

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "100467f74e1e471bda0ea2095c8d988c",
+    "content-hash": "7587345d69559033985da7b49a0d5f18",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2999,6 +2999,50 @@
                 }
             ],
             "time": "2021-08-11T01:06:55+00:00"
+        },
+        {
+            "name": "rodggall/mercadopago",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RodGGall/MercadoPagoLaravel.git",
+                "reference": "8291bece153de519cea14f9f1e93951b13120b0e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RodGGall/MercadoPagoLaravel/zipball/8291bece153de519cea14f9f1e93951b13120b0e",
+                "reference": "8291bece153de519cea14f9f1e93951b13120b0e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MercadoPagoLaravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "rodggall",
+                    "email": "rodggall@gmail.com"
+                }
+            ],
+            "description": "Implementacion del SDK v 5.0.2 de MercadoPago para laravel",
+            "support": {
+                "issues": "https://github.com/RodGGall/MercadoPagoLaravel/issues",
+                "source": "https://github.com/RodGGall/MercadoPagoLaravel/tree/master"
+            },
+            "time": "2019-02-13T04:09:16+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -7766,7 +7810,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "rodggall/mercadopago": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
