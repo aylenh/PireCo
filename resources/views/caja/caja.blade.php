@@ -545,7 +545,6 @@
                                                         <select id="formadepagodigitalselector" class="js-example-basic-single form-control" name="state">
                                                           <option value="">Seleccione...</option>
                                                           <option value="MercadoPago">MercadoPago</option>
-                                                          <option value="TodoPago">TodoPago</option>
                                                         </select>
                                                     </div>
                     
