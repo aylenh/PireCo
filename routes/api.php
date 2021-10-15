@@ -23,7 +23,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('getPedidos', 'PedidoController');
 //Api Pedidos
 Route::resource('getDistribuidores', 'ApiDistribuidorController');
-
+//Api Payments MercadoPago
 Route::resource('payments', 'PaymentController');
+//Api EncargosApp
+Route::resource('getEncargos', 'EncargoController');
 
 
