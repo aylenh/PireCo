@@ -12,10 +12,10 @@ class PaymentController extends Controller
     {
         //Modo sandbox
         if (env('MP_SANDBOX_GATEWAYS')) {
-            \MercadoPago\SDK::setAccessToken(env('MP_TEST_ACCESS_TOKEN'));
+            \MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
             return;
         }
-        \MercadoPago\SDK::setAccessToken(env('MP_ACCESS_TOKEN'));
+        \MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
         return;
         //Basic Checkout
         // \MercadoPago\SDK::setClientId(env('MP_CLIENT_ID'));
