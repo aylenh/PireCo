@@ -10,6 +10,7 @@ class PaymentController extends Controller
 
     public function __construct()
     {
+        require base_path('vendor/autoload.php');
         \MercadoPago\SDK::setAccessToken(env('MP_ACCESS_TOKEN'));
     }
     /**
