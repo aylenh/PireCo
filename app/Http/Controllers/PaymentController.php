@@ -10,16 +10,7 @@ class PaymentController extends Controller
 
     public function __construct()
     {
-        //Modo sandbox
-        if (env('MP_SANDBOX_GATEWAYS')) {
-            \MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
-            return;
-        }
-        \MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
-        return;
-        //Basic Checkout
-        // \MercadoPago\SDK::setClientId(env('MP_CLIENT_ID'));
-        // \MercadoPago\SDK::setClientSecret(env('MP_CLIENT_SECRET'));
+        \MercadoPago\SDK::setAccessToken(env('MP_ACCESS_TOKEN'));
     }
     /**
      * Display a listing of the resource.
@@ -28,10 +19,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        // SDK de Mercado Pago
-        //require base_path('vendor/autoload.php');
-        // Agrega credenciales
-        //\MercadoPago\SDK::setAccessToken(env('MP_ACCESS_TOKEN'));
+
         //Bidon 20 ltrs
         $item1 = new \MercadoPago\Item();
         $item1->id = "BIDON 20 LTRS";
