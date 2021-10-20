@@ -18,6 +18,7 @@ class CreateEncargosTable extends Migration
             $table->string('nombre');
             $table->string('domicilio');
             $table->string('telefono');
+            $table->string('correo');
             $table->string('horario_de');
             $table->string('horario_hasta');
             $table->string('bidon_20');
