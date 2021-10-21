@@ -38,6 +38,21 @@ class EncargoController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validated = $request->validate([
+
+            'nombre' => 'required',
+            'domicilio' => 'required',
+            'telefono' => 'required',
+            'correo',
+            'horario_de' => 'required',
+            'horario_hasta' => 'required',
+            'bidon_20' => 'required',
+            'bidon_10' => 'required',
+            'botella_1' => 'required',
+            'total' => 'required',
+        ]);
+        
         $encargo = new Encargo;
         $encargo->nombre = $request->input('nombre');
         $encargo->domicilio = $request->input('domicilio');
@@ -50,8 +65,8 @@ class EncargoController extends Controller
         $encargo->botella_1 = $request->input('botella_1');
         $encargo->total = $request->input('total');
 
-        $email = new EncargosEmail($encargo);
-        Mail::to($encargo->correo)->send($email);
+        //$email = new EncargosEmail($encargo);
+        //Mail::to($encargo->correo)->send($email);
         $encargo->save();
 
         return response()->json('Encargo creado con exito!');
