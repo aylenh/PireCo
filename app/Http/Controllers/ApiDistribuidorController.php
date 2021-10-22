@@ -40,6 +40,8 @@ class ApiDistribuidorController extends Controller
         $distribuidor->distribuidor_correo = $request->input('distribuidor_correo');
         $distribuidor->distribuidor_contacto = $request->input('distribuidor_contacto');
         $distribuidor->distribuidor_ubicacion = $request->input('distribuidor_ubicacion');
+         $distribuidor->distribuidor_latitude = $request->input('distribuidor_latitude');
+          $distribuidor->distribuidor_longitude = $request->input('distribuidor_longitude');
         $distribuidor->save();
 
         return('Distribuidor guardado con exito!');

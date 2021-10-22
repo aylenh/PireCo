@@ -371,6 +371,14 @@
                                                 name="distribuidor_ubicacion" placeholder="Ubicacion">
                                             <span class="text-danger error-text distribuidor_ubicacion_error"></span>
                                         </div>
+                                        <div class="col">
+                                            <label for="floatingInputGrid">Latitude</label>
+                                            <input id="lat" type="text" class="form-control" name="distribuidor_latitude" placeholder="Ubicacion">
+                                            </div>
+                                            <div class="col">
+                                            <label for="floatingInputGrid">Longitude</label>
+                                            <input id="lng" type="text" class="form-control" name="distribuidor_longitude" placeholder="Ubicacion">
+                                            </div>
                                        <!-- <div class="col">
                                             <label for="floatingInputGrid">Imagen del Local</label>
                                             <input class="form-control" type="file" name="distribuidor_imagen">
