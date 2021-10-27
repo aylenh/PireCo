@@ -13,6 +13,8 @@ class DistribuidorController extends Controller
            'distribuidor_correo'=>'required',
            'distribuidor_contacto'=>'required',
            'distribuidor_ubicacion'=>'required',
+           'distribuidor_latitude'=>'required',
+           'distribuidor_longitude'=>'required',
         ]);
 
         if(!$validator->passes()){
@@ -23,6 +25,8 @@ class DistribuidorController extends Controller
                 'distribuidor_correo'=>$request->distribuidor_correo,
                 'distribuidor_contacto'=>$request->distribuidor_contacto,
                 'distribuidor_ubicacion'=>$request->distribuidor_ubicacion,
+                'distribuidor_latitude'=>$request->distribuidor_latitude,
+                'distribuidor_longitude'=>$request->distribuidor_longitude,
             ]);
             return response()->json(['code'=>1,'msg'=>'Nuevo distribuidor agregado con exito.']);
         }
