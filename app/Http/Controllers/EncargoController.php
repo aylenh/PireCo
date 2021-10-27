@@ -40,6 +40,8 @@ class EncargoController extends Controller
     public function store(Request $request)
     {
 
+        MercadoPago
+
         $validated = $request->validate([
 
             'nombre' => 'required',
