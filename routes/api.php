@@ -28,4 +28,6 @@ Route::resource('payments', 'PaymentController');
 //Api EncargosApp
 Route::resource('getEncargos', 'EncargoController');
 
+Route::resource('productos', 'Api\ProductoController');
+
 
