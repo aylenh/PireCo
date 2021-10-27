@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DetallesEncargo;
 use Illuminate\Http\Request;
 use App\Encargo;
 use Illuminate\Support\Facades\DB;
@@ -47,9 +48,6 @@ class EncargoController extends Controller
             'correo',
             'horario_de' => 'required',
             'horario_hasta' => 'required',
-            'bidon_20' => 'required',
-            'bidon_10' => 'required',
-            'botella_1' => 'required',
             'total' => 'required',
         ]);
         
@@ -60,16 +58,18 @@ class EncargoController extends Controller
         $encargo->correo = $request->input('correo');
         $encargo->horario_de = $request->input('horario_de');
         $encargo->horario_hasta = $request->input('horario_hasta');
-        $encargo->bidon_20 = $request->input('bidon_20');
-        $encargo->bidon_10 = $request->input('bidon_10');
-        $encargo->botella_1 = $request->input('botella_1');
         $encargo->total = $request->input('total');
-
-        //$email = new EncargosEmail($encargo);
-        //Mail::to($encargo->correo)->send($email);
         $encargo->save();
 
-        return response()->json('Encargo creado con exito!');
+        foreach ($request->productos as $key => $producto) {
+            $detalles = new DetallesEncargo;
+            $detalles->cantidad = $producto['cantidad'];
+            $detalles->producto_id = $producto['producto_id'];
+            $detalles->encargo_id = $encargo->id;
+            $detalles->save();
+        }
+
+        return response()->json(Encargo::with('detalles')->find($encargo->id));
     }
 
     /**

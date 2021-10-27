@@ -21,9 +21,6 @@ class CreateEncargosTable extends Migration
             $table->string('correo')->nullable();
             $table->string('horario_de');
             $table->string('horario_hasta');
-            $table->string('bidon_20');
-            $table->string('bidon_10');
-            $table->string('botella_1');
             $table->string('total');
             $table->timestamps();
         });
