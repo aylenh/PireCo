@@ -8,6 +8,7 @@ use App\Encargo;
 use Illuminate\Support\Facades\DB;
 use App\Mail\EncargosEmail;
 use Illuminate\Support\Facades\Mail;
+use MercadoPago;
 
 class EncargoController extends Controller
 {
@@ -40,7 +41,10 @@ class EncargoController extends Controller
     public function store(Request $request)
     {
 
-        MercadoPago
+        // SDK de Mercado Pago
+        //require base_path('/vendor/autoload.php');
+        // Agrega credenciales
+        //MercadoPago\SDK::setAccessToken('');
 
         $validated = $request->validate([
 
@@ -63,14 +67,28 @@ class EncargoController extends Controller
         $encargo->total = $request->input('total');
         $encargo->save();
 
+        $items = array();
+
         foreach ($request->productos as $key => $producto) {
             $detalles = new DetallesEncargo;
             $detalles->cantidad = $producto['cantidad'];
             $detalles->producto_id = $producto['producto_id'];
             $detalles->encargo_id = $encargo->id;
             $detalles->save();
+
+           /* $item = new MercadoPago\Item();
+            $item->title = $detalles->producto->producto_botella;
+            $item->quantity = $detalles->cantidad;
+            $item->unit_price = $detalles->producto->producto_precio;
+            array_push($items, $item);*/
         }
 
+        // Crea un objeto de preferencia
+        /*$preference = new MercadoPago\Preference();
+        $preference->items = $items;
+        $preference->save();*/
+
+        //return response()->json($preference);
         return response()->json(Encargo::with('detalles')->find($encargo->id));
     }
 
