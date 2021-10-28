@@ -27,7 +27,7 @@ Route::resource('getDistribuidores', 'ApiDistribuidorController');
 Route::resource('payments', 'PaymentController');
 //Api EncargosApp
 Route::resource('getEncargos', 'EncargoController');
-
+//Api Productos
 Route::resource('productos', 'Api\ProductoController');
 
 

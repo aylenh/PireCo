@@ -41,10 +41,14 @@ class EncargoController extends Controller
     public function store(Request $request)
     {
 
+<<<<<<< HEAD
         // SDK de Mercado Pago
         //require base_path('/vendor/autoload.php');
         // Agrega credenciales
         //MercadoPago\SDK::setAccessToken('');
+=======
+        //MercadoPago
+>>>>>>> 29e7dcc29018b14b7c8811cf4affea6bc4257e32
 
         $validated = $request->validate([
 
