@@ -11,7 +11,8 @@ class Producto extends Model
         'producto_botella', 
         'producto_descartable', 
         'producto_litros', 
-        'producto_precio'
+        'producto_precio',
+        'imagen'
     ];
 
     public function detalles()

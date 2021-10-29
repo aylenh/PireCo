@@ -13,6 +13,7 @@ class ProductoSeeder extends Seeder
     public function run()
     {
         Producto::create([
+            'imagen'                => url('storage/productos/bidon.jpeg'),
             'producto_botella'      => 'Bidon', 
             'producto_descartable'  => 'retornable', 
             'producto_litros'       => '20', 
@@ -20,6 +21,7 @@ class ProductoSeeder extends Seeder
         ]);
 
         Producto::create([
+            'imagen'                => url('storage/productos/bidon.jpeg'),
             'producto_botella'      => 'Bidon', 
             'producto_descartable'  => 'retornable', 
             'producto_litros'       => '10', 
@@ -27,6 +29,7 @@ class ProductoSeeder extends Seeder
         ]);
 
         Producto::create([
+            'imagen'                => url('storage/productos/botella-1l.jpeg'),
             'producto_botella'      => 'Botella', 
             'producto_descartable'  => 'descartable', 
             'producto_litros'       => '1', 
