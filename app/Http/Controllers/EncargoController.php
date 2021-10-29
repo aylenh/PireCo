@@ -19,7 +19,7 @@ class EncargoController extends Controller
      */
     public function index()
     {
-        return Encargo::all();
+        return Encargo::with('detalles')->get();
     }
 
     /**
