@@ -41,10 +41,10 @@ class EncargoController extends Controller
     public function store(Request $request)
     {
 
-        // SDK de Mercado Pago
-        //require base_path('/vendor/autoload.php');
-        // Agrega credenciales
-        //MercadoPago\SDK::setAccessToken('');
+         // SDK de Mercado Pago
+        require base_path('/vendor/autoload.php');
+         // Agrega credenciales
+        MercadoPago\SDK::setAccessToken('TEST-7110253609417365-110317-d424c5125ab59755a7dcd3ccd1b3d4bb-1011886178');
 
         $validated = $request->validate([
 
@@ -76,20 +76,30 @@ class EncargoController extends Controller
             $detalles->encargo_id = $encargo->id;
             $detalles->save();
 
-           /* $item = new MercadoPago\Item();
+            $item = new MercadoPago\Item();
             $item->title = $detalles->producto->producto_botella;
             $item->quantity = $detalles->cantidad;
             $item->unit_price = $detalles->producto->producto_precio;
-            array_push($items, $item);*/
+            array_push($items, $item);
         }
 
         // Crea un objeto de preferencia
-        /*$preference = new MercadoPago\Preference();
+        $preference = new MercadoPago\Preference();
         $preference->items = $items;
-        $preference->save();*/
+        $preference->back_urls = array(
+            "success" => "http://localhost:8080/feedback",
+            "failure" => "http://localhost:8080/feedback", 
+            "pending" => "http://localhost:8080/feedback"
+        );
+        $preference->auto_return = "approved";
+        $preference->save();
 
-        //return response()->json($preference);
-        return response()->json(Encargo::with('detalles')->find($encargo->id));
+        $response = array(
+            'link'      => $preference->init_point,
+            'encargo'   => Encargo::with('detalles')->find($encargo->id)
+        );
+
+        return response()->json($response);
     }
 
     /**
