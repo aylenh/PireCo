@@ -14,4 +14,8 @@ class Distribuidor extends Model
         'distribuidor_ubicacion', 
         'distribuidor_latitude', 
         'distribuidor_longitude'];
+
+    public function encargos(){
+        return $this->hasMany(Encargo::class);
+    }
 }

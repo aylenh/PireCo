@@ -13,10 +13,17 @@ class Encargo extends Model
         'correo', 
         'horario_de', 
         'horario_hasta', 
-        'total'];
+        'total',
+        'distribuidor_id'
+    ];
 
     public function detalles()
     {
         return $this->hasMany(DetallesEncargo::class);
+    }
+
+    public function distribuidor()
+    {
+        return $this->belongsTo(Distribuidor::class);
     }
 }

@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\DetallesEncargo;
-use Illuminate\Http\Request;
 use App\Encargo;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\EncargoRequest;
-use Illuminate\Support\Facades\DB;
-use App\Mail\EncargosEmail;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 use MercadoPago;
 
 class EncargoController extends Controller
@@ -24,16 +22,6 @@ class EncargoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -41,7 +29,6 @@ class EncargoController extends Controller
      */
     public function store(EncargoRequest $request)
     {
-        return response()->json('hols');
          // SDK de Mercado Pago
         require base_path('/vendor/autoload.php');
          // Agrega credenciales
@@ -62,7 +49,7 @@ class EncargoController extends Controller
         $items = array();
 
         foreach ($request->productos as $key => $producto) {
-            $detalles = new DetallesEncargo;
+            $detalles = new DetallesEncargo();
             $detalles->cantidad = $producto['cantidad'];
             $detalles->producto_id = $producto['producto_id'];
             $detalles->encargo_id = $encargo->id;
@@ -103,17 +90,6 @@ class EncargoController extends Controller
     public function show($id)
     {
         return Encargo::findOrFail($id)->get();
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
