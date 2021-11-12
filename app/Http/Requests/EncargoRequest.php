@@ -24,7 +24,6 @@ class EncargoRequest extends FormRequest
     public function rules()
     {
         $rules = array(
-            'efectivo',
             'directo',
             'nombre' => 'required',
             'domicilio' => 'required',
@@ -35,10 +34,6 @@ class EncargoRequest extends FormRequest
         );
         if($this->directo == false){
             $rules['distribuidor_id'] = 'required';
-        }
-
-        if($this->efectivo == true){
-            $rules['correo'] = 'required';
         }
 
         return $rules;

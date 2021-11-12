@@ -29,5 +29,6 @@ Route::resource('payments', 'PaymentController');
 Route::resource('getEncargos', 'Api\EncargoController');
 //Api Productos
 Route::resource('productos', 'Api\ProductoController');
-
+// Pagar en Efectivo
+Route::post('pay_cash/{encargo}','Api\EncargoController@payCash');
 
