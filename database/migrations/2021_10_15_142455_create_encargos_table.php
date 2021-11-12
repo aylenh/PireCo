@@ -22,7 +22,7 @@ class CreateEncargosTable extends Migration
             $table->string('horario_de');
             $table->string('horario_hasta');
             $table->string('total');
-            $table->unsignedBigInteger('distribuidor_id');
+            $table->unsignedBigInteger('distribuidor_id')->nullable();
             $table->timestamps();
 
             $table->foreign('distribuidor_id')->references('id')->on('distribuidores');

@@ -23,15 +23,25 @@ class EncargoRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = array(
+            'efectivo',
+            'directo',
             'nombre' => 'required',
             'domicilio' => 'required',
             'telefono' => 'required',
-            'correo',
             'horario_de' => 'required',
             'horario_hasta' => 'required',
-            'total' => 'required',
-            'distribuidor_id' => 'required'
-        ];
+            'total' => 'required'
+        );
+        if($this->directo == false){
+            $rules['distribuidor_id'] = 'required';
+        }
+
+        if($this->efectivo == true){
+            $rules['correo'] = 'required';
+        }
+
+        return $rules;
+        
     }
 }

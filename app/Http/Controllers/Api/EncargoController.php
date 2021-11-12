@@ -43,10 +43,14 @@ class EncargoController extends Controller
         $encargo->horario_de = $request->input('horario_de');
         $encargo->horario_hasta = $request->input('horario_hasta');
         $encargo->total = $request->input('total');
-        $encargo->distribuidor_id = $request->input('distribuidor_id');
+        if(!isset($request->directo)){
+            $encargo->distribuidor_id = $request->input('distribuidor_id');
+        }
         $encargo->save();
 
         $items = array();
+
+        
 
         foreach ($request->productos as $key => $producto) {
             $detalles = new DetallesEncargo();
@@ -55,28 +59,33 @@ class EncargoController extends Controller
             $detalles->encargo_id = $encargo->id;
             $detalles->save();
 
-            $item = new MercadoPago\Item();
-            $item->title = $detalles->producto->producto_botella;
-            $item->quantity = $detalles->cantidad;
-            $item->unit_price = $detalles->producto->producto_precio;
-            array_push($items, $item);
+            if(!$request->input('efectivo')){
+                $item = new MercadoPago\Item();
+                $item->title = $detalles->producto->producto_botella;
+                $item->quantity = $detalles->cantidad;
+                $item->unit_price = $detalles->producto->producto_precio;
+                array_push($items, $item);
+            }
         }
 
-        // Crea un objeto de preferencia
-        $preference = new MercadoPago\Preference();
-        $preference->items = $items;
-        $preference->back_urls = array(
-            "success" => "http://localhost:8080/feedback",
-            "failure" => "http://localhost:8080/feedback", 
-            "pending" => "http://localhost:8080/feedback"
-        );
-        $preference->auto_return = "approved";
-        $preference->save();
-
         $response = array(
-            'link'      => $preference->init_point,
             'encargo'   => Encargo::with(['detalles', 'distribuidor'])->find($encargo->id)
         );
+
+        if(!$request->input('efectivo')){
+            // Crea un objeto de preferencia
+            $preference = new MercadoPago\Preference();
+            $preference->items = $items;
+            $preference->back_urls = array(
+                "success" => "http://localhost:8080/feedback",
+                "failure" => "http://localhost:8080/feedback", 
+                "pending" => "http://localhost:8080/feedback"
+            );
+            $preference->auto_return = "approved";
+            $preference->save();
+
+            $response['link'] = $preference->init_point;
+        }
 
         return response()->json($response);
     }
