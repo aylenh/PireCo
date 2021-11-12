@@ -17,8 +17,8 @@ class DistribuidorSeeder extends Seeder
             'distribuidor_correo' => 'prueba', 
             'distribuidor_contacto' => 'prueba',
             'distribuidor_ubicacion' => 'prueba', 
-            'distribuidor_latitude' => 'prueba', 
-            'distribuidor_longitude' => 'prueba'
+            'distribuidor_latitude' => '-34.554974', 
+            'distribuidor_longitude' => '-58.523945'
         ]);
     }
 }
