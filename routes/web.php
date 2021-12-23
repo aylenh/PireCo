@@ -2,8 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DistribuidorController;
-
-
+use App\Http\Controllers\EncargoController;
 use App\Http\Controllers\HRImporterController;
 use App\Http\Controllers\InconsistencieController;
 use App\Http\Controllers\HrController;
@@ -25,11 +24,11 @@ Route::get('/cash2_add/income',    'Cash2Controller@addincome')->name('cash2.add
 Route::get('/cash2_add/outcome',    'Cash2Controller@addoutcome')->name('cash2.addoutcome');
 
 Route::resource('/resumenmonthly',    'ResumenmonthlyController');
-    Route::get('/resumenmonthy_render/{day?}',    'ResumenmonthlyController@render')->name('resumenmonthly.render');
-    Route::get('/resumenmonthy_addrecibo',    'ResumenmonthlyController@addrecibo')->name('resumenmonthly.addrecibo');
+Route::get('/resumenmonthy_render/{day?}',    'ResumenmonthlyController@render')->name('resumenmonthly.render');
+Route::get('/resumenmonthy_addrecibo',    'ResumenmonthlyController@addrecibo')->name('resumenmonthly.addrecibo');
 
-    Route::resource('/remitos',    'RemitosController');
-    Route::get('/remitos_render/{client}/{day?}',    'RemitosController@render')->name('remitos.render');
+Route::resource('/remitos',    'RemitosController');
+Route::get('/remitos_render/{client}/{day?}',    'RemitosController@render')->name('remitos.render');
 
 //RUTAS DE CAJA BOTELLA
 Route::resource('/botellas', 'BotellaController');
@@ -52,9 +51,10 @@ Route::post('/deleteProducto', 'ProductoController@deleteProducto')->name('delet
 Route::get('/fetchProductos', 'ProductoController@fetchProductos')->name('fetch.productos');
 Route::get('/getProductosDetails', 'ProductoController@getProductosDetails')->name('get.productos.details');
 
-//RUTAS PEDIDOS
+//RUTAS ENCARGOS
 
-Route::resource('pedidos','AplicacionController');
+Route::get('Encargos','EncargoController@index')->name('encargos');
+Route::get('/encargo/{encargo}/ver','EncargoController@detallesEncargo')->name('detalles.encargo');
 
 Route::get('/correo', function () {
     return view('correos.pedidos');

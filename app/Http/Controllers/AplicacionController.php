@@ -11,7 +11,6 @@ class AplicacionController extends Controller
 {
     public function index()
     {
-
         $pedidos = DB::table('pedidos')->select('pedido_detalle', 'pedido_monto', 'pedido_pago', 'pedido_distribuidora')->get();
         return view('pedidos.clientes')->with('pedidos', $pedidos);
     }

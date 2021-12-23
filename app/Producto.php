@@ -19,4 +19,8 @@ class Producto extends Model
     {
         return $this->belongsTo(DetallesEncargo::class);
     }
+
+    public function encargos(){
+        return $this->hasMany(Encargo::class);
+    }
 }

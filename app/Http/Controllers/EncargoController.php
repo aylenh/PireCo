@@ -13,16 +13,21 @@ use MercadoPago;
 
 class EncargoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // Funcion que muestra la vista 
     public function index()
     {
-        return Encargo::with('detalles')->get();
+        $blue['encargos'] = Encargo::with('detalles','distribuidor')->get();
+        return view('encargos.clientes', $blue);
     }
 
+    // funcion que muestra los detalles del pedido
+    public function detallesEncargo(Encargo $encargo)
+    {
+            $blue['encargos'] = $encargo;
+  
+            return view('encargos.detallesEncargo', $blue);
+    }
+   
     /**
      * Show the form for creating a new resource.
      *
