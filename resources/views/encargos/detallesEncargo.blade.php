@@ -131,14 +131,27 @@ hr {
                           <a >
                             <span align="center">
                                 <strong>Encargo:</strong><br>
-                                <u style="color:#4B70DC;">{!! $encargos->distribuidor->distribuidor_local !!}</u>
+                                <u style="color:#4B70DC;">{!! $encargos->nombre !!}</u>
                                 </span>
                             <span>
                               <i class="fas fa-box-open"></i>
                             </span>
                           </a>
                         </li>
+                        @if(!$encargos->distribuidor()->exists())
                         <li>
+                            <a>
+                              <span align="center">
+                                  <strong>Distribuidor:</strong><br>
+                                  <u style="color:#4B70DC;">Piren Co</u>
+                                  </span>
+                              <span>
+                                <i class="fas fa-shipping-fast"></i>
+                              </span> 
+                            </a>
+                          </li>
+                          @else
+                          <li>
                             <a >
                               <span align="center">
                                   <strong>Distribuidor:</strong><br>
@@ -148,7 +161,9 @@ hr {
                                 <i class="fas fa-shipping-fast"></i>
                               </span> 
                             </a>
-                          </li><li>
+                          </li>
+                          @endif
+                          <li>
                             <a >
                               <span align="center">
                                   <strong>Domicilio:</strong><br>
