@@ -7,6 +7,8 @@ use App\Encargo;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EncargoRequest;
 use Illuminate\Http\Request;
+use App\Mail\EncargosEmail;
+use Illuminate\Support\Facades\Mail;
 use MercadoPago;
 
 class EncargoController extends Controller
@@ -127,6 +129,13 @@ class EncargoController extends Controller
             'correo' => 'required|email'
         ]);
 
+        $correo = new EncargosEmail($encargo);
+        Mail::to($request->correo)->send($correo);
+        // $en = $request->all();
+        // item = array();
+        // foreach ($en as $e) {
+        //     $i = $e->
+        // }
         return response()->json(array(
             'message' => 'El Correo fue enviado con exito para el encargo '.$encargo->id.'!'
         ));

@@ -244,7 +244,6 @@ hr {
                                  <h5 style="color:#E64738;">Total:</h5>
                                 </div>
                                 <div>
-                                
                                     @foreach ($encargos->detalles as $de)
                                     @php
                                         $precios[] = intval($de->producto->producto_precio) * intval($de->cantidad);
