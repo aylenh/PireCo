@@ -699,48 +699,22 @@ a {text-decoration: none;}
                                                                                     {{$encargo->horario_hasta}}</p>
                                                                             </td>
                                                                         </tr>
+                                                                        @foreach ($encargo->detalles as $detalle)
                                                                         <tr style="border-collapse:collapse">
                                                                             <td style="padding:5px 10px 5px 0;Margin:0"
                                                                                 width="80%" align="left">
                                                                                 <p
                                                                                     style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;line-height:24px;color:#333333;font-size:16px">
-                                                                                    BIDON 20 LTRS
+                                                                                    {{ $detalle->producto->producto_botella}} {{ $detalle->producto->producto_litros}} LTRS
                                                                             </td>
                                                                             <td style="padding:5px 0;Margin:0"
                                                                                 width="20%" align="left">
                                                                                 <p
                                                                                     style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;line-height:24px;color:#333333;font-size:16px">
-                                                                                    {{$encargo->bidon_20}} Pz</p>
+                                                                                    {{$detalle->cantidad}} Pz</p>
                                                                             </td>
                                                                         </tr>
-                                                                        <tr style="border-collapse:collapse">
-                                                                            <td style="padding:5px 10px 5px 0;Margin:0"
-                                                                                width="80%" align="left">
-                                                                                <p
-                                                                                    style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;line-height:24px;color:#333333;font-size:16px">
-                                                                                    BIDON 10 LTRS
-                                                                            </td>
-                                                                            <td style="padding:5px 0;Margin:0"
-                                                                                width="20%" align="left">
-                                                                                <p
-                                                                                    style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;line-height:24px;color:#333333;font-size:16px">
-                                                                                    {{$encargo->z}} Pz</p>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr style="border-collapse:collapse">
-                                                                            <td style="padding:5px 10px 5px 0;Margin:0"
-                                                                                width="80%" align="left">
-                                                                                <p
-                                                                                    style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;line-height:24px;color:#333333;font-size:16px">
-                                                                                    BOTELLA 1 LTRS 
-                                                                            </td>
-                                                                            <td style="padding:5px 0;Margin:0"
-                                                                                width="20%" align="left">
-                                                                                <p
-                                                                                    style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;line-height:24px;color:#333333;font-size:16px">
-                                                                                    {{$encargo->botella_1}} Pz</p>
-                                                                            </td>
-                                                                        </tr>
+                                                                        @endforeach
                                                                     </table>
                                                                 </td>
                                                             </tr>
