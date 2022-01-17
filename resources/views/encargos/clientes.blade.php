@@ -40,36 +40,10 @@
                                             <td>{!! $encargo->nombre !!}</td>
                                             <td>{!! $encargo->domicilio !!}</td>
                                             <td>
-                                                @php
-                                                    $cantidad = array();
-                                                @endphp
-                                                @foreach ($encargo->detalles as $de)
-                                                @php
-                                                    $cantidad[] = intval($de->cantidad);
-                                                @endphp
-                                                @endforeach
-                                                @php
-                                                    // $total = count((array) $cantidad);
-                                                    $total = array_sum((array) $cantidad);
-                                                        echo $total;
-                                                    unset($cantidad);
-                                                @endphp
+                                                {{ $encargo->detalles->sum('cantidad') }}
                                             </td>
                                             <td>
-                                                @php
-                                                    $precios = array();
-                                                @endphp
-                                                @foreach ($encargo->detalles as $de)
-                                                @php
-                                                    $precios[] = intval($de->producto->producto_precio) * intval($de->cantidad);
-                                                   
-                                                @endphp
-                                                @endforeach
-                                                @php
-                                                $total = array_sum((array) $precios);
-                                                    echo '$'.$total;
-                                                    unset($precios);
-                                                @endphp
+                                                {{ $encargo->detalles->sum('sub_total') }}
                                             </td>
                                             <td>
                                                 <a href="{{route('detalles.encargo', $encargo )}}"><i class="fas fa-search"></i> Ver</a>

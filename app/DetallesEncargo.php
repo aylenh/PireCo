@@ -13,6 +13,8 @@ class DetallesEncargo extends Model
         'producto_id'
     ];
 
+    protected $appends = ['sub_total'];
+
     public function encargo()
     {
         return $this->belongsTo(Encargo::class);
@@ -21,6 +23,11 @@ class DetallesEncargo extends Model
     public function producto()
     {
         return $this->hasOne(Producto::class,'id','producto_id');
+    }
+
+    public function getSubTotalAttribute()
+    {
+        return (int) $this->cantidad * (int) $this->producto->producto_precio;
     }
 
 }
