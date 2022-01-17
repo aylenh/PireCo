@@ -474,7 +474,8 @@ a {text-decoration: none;}
                                                                             src="https://tpgvrc.stripocdn.email/content/guids/CABINET_75694a6fc3c4633b3ee8e3c750851c02/images/67611522142640957.png"
                                                                             alt
                                                                             style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"
-                                                                            width="120"></a></td>
+                                                                            width="120"></a>
+                                                                        </td>
                                                             </tr>
                                                             <tr style="border-collapse:collapse">
                                                                 <td align="center"
@@ -755,7 +756,18 @@ a {text-decoration: none;}
                                                                             <td width="20%" style="padding:0;Margin:0">
                                                                                 <h4
                                                                                     style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif">
-                                                                                    ${{$encargo->total}}</h4>
+                                                                                    @foreach ($encargo->detalles as $detalle)
+                                                                                    @php
+                                                                                $precios[] = intval($de->producto->producto_precio) * intval($de->cantidad);
+                                                                                       
+                                                                                    @endphp
+                                                                                    @endforeach
+                                                                                    @php
+                                                                                    $total = array_sum((array) $precios);
+                                                                                        echo '<p style="color:#E64738;">'.'$'.$total.'</p> ';
+                                                                                    @endphp
+                                                                                    {{-- @endforeach --}}
+                                                                                    </h4>
                                                                             </td>
                                                                         </tr>
                                                                     </table>

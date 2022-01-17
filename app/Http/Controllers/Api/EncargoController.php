@@ -131,11 +131,7 @@ class EncargoController extends Controller
 
         $correo = new EncargosEmail($encargo);
         Mail::to($request->correo)->send($correo);
-        // $en = $request->all();
-        // item = array();
-        // foreach ($en as $e) {
-        //     $i = $e->
-        // }
+
         return response()->json(array(
             'message' => 'El Correo fue enviado con exito para el encargo '.$encargo->id.'!'
         ));

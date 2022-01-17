@@ -46,12 +46,13 @@
                                                 @foreach ($encargo->detalles as $de)
                                                 @php
                                                     $cantidad[] = intval($de->cantidad);
-                                                   
                                                 @endphp
                                                 @endforeach
                                                 @php
-                                                $total = count((array) $cantidad);
-                                                    echo $total;
+                                                    // $total = count((array) $cantidad);
+                                                    $total = array_sum((array) $cantidad);
+                                                        echo $total;
+                                                    unset($cantidad);
                                                 @endphp
                                             </td>
                                             <td>
@@ -67,6 +68,7 @@
                                                 @php
                                                 $total = array_sum((array) $precios);
                                                     echo '$'.$total;
+                                                    unset($precios);
                                                 @endphp
                                             </td>
                                             <td>

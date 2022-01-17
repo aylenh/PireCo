@@ -2,17 +2,187 @@
 <html lang="en">
 
 <head>
-  @include('includes.head')
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ env('APP_NAME') }}</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{{ asset('libs/fontawesome/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href=" https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
+   
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{ asset('libs/sbadmin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    <script
+        src="https://maps.google.com/maps/api/js?key=AIzaSyDby2E_JbzX-Rmb0v4lE9z62T5TAdkLyh8&libraries=places&callback=initAutocomplete"
+        type="text/javascript"></script>
+
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    
+
+
+    <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
+
 </head>
 
 <body id="page-top">
+
+    <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- inicio header (barra de usuario y menu) -->
-            @include('includes.header')
-        <!-- FIN header (barra de usuario y menu) -->
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-               {{-- Contenido de la pagina  --}}
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home') }}">
+                <img src="/images/logo.png" height="75">
+              </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Servicios
+            </div>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/distribuidores') }}">
+                    <i class="fas fa-fw fa-user-plus"></i>
+                    <span>Distribuidores</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/productos') }}">
+                    <i class="fas fa-fw fa-box"></i>
+                    <span>Productos</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('encargos') }}">
+                    <i class="fas fa-fw fa-dolly"></i>
+                    <span>Encargos</span></a>
+            </li>
+            <div class="sidebar-heading">
+                Cajas
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/caja') }}">
+                    <i class="fas fa-fw fa-cash-register"></i>
+                    <span>Caja</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/resumenmonthly') }}">
+                    <i class="fas fa-fw fa-cash-register"></i>
+                    <span>Resumen Caja</span></a>
+            </li>
+            <div class="sidebar-heading">
+                Cajas Bidones
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/botellas') }}">
+                    <i class="fas fa-fw fa-cash-register"></i>
+                    <span>Caja Bidones</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/resumenbotellas') }}">
+                    <i class="fas fa-fw fa-cash-register"></i>
+                    <span>Resumen Caja Bidones</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                <img class="img-profile rounded-circle"
+                                    src="https://www.emmegi.co.uk/wp-content/uploads/2019/01/User-Icon.jpg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"
+                                    href="{{ route('logout') }}">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Salir
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
@@ -93,12 +263,57 @@
 
             </div>
             <!-- End of Main Content -->
-@include('includes.footer')
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; PirenCo 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Estas seguro de cerrar sesion?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Seleccionar "Cerrar Sesion" debajo si estas seguro de cerrar sesion.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary" href="{{ url('/logout') }}">Cerrar
+                            Sesion</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         $(function() {
             $('#saveDistribuidor').on('submit', function(e) {
                 e.preventDefault();
-
                 var saveDistribuidor = this;
                 $.ajax({
                     url: $(saveDistribuidor).attr('action'),
@@ -124,7 +339,6 @@
                     }
                 });
             });
-
             //Reset input file
             $('input[type="file"][name="distribuidor_imagen"]').val('');
             //Image preview
@@ -152,16 +366,13 @@
                     $(img_holder).empty();
                 }
             });
-
             //Fetch all products
             fetchAllDistribuidores();
-
             function fetchAllDistribuidores() {
                 $.get('{{ route('fetch.distribuidores') }}', {}, function(data) {
                     $('#allDistribuidores').html(data.result);
                 }, 'json');
             }
-
             //Funcion Boton Editar Distribuidor
             $(document).on('click', '#editarBtn', function() {
                 var distribuidor_id = $(this).data('id');
@@ -171,7 +382,6 @@
                 }, function(data) {
                     //alert(data.result.distribuidor_local);
                     var distribuidor_modal = $('.editDistribuidorModal');
-
                     $(distribuidor_modal).find('form').find('input[name="pid"]').val(data.result.id);
                     $(distribuidor_modal).find('form').find('input[name="distribuidor_local"]').val(data.result.distribuidor_local);
                     $(distribuidor_modal).find('form').find('input[name="distribuidor_correo"]').val(data.result.distribuidor_correo);
@@ -185,7 +395,6 @@
                 }, 'json');
                 //alert(distribuidor_id);
             });
-
             $('input[type="file"][name="distribuidor_imagen_update"]').on('change', function(){
                 var img_path = $(this)[0].value;
                 var img_holder = $('.img-holder-update');
@@ -207,13 +416,11 @@
                     $(img_holder).html(currentImagePath);
                 }
             });
-
             $(document).on('click', '#clearInputFile', function(){
                 var form = $(this).closest('form');
                 $(form).find('input[type="file"]').val('');
                 $(form).find('.img-holder-update').html($(form).find('input[type="file"]').data('value'));
             });
-
             //Update distribuidor modal
             $('#update_form').on('submit', function(e){
                 e.preventDefault();
@@ -241,13 +448,10 @@
                     }
                 })
             });
-
             //Funcion boton eliminar distribuidor
-
             $(document).on('click', '#eliminarBtn', function(){
                 var distribuidor_id = $(this).data('id');
                 var url = '{{route("delete.distribuidor")}}';
-
                 if(confirm('Estas seguro de eliminar esta distribuidora?')){
                     $.ajax({
                         headers:{
@@ -275,7 +479,6 @@
         src="https://rawgit.com/Logicify/jquery-locationpicker-plugin/master/dist/locationpicker.jquery.js"></script>
     <script>
         $(function() {
-
             $('#us2').locationpicker({
                 location: {
                     latitude: '',
@@ -292,14 +495,11 @@
                     //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
                 }
             });
-
-
         });
     </script>
 
 <script>
     $(function() {
-
         $('#updateMap').locationpicker({
             location: {
                 latitude: -34.60568597314354,
@@ -315,8 +515,6 @@
             onchanged: function(currentLocation, radius, isMarkerDropped) {
             }
         });
-
-
     });
 </script>
 
