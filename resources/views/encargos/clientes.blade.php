@@ -40,6 +40,9 @@
                                             <td>{!! $encargo->nombre !!}</td>
                                             <td>{!! $encargo->domicilio !!}</td>
                                             <td>
+                                                @php
+                                                    $cantidad = array();
+                                                @endphp
                                                 @foreach ($encargo->detalles as $de)
                                                 @php
                                                     $cantidad[] = intval($de->cantidad);
@@ -52,6 +55,9 @@
                                                 @endphp
                                             </td>
                                             <td>
+                                                @php
+                                                    $precios = array();
+                                                @endphp
                                                 @foreach ($encargo->detalles as $de)
                                                 @php
                                                     $precios[] = intval($de->producto->producto_precio) * intval($de->cantidad);
