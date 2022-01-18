@@ -230,9 +230,7 @@ hr {
                                             <td>{{ $de->cantidad }}</td>
                                             <td>{{ $de->producto->producto_precio }}</td>
                                             <td>
-                                                @php
-                                                    echo $de->producto->producto_precio * $de->cantidad;
-                                                @endphp
+                                              {{$de->SubTotal}}
                                             </td>
 
                                         </tr>
@@ -244,8 +242,10 @@ hr {
                                  <h5 style="color:#E64738;">Total:</h5>
                                 </div>
                                 <div>
-                                    @foreach ($encargos->detalles as $de)
-                                    @php
+                                    {{-- @foreach ($encargos->detalles as $de)
+                                    <p style="color:#E64738;">{{$de->sum('SubTotal')}}</p>
+                                    @endforeach --}}
+                                    {{-- @php
                                         $precios[] = intval($de->producto->producto_precio) * intval($de->cantidad);
                                        
                                     @endphp
@@ -253,10 +253,10 @@ hr {
                                     @php
                                     $total = array_sum((array) $precios);
                                         echo '<p style="color:#E64738;">'.'$'.$total.'</p> ';
-                                    @endphp
+                                    @endphp --}}
                                 </td>
                                    </h5>
-                                </div>
+                                </div>k
                            </div>
                         </div>
                 

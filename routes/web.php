@@ -32,7 +32,7 @@ Route::get('/remitos_render/{client}/{day?}',    'RemitosController@render')->na
 
 //RUTAS DE CAJA BOTELLA
 Route::resource('/botellas', 'BotellaController');
-Route::resource('/resumenbotellas',    'ResumenbotellasController');
+Route::resource('/resumenbotellas',    'ResumenBidones');
 
 
 
