@@ -19,4 +19,10 @@ class Distribuidor extends Model
     {
         return $this->hasMany(Encargo::class);
     }
+
+    public function inventarios()
+    {
+        return $this->hasMany(Inventario::class);
+    }
+    
 }

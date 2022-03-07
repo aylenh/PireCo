@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\DetallesEncargo;
+use App\DetallesInventarios;
 use Illuminate\Http\Request;
 use App\Encargo;
 use App\Http\Requests\EncargoRequest;
+use App\Inventario;
 use Illuminate\Support\Facades\DB;
 use App\Mail\EncargosEmail;
 use Illuminate\Support\Facades\Mail;
@@ -67,10 +69,34 @@ class EncargoController extends Controller
         $items = array();
 
         foreach ($request->productos as $key => $producto) {
+            // Inventario::insert(
+            //     [
+            //         'cantidad' => $producto['cantidad'],
+            //         'cantidad_total' => $producto['cantidad'],
+            //         'producto_id' => $producto['producto_id'], 
+            //         'encargo_id' => $encargo->id,       
+            //     ]
+            // );
+
             $detalles = new DetallesEncargo;
             $detalles->cantidad = $producto['cantidad'];
             $detalles->producto_id = $producto['producto_id'];
             $detalles->encargo_id = $encargo->id;
+
+            // $inventario = new Inventario;
+            // $inventario->cantidad = $producto['cantidad'];
+            // $inventario->producto_id = $producto['producto_id'];
+            // $inventario->encargo_id = $encargo->id;
+
+            // $inventario->save();
+
+            // $consulta = Inventario::where("producto_id",$detalles->producto_id)->get();
+            // foreach ($consulta as $con) {
+            //     $cantidadA = $con->cantidad - $detalles->cantidad;
+            // }
+            // $fin = intval($cantidadA);
+            // $consulta->update(["cantidad" => $fin]);
+            
             $detalles->save();
 
             $item = new MercadoPago\Item();

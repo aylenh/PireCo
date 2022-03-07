@@ -1,8 +1,8 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home') }}">
-        <img src="/images/logo.png" height="75">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home') }}"> <br>
+        <img src="{{asset('images/logoG.png')}}" height="75" width="100%">
       </a>
 
     <!-- Divider -->
@@ -38,7 +38,7 @@
             <span>Caja</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ url('/resumenmonthly') }}">
+        <a class="nav-link" href="{{ route('resumen.caja') }}">
             <i class="fas fa-fw fa-cash-register"></i>
             <span>Resumen Caja</span></a>
     </li>
@@ -46,12 +46,12 @@
         Cajas Bidones
     </div>
     <li class="nav-item">
-        <a class="nav-link" href="{{ url('/botellas') }}">
+        <a class="nav-link" href="{{ route('bidones.caja') }}">
             <i class="fas fa-fw fa-cash-register"></i>
             <span>Caja Bidones</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ url('/resumenbotellas') }}">
+        <a class="nav-link" href="{{ route('bidonesG.resumen') }}">
             <i class="fas fa-fw fa-cash-register"></i>
             <span>Resumen Caja Bidones</span></a>
     </li>

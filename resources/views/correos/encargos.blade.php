@@ -305,10 +305,10 @@ a {text-decoration: none;}
 
 <body
     style="width:100%;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0">
-    <div class="es-wrapper-color" style="background-color:#EEEEEE">
+    <div class="es-wrapper-color" style="background-color:#5A5C69">
         <!--[if gte mso 9]>
 <v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
-<v:fill type="tile" color="#eeeeee"></v:fill>
+<v:fill type="tile" color="#5A5C69"></v:fill>
 </v:background>
 <![endif]-->
         <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0"
@@ -335,9 +335,9 @@ a {text-decoration: none;}
                                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                             <tr style="border-collapse:collapse">
                                                                 <td class="es-infoblock es-m-txt-c" align="left"
-                                                                    style="padding:0;Margin:0;line-height:14px;font-size:12px;color:#CCCCCC">
+                                                                    style="padding:0;Margin:0;line-height:14px;font-size:12px;color:#71C5E8">
                                                                     <p
-                                                                        style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica\ neue', helvetica, sans-serif;line-height:14px;color:#CCCCCC;font-size:12px">
+                                                                        style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica\ neue', helvetica, sans-serif;line-height:14px;color:#71C5E8;font-size:12px">
                                                                         PirenCo agradece su interes por nuestros productos.</p>
                                                                 </td>
                                                             </tr>
@@ -355,12 +355,12 @@ a {text-decoration: none;}
                                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                             <tr style="border-collapse:collapse">
                                                                 <td align="right" class="es-infoblock es-m-txt-c"
-                                                                    style="padding:0;Margin:0;line-height:14px;font-size:12px;color:#CCCCCC">
+                                                                    style="padding:0;Margin:0;line-height:14px;font-size:12px;color:#71C5E8">
                                                                     <p
-                                                                        style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;line-height:14px;color:#CCCCCC;font-size:12px">
+                                                                        style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;line-height:14px;color:#71C5E8;font-size:12px">
                                                                         <a href="https://viewstripo.email" class="view"
                                                                             target="_blank"
-                                                                            style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#CCCCCC;font-size:12px;font-family:arial, 'helvetica neue', helvetica, sans-serif"> </a></p>
+                                                                            style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#71C5E8;font-size:12px;font-family:arial, 'helvetica neue', helvetica, sans-serif"> </a></p>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -380,32 +380,13 @@ a {text-decoration: none;}
                         <tr style="border-collapse:collapse">
                             <td align="center" style="padding:0;Margin:0">
                                 <table class="es-header-body"
-                                    style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#4A6FDC;width:600px"
-                                    cellspacing="0" cellpadding="0" bgcolor="#4A6FDC" align="center">
+                                    style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#3D3C44;width:600px"
+                                    cellspacing="0" cellpadding="0" bgcolor="#3D3C44" align="center">
                                     <tr style="border-collapse:collapse">
-                                        <td align="left"
-                                            style="Margin:0;padding-top:35px;padding-bottom:35px;padding-left:35px;padding-right:35px">
-                                            <!--[if mso]><table style="width:530px" cellpadding="0" cellspacing="0"><tr><td style="width:340px" valign="top"><![endif]-->
-                                            <table class="es-left" cellspacing="0" cellpadding="0" align="left"
-                                                style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left">
-                                                <tr style="border-collapse:collapse">
-                                                    <td class="es-m-p0r es-m-p20b" valign="top" align="center"
-                                                        style="padding:0;Margin:0;width:340px">
-                                                        <table width="100%" cellspacing="0" cellpadding="0"
-                                                            role="presentation"
-                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                                                            <tr style="border-collapse:collapse">
-                                                                <td class="es-m-txt-c" align="left"
-                                                                    style="padding:0;Margin:0">
-                                                                    <h1
-                                                                        style="Margin:0;line-height:36px;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:36px;font-style:normal;font-weight:bold;color:#ffffff">
-                                                                        PirenCo</h1>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
+                                        <td align="left">
+                                                        <img src="{{asset('images/logo3.jpg')}}" width="100%" height="100%" alt="">
                                                     </td>
-                                                </tr>
-                                            </table>
+                                            
                                             <!--[if mso]></td><td style="width:20px"></td><td style="width:170px" valign="top"><![endif]-->
                                             <table cellspacing="0" cellpadding="0" align="right"
                                                 style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
@@ -421,11 +402,6 @@ a {text-decoration: none;}
                                                                     <table width="100%" height="100%" cellspacing="0"
                                                                         cellpadding="0" border="0" role="presentation"
                                                                         style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                                                                        <tr style="border-collapse:collapse">
-                                                                            <td
-                                                                                style="padding:0;Margin:0;border-bottom:1px solid #4A6FDC;background:#FFFFFF none repeat scroll 0% 0%;height:1px;width:100%;margin:0px">
-                                                                            </td>
-                                                                        </tr>
                                                                     </table>
                                                                 </td>
                                                             </tr>
@@ -515,7 +491,7 @@ a {text-decoration: none;}
                                                             role="presentation"
                                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                             <tr style="border-collapse:collapse">
-                                                                <td bgcolor="#eeeeee" align="left"
+                                                                <td bgcolor="#5A5C69" align="left"
                                                                     style="Margin:0;padding-top:10px;padding-bottom:10px;padding-left:10px;padding-right:10px">
                                                                     <table
                                                                         style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:500px"
@@ -525,12 +501,12 @@ a {text-decoration: none;}
                                                                         <tr style="border-collapse:collapse">
                                                                             <td width="80%" style="padding:0;Margin:0">
                                                                                 <h4
-                                                                                    style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif">
+                                                                                    style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;color:#71C5E8;">
                                                                                     Datos Cliente</h4>
                                                                             </td>
                                                                             <td width="20%" style="padding:0;Margin:0">
                                                                                 <h4
-                                                                                    style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif">
+                                                                                    style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif; color:#71C5E8;">
                                                                                     #</h4>
                                                                             </td>
                                                                         </tr>
@@ -625,7 +601,7 @@ a {text-decoration: none;}
                                                             role="presentation"
                                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                             <tr style="border-collapse:collapse">
-                                                                <td bgcolor="#eeeeee" align="left"
+                                                                <td bgcolor="#5A5C69" align="left"
                                                                     style="Margin:0;padding-top:10px;padding-bottom:10px;padding-left:10px;padding-right:10px">
                                                                     <table
                                                                         style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:500px"
@@ -635,12 +611,12 @@ a {text-decoration: none;}
                                                                         <tr style="border-collapse:collapse">
                                                                             <td width="80%" style="padding:0;Margin:0">
                                                                                 <h4
-                                                                                    style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif">
+                                                                                    style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif; color:#71C5E8;">
                                                                                     Confirmación Orden</h4>
                                                                             </td>
                                                                             <td width="20%" style="padding:0;Margin:0">
                                                                                 <h4
-                                                                                    style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif">
+                                                                                    style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;color:#71C5E8;">
                                                                                     #</h4>
                                                                             </td>
                                                                         </tr>
@@ -736,7 +712,7 @@ a {text-decoration: none;}
                                                     <td valign="top" align="center"
                                                         style="padding:0;Margin:0;width:530px">
                                                         <table
-                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;border-top:3px solid #eeeeee;border-bottom:3px solid #eeeeee"
+                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;border-top:3px solid #5A5C69;border-bottom:3px solid #5A5C69"
                                                             width="100%" cellspacing="0" cellpadding="0"
                                                             role="presentation">
                                                             <tr style="border-collapse:collapse">
@@ -756,18 +732,18 @@ a {text-decoration: none;}
                                                                             <td width="20%" style="padding:0;Margin:0">
                                                                                 <h4
                                                                                     style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif">
-                                                                                    @foreach ($encargo->detalles as $detalle)
-                                                                                    @php
-                                                                                $precios[] = intval($de->producto->producto_precio) * intval($de->cantidad);
-                                                                                       
-                                                                                    @endphp
+
+                                                                                    @foreach ($encargo->detalles as $de)
+                                                                                        @php
+                                                                                            $sub_total[] = $de->SubTotal;
+                                                                                        @endphp
                                                                                     @endforeach
-                                                                                    @php
-                                                                                    $total = array_sum((array) $precios);
-                                                                                        echo '<p style="color:#E64738;">'.'$'.$total.'</p> ';
-                                                                                    @endphp
-                                                                                    {{-- @endforeach --}}
-                                                                                    </h4>
+                                                                                        @php
+                                                                                        $total = array_sum((array) $sub_total);
+                                                                                            echo '<p style="color:#E64738;">'.'$'.$total.'</p> ';
+                                                                                        @endphp
+                                                                               
+                                                                                </h4>
                                                                             </td>
                                                                         </tr>
                                                                     </table>
@@ -786,8 +762,8 @@ a {text-decoration: none;}
                         <tr style="border-collapse:collapse">
                             <td align="center" style="padding:0;Margin:0">
                                 <table class="es-header-body"
-                                    style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#4A6FDC;width:600px"
-                                    cellspacing="0" cellpadding="0" bgcolor="#4A6FDC" align="center">
+                                    style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#5A5C69;width:600px"
+                                    cellspacing="0" cellpadding="0" bgcolor="#5A5C69" align="center">
                                     <tr style="border-collapse:collapse">
                                         <td align="left"
                                             style="Margin:0;padding-top:35px;padding-bottom:35px;padding-left:35px;padding-right:35px">
@@ -803,7 +779,7 @@ a {text-decoration: none;}
                                                             <tr style="border-collapse:collapse">
                                                                 <td class="es-m-txt-c" align="left"
                                                                     style="padding:0;Margin:0">
-                                                                    <a style="color: #CCCCCC">PirenCo© 2022</a>
+                                                                    <a style="color: #71C5E8">PirenCo© 2022</a>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -827,7 +803,7 @@ a {text-decoration: none;}
                                                                         style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                                         <tr style="border-collapse:collapse">
                                                                             <td
-                                                                                style="padding:0;Margin:0;border-bottom:1px solid #4A6FDC;background:#FFFFFF none repeat scroll 0% 0%;height:1px;width:100%;margin:0px">
+                                                                                style="padding:0;Margin:0;border-bottom:1px solid #5A5C69;background:#FFFFFF none repeat scroll 0% 0%;height:1px;width:100%;margin:0px">
                                                                             </td>
                                                                         </tr>
                                                                     </table>

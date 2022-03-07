@@ -212,11 +212,12 @@ hr {
                             <div class="cho-container"></div>
                         </div>
                         <div class="card-body">
-                            <table  class="table table-striped" style="width:100%">
+                            <table  class="table table-striped" style="width:100%; text-align: center;">
                                 <thead>
                                     <tr>
                                         <th>Producto</th>
                                         <th>Tipo</th>
+                                        <th>Litros</th>
                                         <th>Cantidad</th>
                                         <th>Precio unitario</th>
                                         <th>Precio total</th>
@@ -227,10 +228,19 @@ hr {
                                         <tr>
                                             <td>{{ $de->producto->producto_botella }}</td>
                                             <td>{{ $de->producto->producto_descartable }}</td>
-                                            <td>{{ $de->cantidad }}</td>
-                                            <td>{{ $de->producto->producto_precio }}</td>
                                             <td>
-                                              {{$de->SubTotal}}
+                                              @if($de->producto_id == 1)
+                                                  10L
+                                              @elseif ($de->producto_id == 2)
+                                                  20L
+                                              @else
+                                                  1L
+                                              @endif
+                                            </td>
+                                            <td>{{ $de->cantidad }}</td>
+                                            <td>${{ $de->producto->producto_precio }}</td>
+                                            <td>
+                                              ${{$de->SubTotal}}
                                             </td>
 
                                         </tr>
@@ -242,21 +252,19 @@ hr {
                                  <h5 style="color:#E64738;">Total:</h5>
                                 </div>
                                 <div>
-                                    {{-- @foreach ($encargos->detalles as $de)
-                                    <p style="color:#E64738;">{{$de->sum('SubTotal')}}</p>
-                                    @endforeach --}}
-                                    {{-- @php
-                                        $precios[] = intval($de->producto->producto_precio) * intval($de->cantidad);
-                                       
-                                    @endphp
+                                    @foreach ($encargos->detalles as $de)
+                                      @php
+                                          $sub_total[] = $de->SubTotal;
+                                      @endphp
                                     @endforeach
                                     @php
-                                    $total = array_sum((array) $precios);
+                                    $total = array_sum((array) $sub_total);
                                         echo '<p style="color:#E64738;">'.'$'.$total.'</p> ';
-                                    @endphp --}}
+                                    @endphp
+                                    
                                 </td>
                                    </h5>
-                                </div>k
+                                </div>
                            </div>
                         </div>
                 

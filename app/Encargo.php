@@ -22,11 +22,16 @@ class Encargo extends Model
         return $this->hasMany(DetallesEncargo::class);
     }
 
+    public function inventarios()
+    {
+        return $this->hasMany(Inventario::class);
+    }
 
     public function distribuidor()
     {
         return $this->belongsTo(Distribuidor::class);
     }
-
-    
+  
 }
+
+

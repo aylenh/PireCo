@@ -24,10 +24,11 @@
                             <div class="cho-container"></div>
                         </div>
                         <div class="card-body">
-                            <table id="tblPedidos" class="table table-striped" style="width:100%">
+                            <table id="tblPedidos" class="table table-striped" style="width:100%; text-align: center;">
                                 <thead>
                                     <tr>
-                                        <th>Pedido</th>
+                                        <th>Tipo</th>
+                                        <th>Cliente/Distribuidor</th>
                                         <th>Domicilio</th>
                                         <th>Cantidad productos</th>
                                         <th>Total</th>
@@ -37,7 +38,20 @@
                                 <tbody>
                                     @foreach ($encargos as $encargo)
                                         <tr>
-                                            <td>{!! $encargo->nombre !!}</td>
+                                            <td>
+                                                @if ($encargo->distribuidor_id == null)
+                                                    <h5><span class="badge badge-primary">Pago Directo</span></h5>
+                                                @else
+                                                    <h5><span class="badge badge-dark">Pago Distribuidor</span></h5>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($encargo->distribuidor_id == null)
+                                                    {!! $encargo->nombre !!}
+                                                @else
+                                                    {!! $encargo->distribuidor->distribuidor_local !!}
+                                                @endif
+                                            </td>
                                             <td>{!! $encargo->domicilio !!}</td>
                                             <td>
                                                 {{ $encargo->detalles->sum('cantidad') }}

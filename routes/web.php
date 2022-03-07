@@ -7,6 +7,7 @@ use App\Http\Controllers\HRImporterController;
 use App\Http\Controllers\InconsistencieController;
 use App\Http\Controllers\HrController;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\ResumenBidones;
 use App\Http\Controllers\SendinBlueController;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,7 @@ Route::resource('/caja', 'CashController');
 Route::get('/cash_render/{day?}', 'CashController@render')->name('cash.render');
 Route::get('/cash_add/income', 'CashController@addincome')->name('cash.addincome');
 Route::get('/cash_add/outcome', 'CashController@addoutcome')->name('cash.addoutcome');
+Route::get('/resumenCaja',    'CashController@resumencaja')->name('resumen.caja');
 
 /* Operator's Cash module */
 Route::resource('/cash2',    'Cash2Controller');
@@ -30,11 +32,15 @@ Route::get('/resumenmonthy_addrecibo',    'ResumenmonthlyController@addrecibo')-
 Route::resource('/remitos',    'RemitosController');
 Route::get('/remitos_render/{client}/{day?}',    'RemitosController@render')->name('remitos.render');
 
-//RUTAS DE CAJA BOTELLA
-Route::resource('/botellas', 'BotellaController');
-Route::resource('/resumenbotellas',    'ResumenBidones');
+Route::get('/CajaBidones',    'ResumenBidones@index')->name('bidones.caja');
+Route::get('/ResumenBidones',    'ResumenBidones@resumenBidones')->name('bidonesG.resumen');
 
-
+// RUTAS RESUMEN BIDONES hry
+Route::post('/Bidones-devueltos', 'ResumenBidones@bidonesgenerados')->name('bidones.resumen');
+Route::post('/Inventario-bidones', 'ResumenBidones@devolucionBidones')->name('inventario.bidones');
+Route::post('/ResumenBidones-dia', 'ResumenBidones@resumenBidones')->name('bidones.dia');
+Route::post('/Bidones-filtrar', 'ResumenBidones@BidonesCajaFiltro')->name('bidones.caja.filtrar');
+Route::get('/Todos', 'ResumenBidones@verTodo')->name('vertodo.cajaBidones');
 
 
 //RUTAS DE DISTRIBUIDORES
@@ -45,11 +51,13 @@ Route::get('/fetchDistribuidores', 'DistribuidorController@fetchDistribuidores')
 Route::get('/getDistribuidoresDetails', 'DistribuidorController@getDistribuidoresDetails')->name('get.distribuidores.details');
 
 //RUTAS DE PRODUCTOS
-Route::post('/saveProducto', 'ProductoController@save')->name('save.producto');
-Route::post('/updateProducto', 'ProductoController@updateProducto')->name('update.producto');
-Route::post('/deleteProducto', 'ProductoController@deleteProducto')->name('delete.producto');
-Route::get('/fetchProductos', 'ProductoController@fetchProductos')->name('fetch.productos');
-Route::get('/getProductosDetails', 'ProductoController@getProductosDetails')->name('get.productos.details');
+Route::post('/saveProducto', 'ProductoController@guardar')->name('save.producto');
+Route::get('/mostrarProductos', 'ProductoController@mostrarProductos')->name('mostrar.productos');
+Route::post('/editarProducto', 'ProductoController@editarProducto')->name('editar.producto');
+Route::post('/ActualizarProducto', 'ProductoController@actualizarProducto')->name('actualizar.producto');
+Route::post('/borrarProductos', 'ProductoController@borrarProductosCheck')->name('borrar.producto.check');
+Route::post('/borrarProducto', 'ProductoController@borrarProducto')->name('borrar.producto');
+
 
 //RUTAS ENCARGOS
 

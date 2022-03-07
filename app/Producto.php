@@ -12,7 +12,8 @@ class Producto extends Model
         'producto_descartable', 
         'producto_litros', 
         'producto_precio',
-        'imagen'
+        'imagen',
+        'cantidad'
     ];
 
     public function detalles()
@@ -20,7 +21,13 @@ class Producto extends Model
         return $this->belongsTo(DetallesEncargo::class);
     }
 
-    public function encargos(){
+    public function encargos()
+    {
         return $this->hasMany(Encargo::class);
+    }
+
+    public function inventarios()
+    {
+        return $this->hasMany(Inventario::class);
     }
 }

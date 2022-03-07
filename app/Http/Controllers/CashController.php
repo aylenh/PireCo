@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB;
-
+use Illuminate\Support\Facades\DB;
 class CashController extends Controller
 {
     /**
@@ -15,21 +14,26 @@ class CashController extends Controller
      */
     public function index()
     {
-        $cc = array();
-        # Get clients
-        foreach(DB::table('clients')->get() as $client):
-            # Get cc movements of each client
-            $ccMovements = DB::table('cc')->where('idClient', $client->id)->orderByRaw('id ASC')->get();
-            $cc[$client->nfanstasia]['movements'] = $ccMovements;
-            $cc[$client->nfanstasia]['id'] = $client->id;
-        endforeach;
+        // $cc = array();
+        // # Get clients
+        // foreach(DB::table('clients')->get() as $client):
+        //     # Get cc movements of each client
+        //     $ccMovements = DB::table('cc')->where('idClient', $client->id)->orderByRaw('id ASC')->get();
+        //     $cc[$client->nfanstasia]['movements'] = $ccMovements;
+        //     $cc[$client->nfanstasia]['id'] = $client->id;
+        // endforeach;
 
-        return view('caja.caja', ['generalModul'=> 'General', 'parenModul' => 'General', 'modulName' => 'Caja Diaria'
-        ,'mainview' => true
-        ,'clientes' => DB::table('clients')->get()
-        ]);
+        // return view('caja.caja', ['generalModul'=> 'General', 'parenModul' => 'General', 'modulName' => 'Caja Diaria'
+        // ,'mainview' => true
+        // ,'clientes' => DB::table('clients')->get()
+        // ]);
+
+        return view('caja.caja');
     }
 
+    public function resumencaja(){
+        return view('caja.resumencaja');
+    }
     public function render($day)
     {
 

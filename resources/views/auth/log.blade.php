@@ -24,18 +24,18 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-primary" style="background-image:  url('{{asset('images/montañas.jpg')}}')">
 
     <div class="container">
         <br><br><br><br><br>
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <a class="sidebar-brand d-flex align-items-center justify-content-center">
-                    <img src="/images/logo.png" height="75">
+                    {{-- <img src="{{asset('images/logo13.png')}}" height="75"> --}}
                   </a>
                   <br>
                 <div class="card">
-                    <div style="text-align: center;" class="card-header">{{ __('Panel de Administración') }}</div>
+                    <div style="text-align: center;" class="card-header"><img src="{{asset('images/logoO.jpg')}}" height="75"></div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">

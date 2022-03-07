@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\DetallesEncargo;
+use App\DetallesInventarios;
+use App\Producto;
 use App\Encargo;
+use App\Inventario;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EncargoRequest;
 use Illuminate\Http\Request;
 use App\Mail\EncargosEmail;
 use Illuminate\Support\Facades\Mail;
 use MercadoPago;
+use Illuminate\Support\Facades\DB;
 
 class EncargoController extends Controller
 {
@@ -36,7 +40,6 @@ class EncargoController extends Controller
          // Agrega credenciales
         MercadoPago\SDK::setAccessToken('TEST-7110253609417365-110317-d424c5125ab59755a7dcd3ccd1b3d4bb-1011886178');
         
-        
         $encargo = new Encargo;
         $encargo->nombre = $request->input('nombre');
         $encargo->domicilio = $request->input('domicilio');
@@ -46,11 +49,16 @@ class EncargoController extends Controller
         $encargo->horario_hasta = $request->input('horario_hasta');
         $encargo->total = $request->input('total');
 
+        $inventario = new Inventario;
+
         if(!isset($request->directo)){
             $encargo->distribuidor_id = $request->input('distribuidor_id');
+            $distribuidor = Inventario::where('distribuidor_id', $request->input('distribuidor_id'))->first();
         }
-        
+      
         $encargo->save();
+        $cliente = Inventario::where('cel_cliente', $request->input('telefono'))->first();
+        
 
         $items = array();
 
@@ -59,6 +67,69 @@ class EncargoController extends Controller
             $detalles->cantidad = $producto['cantidad'];
             $detalles->producto_id = $producto['producto_id'];
             $detalles->encargo_id = $encargo->id;
+
+            if(!isset($request->directo)){
+                if(empty($distribuidor)){
+                    // return "eeee"; die();
+                    $inventario->cel_cliente = $request->input('telefono');
+                    $inventario->correo_cliente = $request->input('correo');
+                    $inventario->distribuidor_id = $request->input('distribuidor_id');
+                    $inventario->estado = 1;
+                    $inventario->nombre = $request->input('nombre');
+
+    
+                    if($producto['producto_id'] == 1){
+                        $inventario->bidon10 = $producto['cantidad'];
+                    }else if($producto['producto_id'] == 2){
+                        $inventario->bidon20 = $producto['cantidad'];
+                    }
+                    $inventario->save();
+                }else{
+                    if ($request->input('distribuidor_id') == $distribuidor->distribuidor_id) {
+                        
+                        if($producto['producto_id'] == 1){
+                            $distribuidor->bidon10 = $distribuidor->bidon10 + $producto['cantidad'];
+                        }else if($producto['producto_id'] == 2){
+                            $distribuidor->bidon20 = $distribuidor->bidon20+$producto['cantidad'];
+                        }
+                        $distribuidor->update();
+                    }
+                }
+            }else {
+                if(empty($cliente)){
+                    // return "eeee"; die();
+                    $inventario->cel_cliente = $request->input('telefono');
+                    $inventario->correo_cliente = $request->input('correo');
+                    $inventario->estado = 1;
+                    $inventario->nombre = $request->input('nombre');
+    
+                    if($producto['producto_id'] == 1){
+                        $inventario->bidon10 = $producto['cantidad'];
+                    }else if($producto['producto_id'] == 2){
+                        $inventario->bidon20 = $producto['cantidad'];
+                    }
+                    $inventario->save();
+                }else{
+                    if ($request->input('telefono') == $cliente->cel_cliente) {
+                        
+                        if($producto['producto_id'] == 1){
+                            $cliente->bidon10 = $cliente->bidon10 + $producto['cantidad'];
+                        }else if($producto['producto_id'] == 2){
+                            $cliente->bidon20 = $cliente->bidon20+$producto['cantidad'];
+                        }
+                        $cliente->update();
+                    }
+                }
+            }
+           
+
+            $consulta = Producto::where("id",$detalles->producto_id)->get();
+            foreach ($consulta as $con) {
+                $cantidad = $con->cantidad - $detalles->cantidad;
+            }
+            $fin = intval($cantidad);
+            Producto::where("id",$detalles->producto_id)->update(["cantidad" => $fin]);
+            
             $detalles->save();
 
             $item = new MercadoPago\Item();
