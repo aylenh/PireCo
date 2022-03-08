@@ -49,7 +49,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home') }}">
-                <img src="/images/logo.png" height="75">
+                <img src="{{asset('images/logoG.png')}}" height="75" width="100%">
               </a>
         
             <!-- Divider -->
