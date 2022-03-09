@@ -58,8 +58,7 @@ class EncargoController extends Controller
       
         $encargo->save();
         $cliente = Inventario::where('cel_cliente', $request->input('telefono'))->first();
-        
-
+// return $cliente; die();
         $items = array();
 
         foreach ($request->productos as $key => $producto) {

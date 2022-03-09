@@ -46,30 +46,49 @@
                             </div>
                             <div class="card-body">
                                 <div class="container my-lg">
-                                        <table class="table" border="1">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        <form  action="{{ route('bidones.dia') }}" method="POST">
-                                                            @csrf
-                                                            <label>Seleccione el dia que desea filtrar: <hr>
-                                                                Día:  <input type="date" name="fecha" style="border-radius: 5px;" id="fecha"> 
-                                                            </label>
-                                                            <button type="submit" class="btn btn-success" name="filtrar" id="filtrar" >Filtrar</button> 
-                                                        </form>
-                                                    </th>
-                                                    <th>
-                                                        <form action="{{ route('bidones.dia') }}" method="POST">
-                                                            @csrf
-                                                            <label>Seleccione el mes que desea filtrar: <hr>
-                                                                Mes: <input type="month" name="mes" style="border-radius: 5px;" id="fecha"> 
-                                                                
-                                                            </label>
-                                                            <button type="submit" class="btn btn-success" name="filtrar" id="filtrar" >Filtrar</button> 
-                                                        </form>
-                                                    </th>
-                                                </tr>
-                                            </thead>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <a name="" id="" class="btn btn-primary" href="{{ route('bidones.todos') }}" role="button">Ver todos</a> 
+                                            <button type="button" class="btn btn-dark" style="background-color: #4E73DF;" onclick="filtrar();">Filtrar
+                                            </button>
+                                        </div>
+                                        <br>
+                                    <div>
+                                        <div id="filtrar" style="display: none;">
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <table class="table" border="1">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    <form  action="{{ route('bidones.dia') }}" method="POST">
+                                                                        @csrf
+                                                                        <label>Seleccione el <strong> Día </strong> que desea filtrar: <hr>
+                                                                            Día:  <input type="date" name="fecha" style="border-radius: 5px;" id="fecha"> 
+                                                                        </label>
+                                                                        <button type="submit" style="background-color: #4E73DF;"  class="btn btn-success" name="filtrar" id="filtrar" >Filtrar</button> 
+                                                                    </form>
+                                                                </th>
+                                                                <th>
+                                                                    <form action="{{ route('bidones.dia') }}" method="POST">
+                                                                        @csrf
+                                                                        <label>Seleccione el <strong> Mes </strong> desea filtrar: <hr>
+                                                                            Mes: <input type="month" name="mes" style="border-radius: 5px;" id="fecha"> 
+                                                                            
+                                                                        </label>
+                                                                        <button type="submit" style="background-color: #4E73DF;"  class="btn btn-success" name="filtrar" id="filtrar" >Filtrar</button> 
+                                                                    </form>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                      
                                         </table id="tablaCaja">
                                         <br>
                                         <h2 class="m-0 font-weight-bold text-primary" id="title">Resumen Bidones
@@ -144,6 +163,16 @@
     </div>
     <!-- End of Page Wrapper -->
     <!--SCRIPTS-->
+    <script>
+        function filtrar() {
+        var x = document.getElementById("filtrar");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+    </script>
     <script>
         $(document).ready(function() {
             $('#tablaCaja').DataTable({
