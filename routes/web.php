@@ -39,6 +39,7 @@ Route::get('/ResumenBidones',    'ResumenBidones@resumenBidones')->name('bidones
 Route::post('/Bidones-devueltos', 'ResumenBidones@bidonesgenerados')->name('bidones.resumen');
 Route::post('/Inventario-bidones', 'ResumenBidones@devolucionBidones')->name('inventario.bidones');
 Route::post('/ResumenBidones-dia', 'ResumenBidones@resumenBidones')->name('bidones.dia');
+Route::get('/ResumenBidones-todos', 'ResumenBidones@resumenTodos')->name('bidones.todos');
 Route::post('/Bidones-filtrar', 'ResumenBidones@BidonesCajaFiltro')->name('bidones.caja.filtrar');
 Route::get('/Todos', 'ResumenBidones@verTodo')->name('vertodo.cajaBidones');
 

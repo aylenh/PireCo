@@ -49,7 +49,17 @@ class ResumenBidones extends Controller
         return view('bidones.cajaBidones', $blue);
 
     }
+    public function resumenTodos(){
+        $bidones   = Inventario::orderBy('created_at', 'DESC')->get();
+        $ids = DetallesEncargo::with('encargo')->whereIn('producto_id',[1,2])->orderBy('created_at', 'DESC')->get();
+        foreach ($ids as $u) {
+            $id[] = $u->encargo->id;
+        }
+        $eo = array_unique($id);
+        $encargos = Encargo::whereIn('id', $eo)->count();
+        return view('bidones.resumenCajaBidones', compact('bidones', 'encargos'));
 
+    }
     // funcion creada por paula caicedo 
     // funcion que muestra la vista principal de resumen bidones, con la lista de bidones y filtros de fechas 
     public function resumenBidones(Request $request)
@@ -91,35 +101,25 @@ class ResumenBidones extends Controller
                 $encargos = 0;
             }
         }
-        elseif($request->input('todos')){
-            $bidones   = Inventario::orderBy('created_at', 'DESC')->get();
-            $ids = DetallesEncargo::with('encargo')->whereIn('producto_id',[1,2])->orderBy('created_at', 'DESC')->get();
-            foreach ($ids as $u) {
-                $id[] = $u->encargo->id;
-            }
-            $eo = array_unique($id);
-            $encargos = Encargo::whereIn('id', $eo)->count();
-        }
+   
         else
         {
             $fecha = new DateTime();
             $fecha_hoy= $fecha->format('Y-m-d');
-            $ids = DetallesEncargo::whereDate('created_at',$fecha_hoy)->with('encargo')->whereIn('producto_id',[1,2])->orderBy('created_at', 'DESC')->get();
-            $bidones = $ids;
 
+            $bidones   = Inventario::whereDate('created_at',$fecha_hoy)->orderBy('created_at', 'DESC')->get();
+            $ids = DetallesEncargo::with('encargo')->whereDate('created_at',$fecha_hoy)->whereIn('producto_id',[1,2])->orderBy('created_at', 'DESC')->get();
             if(sizeof($ids))
             {
-        
                 foreach ($ids as $u) {
                     $id[] = $u->encargo->id;
-
-                    
                 }
                 $eo = array_unique($id);
                 $encargos = Encargo::whereIn('id', $eo)->count();
             }else{
                 $encargos = 0;
             }
+
         }
 
         return view('bidones.resumenCajaBidones', compact('bidones', 'encargos'));
