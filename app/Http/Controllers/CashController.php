@@ -36,7 +36,7 @@ class CashController extends Controller
         $egreso->nota                = $request->input('nota');
         $egreso->save();
 
-        return Egreso::all();
+        return $this->index();
     }
 
 
