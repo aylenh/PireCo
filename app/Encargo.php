@@ -10,6 +10,7 @@ class Encargo extends Model
         'nombre', 
         'domicilio', 
         'telefono', 
+        'pago', 
         'correo', 
         'horario_de', 
         'horario_hasta', 

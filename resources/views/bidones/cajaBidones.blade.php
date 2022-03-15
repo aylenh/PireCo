@@ -99,8 +99,19 @@
                                                             {{-- <td  style="color: #E64738;">Pago Directo</td> --}}
                                                         @endif
                                                         <td>{{$bi->nombre}}</td>
-                                                        <td>{{$bi->bidon10}}</td>
-                                                        <td>{{$bi->bidon20}}</td>
+                                                        <td>
+                                                            @if (isset($bi->bidon10))
+                                                                {{$bi->bidon10}}
+                                                            @else
+                                                                0
+                                                            @endif
+                                                        <td>
+                                                            @if (isset($bi->bidon20))
+                                                            {{$bi->bidon20}}
+                                                            @else
+                                                                0
+                                                            @endif
+                                                        </td>
                                                         <td>
                                                             @php
                                                                 $fecha= $bi->created_at->format('Y-m-d');

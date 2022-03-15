@@ -12,6 +12,7 @@ class Inventario extends Model
         'cel_cliente',
         'bidon10',
         'bidon20',
+        'pago', 
         'correo_cliente',
         'nombre',
         'created_at', 

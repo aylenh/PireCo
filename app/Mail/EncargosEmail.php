@@ -12,16 +12,17 @@ class EncargosEmail extends Mailable
     use Queueable, SerializesModels;
 
     public $encargo;
-
+    public $pago;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($encargo)
+    public function __construct($encargo, $pago)
     {
         $this->encargo = $encargo;
+        $this->pago = $pago;
     }
 
     /**

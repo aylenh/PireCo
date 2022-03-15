@@ -12,7 +12,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ env('APP_NAME') }}</title>
-
+    <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz6IaRbQfhYsxLOuHH_6c0lPDzxnfnIVY"></script>
+<script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
     <!-- Custom fonts for this template-->
     <link href="{{ asset('libs/fontawesome/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -37,6 +39,9 @@
 
     <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
 
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
+        <script src="js/locationpicker.jquery.js"></script>
 </head>
 
 <body id="page-top">
@@ -329,8 +334,10 @@
             </div>
         </div>
     </div>
-
-
+    <div id="somecomponent" style="width: 500px; height: 400px;"></div>
+    <script>
+        $('#somecomponent').locationpicker();
+    </script>
     <script>
         $(function() {
             $('#saveDistribuidor').on('submit', function(e) {
@@ -495,15 +502,19 @@
             });
         })
     </script>
-
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz6IaRbQfhYsxLOuHH_6c0lPDzxnfnIVY&callback=initMap">
+    </script>
     <script type="text/javascript"
-        src="https://rawgit.com/Logicify/jquery-locationpicker-plugin/master/dist/locationpicker.jquery.js"></script>
+        src="https://rawgit.com/Logicify/jquery-locationpicker-plugin/master/dist/locationpicker.jquery.js">
+    </script>
+
     <script>
         $(function() {
             $('#us2').locationpicker({
                 location: {
-                    latitude: '',
-                    longitude: ''
+                    latitude: -34.60568597314354,
+                    longitude: -58.39267297656248
                 },
                 radius: 0,
                 inputBinding: {
