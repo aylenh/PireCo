@@ -459,6 +459,15 @@ a {text-decoration: none;}
                                                                     <h2
                                                                         style="Margin:0;line-height:36px;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:30px;font-style:normal;font-weight:bold;color:#333333">
                                                                         ¡{{$encargo->nombre}}, Gracias por su compra!</h2>
+                                                                        <h4 style="color: #71C5E8">
+                                                                            @if ($pago == 'null')
+                                                                                El pago ha sido realizado en efectivo.
+                                                                            @elseif($pago == 'exito')
+                                                                                El pago fue realizado exitosamente por MercadoPago.
+                                                                            @elseif($pago == 'fallo')
+                                                                                Desafortunadamente el pago por MercadoPago falló.
+                                                                            @endif
+                                                                        </h4>
                                                                 </td>
                                                             </tr>
                                                            
@@ -727,7 +736,7 @@ a {text-decoration: none;}
                                                                             <td width="80%" style="padding:0;Margin:0">
                                                                                 <h4
                                                                                     style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif">
-                                                                                    TOTAL</h4>
+                                                                                    TOTAL </h4>
                                                                             </td>
                                                                             <td width="20%" style="padding:0;Margin:0">
                                                                                 <h4

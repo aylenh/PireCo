@@ -7,6 +7,7 @@ use App\DetallesInventarios;
 use App\Producto;
 use App\Encargo;
 use App\Inventario;
+// use App\Distribuidor;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EncargoRequest;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ use App\Mail\EncargosEmail;
 use Illuminate\Support\Facades\Mail;
 use MercadoPago;
 use Illuminate\Support\Facades\DB;
+
 
 class EncargoController extends Controller
 {
@@ -73,6 +75,7 @@ class EncargoController extends Controller
                     $inventario->correo_cliente = $request->input('correo');
                     $inventario->distribuidor_id = $request->input('distribuidor_id');
                     $inventario->estado = 1;
+                    
                     $inventario->nombre = $request->input('nombre');
 
     
@@ -204,13 +207,34 @@ class EncargoController extends Controller
     }
 
     public function payCash(Encargo $encargo, Request $request){
-        $request->validate([
-            'correo' => 'required|email'
-        ]);
+        $pago = $request->pago;
+   
+        $dato = Encargo::with('distribuidor')->select('correo','distribuidor_id')->where('id',$encargo->id)->get();
+        
+        $pagos = Encargo::where('id',$encargo->id)->first();
+        $pagos->update(
+            [
+                'pago' => $request->pago
+            ]
+        );
 
-        $correo = new EncargosEmail($encargo);
-        Mail::to($request->correo)->send($correo);
+        foreach($dato as $d){
 
+            if($d->distribuidor()->exists()){
+                $correo_cliente       = $d->correo;
+                $correo_distribuidor = $d->distribuidor->distribuidor_correo;
+            }else{
+                $correo_cliente       = $d->correo;
+            }
+        }
+        if(isset($correo_distribuidor)){
+            $destinatarios = [ $correo_cliente,$correo_distribuidor ];
+        }else{
+            $destinatarios = $correo_cliente;
+        }
+
+        $correo = new EncargosEmail($encargo, $pago);
+        Mail::to($destinatarios)->send($correo);
         return response()->json(array(
             'message' => 'El Correo fue enviado con exito para el encargo '.$encargo->id.'!'
         ));
