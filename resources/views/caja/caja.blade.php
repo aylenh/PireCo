@@ -2,29 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ env('APP_NAME') }}</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="{{ asset('libs/fontawesome/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet"
-        type="text/css">
-    <link href=" https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
-
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="{{ asset('libs/sbadmin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
+    @include('includes.head')
 </head>
 
 <body id="page-top">
@@ -54,30 +32,12 @@
                                             <button type="submit" class="btn btn-warning" id="devolucionBidones">Guardar</button>   
                                         </form> --}}
                                     </div>
-                                       
-                                        <br>
-                                        <table class="table" border="1">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        <form action="{{ route('bidones.resumen') }}" method="POST">
-                                                            @csrf
-                                                            <label> <strong>Seleccione el rango de fechas para filtrar:</strong><hr>
-                                                                Desde:  <input type="date" name="fecha"style="border-radius: 5px;" id="fecha"> 
-                                                                Hasta:  <input type="date" name="fecha2"style="border-radius: 5px;" id="fecha2">
-                                                            </label>
-                                                            <button type="submit" class="btn btn-success" name="filtrar" id="filtrar" >Filtrar</button> 
-                                                        </form>
-                                                    </th>
-                                                    <th>
-                                                        <div>
-                                                            <a name="" id="" class="btn btn-primary" href="{{ route('bidones.caja') }}" role="button">Ver todos los bidones</a> 
-                                                        </div>
-                                                    </th>
-                                                
-                                                </tr>
-                                            </thead>
-                                        </table>
+                                    <div>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEgreso">
+                                            Agregar movimiento de egreso
+                                        </button>
+                                    </div>
+                                        @include('caja.modal')
                                         @if ($message = Session::get('success'))
                                         <div class="alert alert-warning alert-block">
                                             <button type="button" class="close" data-dismiss="alert">×</button>
@@ -89,55 +49,69 @@
                                             <a class="section-link" href="#examples"></a>
                                             <span class="border-bottom"></span></h2>
                                         <br>
-                                            <table id="tblPedidos" class="table table-striped" style="width:100%">
+
+                                            <table id="tblCaja" class="table table-striped" style="width:100%">
                                                 <thead>
                                                     <tr>
+                                                        <th>Fecha</th>
                                                         <th>Distribuidor</th>
                                                         <th>Debe</th>
                                                         <th>Haber</th>
-                                                        <th>Saldo</th>
+                                                        {{-- <th>Saldo</th> --}}
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {{-- @foreach ($bidones as $bi)
-                                                    <tr>
-                                                        <td>{{$bi->encargo->distribuidor->distribuidor_local}}</td>
-                                                        <td>{{$bi->encargo->nombre}}</td>
-                                                        <td>{{$bi->cantidad}}</td>
-                                                        <td>
-                                                            @php
-                                                                $fecha= $bi->created_at->format('Y-m-d');
-                                                                echo $fecha;
-                                                            @endphp
-                                                        </td>
-
-                                                    </tr>
-                                                    @endforeach --}}
+                                                    @foreach ($encargo as $en)
+                                                            <tr>
+                                                                <td>
+                                                                    @if ($en)
+                                                                        {{$en->created_at}}
+                                                                    @else
+                                                                        {{-- {{$egre->created_at}} --}}0
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    @if ($en->distribuidor()->exists())
+                                                                        {{$en->distribuidor->distribuidor_local}}
+                                                                    @else
+                                                                        {{$en->nombre}}
+                                                                    @endif
+                                                                </td>
+                                                                <td>${{$en->total}}</td>
+                                                                <td>$0</td>
+                                                            </tr>
+                                                            @endforeach
+                                                            @foreach ($egreso as $egre)
+                                                            <tr>
+                                                                <td>{{$egre->created_at}}</td>
+                                                                <td>{{$egre->cliente_distribuidor}}</td>
+                                                                <td>$0</td>
+                                                                <td>${{$egre->monto}}</td>
+                                                            </tr>
+                                                            @endforeach
+                                             
                                                 </tbody>
+
                                             </table>
+                                            <br>
                                             <div class="d-flex justify-content-between">
                                                 <div>
-                                                 {{-- <h5 style="color:#E64738;">Total de bidones entregados:</h5>  --}}
+                                                    <h4 style="color:#E64738;">Total:</h4>
                                                 </div>
                                                 <div>
-                                                        {{-- {{ $bidones->sum('cantidad') }} --}}
+                                                    <h4 style="color:#1e7734;">
+                                                        @php
+                                                        $total = $encargo->sum('total') -$egreso->sum('monto');
+                                                        echo "$"."$total";
+                                                    @endphp
+                                                    </h4>
                                                 </div>
-                                           </div>
-                                           {{-- <div class="d-flex justify-content-between">
-                                                <div>
-                                                    <h5 style="color:#E64738;">Total de bidones disponibles:</h5>
-                                                </div>
-                                                <div>
-                                                    <h6 style="color:#1e7734;">
-                                                        {{$inventario->cantidad}}
-                                                    </h6>
-                                                </div>
-                                            </div> --}}
+                                            </div>
                                         </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 <!-- /.container-fluid -->
 
             </div>
@@ -157,6 +131,24 @@
         <!-- End of Content Wrapper -->
 
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#tblCaja').DataTable({
+                "language": {
+                    "search": "Buscar:",
+                    "lengthMenu": "Mostrando _MENU_ registros por página.",
+                    "zeroRecords": "Upss! Parece que aun no hay ningun pedido agregado.",
+                    "info": "Página _PAGE_ de _PAGES_",
+                    "infoEmpty": "Sin pedidos añadidos.",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "paginate": {
+                        "previous": "Anterior",
+                        "next": "Siguiente"
+                    }
+                }
+            });
+        });
+    </script>
     <!-- End of Page Wrapper -->
     <!--SCRIPTS-->
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>

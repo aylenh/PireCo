@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 //RUTAS DE CAJA
 
 Route::resource('/caja', 'CashController');
+Route::post('/caja-egreso', 'CashController@Crearegreso')->name('crear.egreso');
+
 Route::get('/cash_render/{day?}', 'CashController@render')->name('cash.render');
 Route::get('/cash_add/income', 'CashController@addincome')->name('cash.addincome');
 Route::get('/cash_add/outcome', 'CashController@addoutcome')->name('cash.addoutcome');
