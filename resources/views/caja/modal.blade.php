@@ -13,18 +13,18 @@
                         <label for="devolucion">Cliente/Distribuidor
                         </label>
                         {{-- <textarea name="nota" id="nota" cols="15" rows="5"></textarea> --}}
-                        <input type="text" class="form-control" id="cliente_distribuidor" name="cliente_distribuidor">
+                        <input type="text" class="form-control" id="cliente_distribuidor" name="cliente_distribuidor" required>
                         <br>
                                 <div class="form-row">
                                     <div class="col">
                                         <label for="devolucion">Monto
                                         </label>
-                                        <input type="number" class="form-control" id="monto" name="monto">
+                                        <input type="number" class="form-control" id="monto" name="monto" required>
                                     </div>
                                     <div class="col">
                                         <label for="fecha">Fecha
                                         </label>
-                                        <input type="date" class="form-control" id="fecha" name="fecha">
+                                        <input type="date" class="form-control" id="fecha" name="fecha" required>
                                     </div>
                                   </div>
                                 <br>
@@ -40,27 +40,3 @@
             </div>
         </div>
     </div>
-        <script>
-        function distribuidor() {
-        var x = document.getElementById("distribuidor");
-        var mes = document.getElementById("cliente");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-            mes.style.display = "none";
-        } else {
-            x.style.display = "none";
-            mes.style.display = "none";
-        }
-    }
-    function cliente() {
-        var x = document.getElementById("cliente");
-        var dia = document.getElementById("distribuidor");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-            dia.style.display = "none";
-        } else {
-            x.style.display = "none";
-            dia.style.display = "none";
-        }
-    }
-    </script>
