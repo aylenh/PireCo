@@ -2,9 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Distribuidor;
+use App\Egreso;
+use App\Encargo;
 use App\Http\Controllers\Controller;
+use App\Inventario;
+use App\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use DateTime;
+
 class CashController extends Controller
 {
     /**
@@ -14,22 +21,24 @@ class CashController extends Controller
      */
     public function index()
     {
-        // $cc = array();
-        // # Get clients
-        // foreach(DB::table('clients')->get() as $client):
-        //     # Get cc movements of each client
-        //     $ccMovements = DB::table('cc')->where('idClient', $client->id)->orderByRaw('id ASC')->get();
-        //     $cc[$client->nfanstasia]['movements'] = $ccMovements;
-        //     $cc[$client->nfanstasia]['id'] = $client->id;
-        // endforeach;
+        $blue['encargo'] = Encargo::all();
+        $blue['egreso']   = Egreso::all();
 
-        // return view('caja.caja', ['generalModul'=> 'General', 'parenModul' => 'General', 'modulName' => 'Caja Diaria'
-        // ,'mainview' => true
-        // ,'clientes' => DB::table('clients')->get()
-        // ]);
-
-        return view('caja.caja');
+        return view('caja.caja', $blue);
     }
+
+    public function Crearegreso(Request $request)
+    {
+        $egreso = new Egreso;
+        $egreso->cliente_distribuidor        = $request->input('cliente_distribuidor');
+        $egreso->fecha              = $request->input('fecha');
+        $egreso->monto             = $request->input('monto');
+        $egreso->nota                = $request->input('nota');
+        $egreso->save();
+
+        return Egreso::all();
+    }
+
 
     public function resumencaja(){
         return view('caja.resumencaja');
