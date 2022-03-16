@@ -78,14 +78,14 @@
                                                                     @endif
                                                                 </td>
                                                                 <td>${{$en->total}}</td>
-                                                                <td>$0</td>
+                                                                <td></td>
                                                             </tr>
                                                             @endforeach
                                                             @foreach ($egreso as $egre)
                                                             <tr>
                                                                 <td>{{$egre->created_at}}</td>
                                                                 <td>{{$egre->cliente_distribuidor}}</td>
-                                                                <td>$0</td>
+                                                                <td></td>
                                                                 <td>${{$egre->monto}}</td>
                                                             </tr>
                                                             @endforeach
