@@ -1,149 +1,169 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ env('APP_NAME') }}</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="{{ asset('libs/fontawesome/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet"
-        type="text/css">
-    <link href=" https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
-
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="{{ asset('libs/sbadmin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
+  @include('includes.head')
 </head>
 
 <body id="page-top">
-    <!-- Page Wrapper -->
     <div id="wrapper">
-        <!-- Sidebar -->
+
+        <!-- inicio header (barra de usuario y menu) -->
             @include('includes.header')
+        <!-- FIN header (barra de usuario y menu) -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Resumen Bidones</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Resumen caja bidones</h1>
                     </div>
 
                     <div>
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Resumen Bidones</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Bidones entregados</h6>
                             </div>
+                            @include('bidones.modales')
+
+
                             <div class="card-body">
                                 <div class="container my-lg">
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <a name="" id="" class="btn btn-primary" href="{{ route('bidones.todos') }}" role="button">Ver todos</a> 
-                                            <button type="button" class="btn btn-dark" style="background-color: #4E73DF;" onclick="filtrar();">Filtrar
-                                            </button>
-                                        </div>
-                                        <br>
                                     <div>
-                                        <div id="filtrar" style="display: none;">
-                                            <div class="form-row">
-                                                <div class="col">
-                                                    <table class="table" border="1">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>
-                                                                    <form  action="{{ route('bidones.dia') }}" method="POST">
-                                                                        @csrf
-                                                                        <label>Seleccione el <strong> Día </strong> que desea filtrar: <hr>
-                                                                            Día:  <input type="date" name="fecha" style="border-radius: 5px;" id="fecha"> 
-                                                                        </label>
-                                                                        <button type="submit" style="background-color: #4E73DF;"  class="btn btn-success" name="filtrar" id="filtrar" >Filtrar</button> 
-                                                                    </form>
-                                                                </th>
-                                                                <th>
-                                                                    <form action="{{ route('bidones.dia') }}" method="POST">
-                                                                        @csrf
-                                                                        <label>Seleccione el <strong> Mes </strong> desea filtrar: <hr>
-                                                                            Mes: <input type="month" name="mes" style="border-radius: 5px;" id="fecha"> 
-                                                                            
-                                                                        </label>
-                                                                        <button type="submit" style="background-color: #4E73DF;"  class="btn btn-success" name="filtrar" id="filtrar" >Filtrar</button> 
-                                                                    </form>
-                                                                </th>
-                                                            </tr>
-                                                        </thead>
-                                                    </table>
-                                                </div>
+                                   <!-- Button trigger modal -->
+                                   <div class="form-row">
+                                    <div class="col">
+                                        <a name="" id="" class="btn btn-primary" href="{{ route('vertodo.cajaBidones') }}" role="button">Ver todos los bidones</a> 
+                                        <button type="button" class="btn btn-dark" style="background-color: #4E73DF;" onclick="filtrar();">Filtrar
+                                        </button>
+                                    </div>
+                             
+                                @if ( session('mensaje') )
+                                <br>
+                                    <div class="alert alert-success">{{ session('mensaje') }}</div>
+                                @endif
+                                    </div>
+                                    <div id="filtrar" style="display: none;">
+                                        <br> <br>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <form id="devo" action="{{ route('bidones.caja.filtrar') }}" method="POST">
+                                                    @csrf
+                                                    <label> <strong>Seleccione el rango de fechas para filtrar:</strong><hr>
+                                                        Desde:  <input type="date" name="fecha"style="border-radius: 5px;" id="fecha"> 
+                                                        Hasta:  <input type="date" name="fecha2"style="border-radius: 5px;" id="fecha2">
+                                                    </label>
+                                                    <button type="submit" class="btn btn-success" name="filtrar" id="filtrar" >Filtrar</button> 
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                      
-                                        </table id="tablaCaja">
                                         <br>
-                                        <h2 class="m-0 font-weight-bold text-primary" id="title">Resumen Bidones
+                                      
+                                        @if ($message = Session::get('success'))
+                                        <div class="alert alert-warning alert-block">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                        @endif
+                                        <br>
+                                        <h2 class="m-0 font-weight-bold text-primary" id="title">Resumen caja Bidones
                                             <a class="section-link" href="#examples"></a>
                                             <span class="border-bottom"></span></h2>
                                         <br>
-                                            <table id="tblPedidos" class="table table-striped" style="width:100%">
+                                            <table id="tablaResumen" class="table table-striped" style="width:100%; text-align: center;">
                                                 <thead>
                                                     <tr>
-                                                        <th style="text-align: center;">Cantidad encargos</th>
-                                                        <th style="text-align: center;">Bidones 10L</th>
-                                                        <th style="text-align: center;">Bidones 20L</th>
-                                                        @if(isset($mes))
-                                                            <th style="text-align: center;">Mes</th>
-                                                        @else
-                                                            <th style="text-align: center;">Fecha</th>
-                                                        @endif
+                                                        <th>Distribuidor / Cliente</th>
+                                                        <th>Bidones 10L</th>
+                                                        <th>Bidones 20L</th>
+                                                        <th>Fecha</th>
                                                     </tr>
                                                 </thead>
-                                                @if(!sizeof($bidones) == 0)
                                                 <tbody>
+                                                    @foreach ($bidones as $bi)
                                                     <tr>
-                                                        <td style="text-align: center; ">{{$encargos}} </td>
-                                                        <td style="text-align: center;">{{ $bidones->sum('bidon20') }} </td>
-                                                        <td style="text-align: center;">{{ $bidones->sum('bidon10') }}</td>
-                                                        <td style="text-align: center;">
-                                                        @if(isset($mes))
-                                                            {{$mes}}
-                                                        @else
-                                                            @foreach ($bidones as $bi)
-                                                                @php
+                                                        @if($bi->distribuidores()->exists())                     
+                                                        <td>
+                                                            <h5><span class="badge badge-secondary">{{$bi->distribuidores->distribuidor_local}}</span></h5>
+                                                        </td>
+                                                    @else
+                                                        <td>
+                                                            <h5><span class="badge badge-primary">{{$bi->nombre}}</span></h5>
+                                                        </td>
+                                                    @endif
+                                                        <td>
+                                                            @if (isset($bi->bidon10))
+                                                                {{$bi->bidon10}}
+                                                            @else
+                                                                0
+                                                            @endif
+                                                        <td>
+                                                            @if (isset($bi->bidon20))
+                                                            {{$bi->bidon20}}
+                                                            @else
+                                                                0
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @php
                                                                 $fecha= $bi->created_at->format('Y-m-d');
-                                                                @endphp
-                                                            @endforeach
-                                                        
-                                                         @php
-                                                             echo $fecha;
-                                                         @endphp
-                                                    @endif    
-                                                </tbody>
-                                                @else
-                                                    <tr>
-                                                     <div class="alert alert-warning" role="alert">
-                                                         <strong>¡No hay encargos de bidones para esta fecha!</strong>
-                                                     </div>
+                                                                echo $fecha;
+                                                            @endphp
+                                                        </td>
+                                                            @php
+                                                              
+                                                            @endphp
                                                     </tr>
-                                                @endif
+                                                    @endforeach
+                                                </tbody>
                                             </table>
-                                        </div>
-                                </div>
-                            </div>
+                                            <br> <br>
+                                            <table class="table table-bordered table-primary">
+                                                <thead style="text-align: center;">
+                                                  <tr>
+                                                    <th scope="col" colspan="2">Bidones disponibles</th>
+                                                    <th scope="col" colspan="2">Bidones sin devolver</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody style="text-align: center;">
+                                                  <tr>
+                                                    <th>Bidon (10L)</th>
+                                                    <td>
+                                                        @php
+                                                        foreach($producto as $pro){
+                                                            if($pro->id == 1){
+                                                                echo $pro->cantidad;
+                                                            }
+                                                        }
+                                                        @endphp
+
+                                                    </td>
+                                                    <th>Bidon (10L)</th>
+                                                    <td>{{ $bidones->sum('bidon10') }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <th>Bidon (20L)</th>
+                                                    <td>
+                                                        @php
+                                                        foreach($producto as $pro){
+                                                            if($pro->id == 2){
+                                                                echo $pro->cantidad;
+                                                            }
+                                                        }
+                                                        @endphp
+                                                    </td>
+                                                    <th>Bidon (20L)</th>
+                                                    <td>{{ $bidones->sum('bidon20') }}</td>
+                                                  </tr>
+                                                
+                                                </tbody>
+                                              </table>
+                                          
                         </div>
                     </div>
                 <!-- /.container-fluid -->
-
+                    
             </div>
             <!-- End of Main Content -->
 
@@ -155,8 +175,7 @@
                     </div>
                 </div>
             </footer>
-            <!-- End of Footer -->
-
+            <!-- End of Footer ---->
         </div>
         <!-- End of Content Wrapper -->
 
@@ -175,11 +194,11 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('#tablaCaja').DataTable({
+            $('#tablaResumen').DataTable({
                 "language": {
-                    "search": "Buscar pedido:",
-                    "lengthMenu": "Mostrando _MENU_ pedidos por página.",
-                    "zeroRecords": "Upss! Parece que aun no hay ningun pedido agregado.",
+                    "search": "Buscar:",
+                    "lengthMenu": "Mostrando _MENU_ bidones por página.",
+                    "zeroRecords": "Upss! Parece que para hoy, no hay ningun bidon encargado.",
                     "info": "Página _PAGE_ de _PAGES_",
                     "infoEmpty": "Sin pedidos añadidos.",
                     "infoFiltered": "(filtered from _MAX_ total records)",
