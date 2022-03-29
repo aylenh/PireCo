@@ -18,19 +18,27 @@ class ResumenBidones extends Controller
     // funcion que muestra la vista principal de resumen bidones, con la lista de bidones 
     public function index()
     {
+        $blue['bidones'] = Inventario::with('distribuidores')->orderBy('created_at', 'DESC')->get();
+        $blue['producto'] = Producto::select('id','cantidad')->whereIn('id', [1,2])->get();
+   
+        return view('bidones.cajaBidones', $blue);
+     
+    }
+    public function verResumenCaja(){
         $fecha = new DateTime();
         $fechaF= $fecha->format('Y-m-d');
 
         $blue['bidones'] = Inventario::with('distribuidores')->whereDate('created_at', $fechaF)->orderBy('created_at', 'DESC')->get();
         $blue['producto'] = Producto::select('id','cantidad')->whereIn('id', [1,2])->get();
 
-        return view('bidones.cajaBidones', $blue);
+        return view('bidones.resumenCajaBidones', $blue);
     }
+    
     public function verTodo(){
         $blue['bidones'] = Inventario::with('distribuidores')->orderBy('created_at', 'DESC')->get();
         $blue['producto'] = Producto::select('id','cantidad')->whereIn('id', [1,2])->get();
    
-        return view('bidones.cajaBidones', $blue);
+        return view('bidones.resumenCajaBidones', $blue);
     }
 
     // funcion creada por paula 
@@ -46,7 +54,7 @@ class ResumenBidones extends Controller
         $blue['bidones'] = Inventario::with('distribuidores')->whereBetween('created_at',[$fechaF, $fechaF2])->orderBy('created_at', 'DESC')->get();
         $blue['producto'] = Producto::select('id','cantidad')->whereIn('id', [1,2])->get();
 
-        return view('bidones.cajaBidones', $blue);
+        return view('bidones.resumenCajaBidones', $blue);
 
     }
     public function resumenTodos(){

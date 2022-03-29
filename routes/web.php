@@ -20,6 +20,8 @@ Route::get('/cash_render/{day?}', 'CashController@render')->name('cash.render');
 Route::get('/cash_add/income', 'CashController@addincome')->name('cash.addincome');
 Route::get('/cash_add/outcome', 'CashController@addoutcome')->name('cash.addoutcome');
 Route::get('/resumenCaja',    'CashController@resumencaja')->name('resumen.caja');
+Route::post('/FiltrarCaja',    'CashController@resumencajaFiltro')->name('resumencaja.filtro');
+
 
 /* Operator's Cash module */
 Route::resource('/cash2',    'Cash2Controller');
@@ -35,7 +37,7 @@ Route::resource('/remitos',    'RemitosController');
 Route::get('/remitos_render/{client}/{day?}',    'RemitosController@render')->name('remitos.render');
 
 Route::get('/CajaBidones',    'ResumenBidones@index')->name('bidones.caja');
-Route::get('/ResumenBidones',    'ResumenBidones@resumenBidones')->name('bidonesG.resumen');
+Route::get('/ResumenBidones',    'ResumenBidones@verResumenCaja')->name('bidonesG.resumen');
 
 // RUTAS RESUMEN BIDONES hry
 Route::post('/Bidones-devueltos', 'ResumenBidones@bidonesgenerados')->name('bidones.resumen');

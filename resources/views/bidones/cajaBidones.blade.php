@@ -38,10 +38,6 @@
                                                 Devolución Bidones
                                             </button>
                                         @endif
-                                  
-                                        <a name="" id="" class="btn btn-primary" href="{{ route('vertodo.cajaBidones') }}" role="button">Ver todos los bidones</a> 
-                                        <button type="button" class="btn btn-dark" style="background-color: #4E73DF;" onclick="filtrar();">Filtrar
-                                        </button>
                                     </div>
                              
                                 @if ( session('mensaje') )
@@ -49,21 +45,7 @@
                                     <div class="alert alert-success">{{ session('mensaje') }}</div>
                                 @endif
                                     </div>
-                                    <div id="filtrar" style="display: none;">
-                                        <br> <br>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <form id="devo" action="{{ route('bidones.caja.filtrar') }}" method="POST">
-                                                    @csrf
-                                                    <label> <strong>Seleccione el rango de fechas para filtrar:</strong><hr>
-                                                        Desde:  <input type="date" name="fecha"style="border-radius: 5px;" id="fecha"> 
-                                                        Hasta:  <input type="date" name="fecha2"style="border-radius: 5px;" id="fecha2">
-                                                    </label>
-                                                    <button type="submit" class="btn btn-success" name="filtrar" id="filtrar" >Filtrar</button> 
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                         <br>
                                       
                                         @if ($message = Session::get('success'))
@@ -80,8 +62,7 @@
                                             <table id="tablaResumen" class="table table-striped" style="width:100%; text-align: center;">
                                                 <thead>
                                                     <tr>
-                                                        <th>Distribuidor</th>
-                                                        <th>Cliente</th>
+                                                        <th>Distribuidor / Cliente</th>
                                                         <th>Bidones 10L</th>
                                                         <th>Bidones 20L</th>
                                                         <th>Fecha</th>
@@ -91,15 +72,16 @@
                                                     @foreach ($bidones as $bi)
                                                     <tr>
                                                         @if($bi->distribuidores()->exists())                     
-                                                        <td>{{$bi->distribuidores->distribuidor_local}}</td>
+                                                            <td>
+                                                                <h5><span class="badge badge-secondary">{{$bi->distribuidores->distribuidor_local}}</span></h5>
+                                                            </td>
                                                         @else
-                                                        <td>
-                                                            <h5><span class="badge badge-primary">Pago Directo</span></h5>
-                                                        </td>
-                                                            {{-- <td  style="color: #E64738;">Pago Directo</td> --}}
+                                                            <td>
+                                                                <h5><span class="badge badge-primary">{{$bi->nombre}}</span></h5>
+                                                            </td>
                                                         @endif
-                                                        <td>{{$bi->nombre}}</td>
-                                                        <td>
+                                                            
+                                                            <td>
                                                             @if (isset($bi->bidon10))
                                                                 {{$bi->bidon10}}
                                                             @else

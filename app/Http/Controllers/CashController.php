@@ -40,9 +40,28 @@ class CashController extends Controller
     }
 
 
-    public function resumencaja(){
-        return view('caja.resumencaja');
+    public function resumencaja()
+    {
+        $blue['encargo'] = Encargo::all();
+        $blue['egreso']   = Egreso::all();
+
+        return view('caja.resumencaja', $blue);
     }
+
+    public function resumencajaFiltro(Request $request)
+    {
+        $fecha = new DateTime($request->input('fecha'));
+        $fechaF= $fecha->format('Y-m-d');
+
+        $fecha2 = new DateTime($request->input('fecha2'));
+        $fechaF2= $fecha2->format('Y-m-d');
+
+        $blue['encargo'] = Encargo::whereBetween('created_at',[$fechaF, $fechaF2])->orderBy('created_at', 'DESC')->get();
+        $blue['egreso'] = Egreso::whereBetween('created_at',[$fechaF, $fechaF2])->orderBy('created_at', 'DESC')->get();
+
+        return view('caja.resumencaja', $blue);
+    }
+
     public function render($day)
     {
 
