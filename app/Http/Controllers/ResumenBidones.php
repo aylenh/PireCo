@@ -25,10 +25,7 @@ class ResumenBidones extends Controller
      
     }
     public function verResumenCaja(){
-        $fecha = new DateTime();
-        $fechaF= $fecha->format('Y-m-d');
-
-        $blue['bidones'] = Inventario::with('distribuidores')->whereDate('created_at', $fechaF)->orderBy('created_at', 'DESC')->get();
+        $blue['bidones'] = Inventario::with('distribuidores')->orderBy('created_at', 'DESC')->get();
         $blue['producto'] = Producto::select('id','cantidad')->whereIn('id', [1,2])->get();
 
         return view('bidones.resumenCajaBidones', $blue);
