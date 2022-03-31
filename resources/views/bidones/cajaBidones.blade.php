@@ -108,46 +108,7 @@
                                                 </tbody>
                                             </table>
                                             <br> <br>
-                                            <table class="table table-bordered table-primary">
-                                                <thead style="text-align: center;">
-                                                  <tr>
-                                                    <th scope="col" colspan="2">Bidones disponibles</th>
-                                                    <th scope="col" colspan="2">Bidones sin devolver</th>
-                                                  </tr>
-                                                </thead>
-                                                <tbody style="text-align: center;">
-                                                  <tr>
-                                                    <th>Bidon (10L)</th>
-                                                    <td>
-                                                        @php
-                                                        foreach($producto as $pro){
-                                                            if($pro->id == 1){
-                                                                echo $pro->cantidad;
-                                                            }
-                                                        }
-                                                        @endphp
-
-                                                    </td>
-                                                    <th>Bidon (10L)</th>
-                                                    <td>{{ $bidones->sum('bidon10') }}</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <th>Bidon (20L)</th>
-                                                    <td>
-                                                        @php
-                                                        foreach($producto as $pro){
-                                                            if($pro->id == 2){
-                                                                echo $pro->cantidad;
-                                                            }
-                                                        }
-                                                        @endphp
-                                                    </td>
-                                                    <th>Bidon (20L)</th>
-                                                    <td>{{ $bidones->sum('bidon20') }}</td>
-                                                  </tr>
-                                                
-                                                </tbody>
-                                              </table>
+                                           
                                           
                         </div>
                     </div>

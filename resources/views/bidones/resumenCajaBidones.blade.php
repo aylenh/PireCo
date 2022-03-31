@@ -33,7 +33,6 @@
                                    <!-- Button trigger modal -->
                                    <div class="form-row">
                                     <div class="col">
-                                        <a name="" id="" class="btn btn-primary" href="{{ route('vertodo.cajaBidones') }}" role="button">Ver todos los bidones</a> 
                                         <button type="button" class="btn btn-dark" style="background-color: #4E73DF;" onclick="filtrar();">Filtrar
                                         </button>
                                     </div>

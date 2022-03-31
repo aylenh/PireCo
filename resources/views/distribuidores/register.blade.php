@@ -42,6 +42,17 @@
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places'></script>
         <script src="js/locationpicker.jquery.js"></script>
+
+        <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<!-- Custom styles for this template-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+{{-- <script src="{{asset('toastr/toastr.min.js')}}"></script> --}}
+<link href="{{ asset('libs/sbadmin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body id="page-top">
@@ -362,6 +373,14 @@
                             });
                         } else {
                             $(saveDistribuidor)[0].reset();
+    
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Distribuidor guardado correctamente',
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
                             fetchAllDistribuidores();
                         }
                     }
@@ -564,5 +583,8 @@
     <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 </body>
-
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="{{ asset('libs/sbadmin/js/sb-admin-2.min.js') }}"></script>
+<script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </html>
