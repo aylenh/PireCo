@@ -257,7 +257,7 @@
                                         </div>
                                         <div class="col">
                                             <label for="floatingInputGrid">Ubicación del Local</label>
-                                            <input id="location" type="text" class="form-control"
+                                            <input id="ubi" type="text" class="form-control"
                                                 name="distribuidor_ubicacion" placeholder="Ingresar ubicacion del local">
                                             <span class="text-danger error-text distribuidor_ubicacion_error"></span>
                                         </div>
@@ -539,11 +539,17 @@
                 inputBinding: {
                     latitudeInput: $('#lat'),
                     longitudeInput: $('#lng'),
-                    locationNameInput: $('#location')
+                    // position: $('#ubi')
                 },
                 enableAutocomplete: true,
-                onchanged: function(currentLocation, radius, isMarkerDropped) {
-                    //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+                onchanged: function(currentLocation, radius, isMarkerDropped) 
+                {
+                    var mapContext = $('#us2').locationpicker('map');
+                    mapContext.marker.setVisible(true);
+                    mapContext.map.setZoom(13);
+
+
+                    // alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
                 }
             });
         });
