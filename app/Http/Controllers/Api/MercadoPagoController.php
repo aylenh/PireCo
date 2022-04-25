@@ -12,7 +12,7 @@ class MercadoPagoController extends Controller
         \MercadoPago\SDK::setAccessToken('TEST-7867639488584393-041912-438885428a4806bb8cc46a1d0a6c6b00-1068659476');
     }
 
-    public function notification($request){
+    public function notification(Request $request){
         return $request;
         switch($request->type) {
             case "payment":
