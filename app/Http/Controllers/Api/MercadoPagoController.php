@@ -9,11 +9,10 @@ class MercadoPagoController extends Controller
 {
     public function __construct()
     {
-        \MercadoPago\SDK::setAccessToken('TEST-7867639488584393-041912-438885428a4806bb8cc46a1d0a6c6b00-1068659476');
+        \MercadoPago\SDK::setAccessToken(env('MP_ACCESS_TOKEN'));
     }
 
     public function notification(Request $request){
-        return $request;
         switch($request->type) {
             case "payment":
                 $payment = \MercadoPago\Payment::find_by_id($request->data->id);
