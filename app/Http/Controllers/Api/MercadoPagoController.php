@@ -13,7 +13,6 @@ class MercadoPagoController extends Controller
     }
 
     public function notification($request){
-        \MercadoPago\SDK::setAccessToken("ENV_ACCESS_TOKEN");
         switch($request->type) {
             case "payment":
                 $payment = \MercadoPago\Payment::find_by_id($request->data->id);
@@ -28,6 +27,9 @@ class MercadoPagoController extends Controller
                 $plan = \MercadoPago\Invoice::find_by_id($request->data->id);
                 break;
             case "point_integration_wh":
+                // $_POST contiene la informaciòn relacionada a la notificaciòn.
+                break;
+            case "test":
                 // $_POST contiene la informaciòn relacionada a la notificaciòn.
                 break;
         }
