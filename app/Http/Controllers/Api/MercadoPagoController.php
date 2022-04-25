@@ -14,7 +14,7 @@ class MercadoPagoController extends Controller
 
     public function notification($request){
         \MercadoPago\SDK::setAccessToken("ENV_ACCESS_TOKEN");
-        switch($_POST["type"]) {
+        switch($request->type) {
             case "payment":
                 $payment = \MercadoPago\Payment::find_by_id($request->data->id);
                 break;
