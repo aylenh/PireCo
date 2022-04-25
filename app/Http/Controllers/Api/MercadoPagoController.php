@@ -9,7 +9,7 @@ class MercadoPagoController extends Controller
 {
     public function __construct()
     {
-        \MercadoPago\SDK::setAccessToken(env('MP_ACCESS_TOKEN'));
+        \MercadoPago\SDK::setAccessToken('TEST-7867639488584393-041912-438885428a4806bb8cc46a1d0a6c6b00-1068659476');
     }
 
     public function notification($request){
