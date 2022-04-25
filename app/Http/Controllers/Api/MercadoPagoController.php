@@ -13,6 +13,7 @@ class MercadoPagoController extends Controller
     }
 
     public function notification($request){
+        return $request;
         switch($request->type) {
             case "payment":
                 $payment = \MercadoPago\Payment::find_by_id($request->data->id);
