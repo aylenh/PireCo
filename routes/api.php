@@ -32,3 +32,9 @@ Route::resource('productos', 'Api\ProductoController');
 // Pagar en Efectivo
 Route::post('pay_cash/{encargo}','Api\EncargoController@payCash');
 
+Route::prefix('mercadopago')->group(function(){
+
+    Route::post('notification', 'Api\MercadoPagoController@notification');
+
+});
+

@@ -15,6 +15,14 @@ class CreateInventariosTable extends Migration
     {
         Schema::create('inventarios', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('distribuidor_id')->nullable();
+            $table->string('nombre')->nullable();
+            $table->string('cel_cliente')->nullable();
+            $table->bigInteger('bidon10')->nullable();
+            $table->bigInteger('bidon20')->nullable();
+            $table->bigInteger('estado')->nullable();
+            $table->string('correo_cliente')->nullable();
+            $table->string('pago')->nullable();
             $table->timestamps();
         });
     }

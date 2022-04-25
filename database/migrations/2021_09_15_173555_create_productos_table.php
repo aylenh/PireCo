@@ -20,6 +20,7 @@ class CreateProductosTable extends Migration
             $table->string('producto_litros');
             $table->string('producto_precio');
             $table->string('imagen');
+            $table->bigInteger('cantidad');
             $table->timestamps();
         });
     }

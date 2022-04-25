@@ -70,7 +70,6 @@ class EncargoController extends Controller
 
             if(!isset($request->directo)){
                 if(empty($distribuidor)){
-                    // return "eeee"; die();
                     $inventario->cel_cliente = $request->input('telefono');
                     $inventario->correo_cliente = $request->input('correo');
                     $inventario->distribuidor_id = $request->input('distribuidor_id');
@@ -97,7 +96,6 @@ class EncargoController extends Controller
                 }
             }else {
                 if(empty($cliente)){
-                    // return "eeee"; die();
                     $inventario->cel_cliente = $request->input('telefono');
                     $inventario->correo_cliente = $request->input('correo');
                     $inventario->estado = 1;
@@ -142,18 +140,20 @@ class EncargoController extends Controller
         // Crea un objeto de preferencia
         $preference = new MercadoPago\Preference();
         $preference->items = $items;
-        $preference->back_urls = array(
-            "success" => "http://localhost:8080/feedback",
-            "failure" => "http://localhost:8080/feedback", 
-            "pending" => "http://localhost:8080/feedback"
-        );
-        $preference->auto_return = "approved";
+        $preference->notification_url = url('/mercadopago/notification');
         $preference->save();
 
-        $response = array(
-            'link'      => $preference->init_point,
-            'encargo'   => Encargo::with(['detalles', 'distribuidor'])->find($encargo->id)
-        );
+        if($preference->error)
+        {
+            $response = array(
+                'error' => $preference->error
+            );
+        }else{
+            $response = array(
+                'link'      => $preference->init_point,
+                'encargo'   => Encargo::with(['detalles', 'distribuidor'])->find($encargo->id)
+            );
+        }
 
         return response()->json($response);
     }

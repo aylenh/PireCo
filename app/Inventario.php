@@ -14,6 +14,7 @@ class Inventario extends Model
         'bidon20',
         'correo_cliente',
         'nombre',
+        'estado',
         'created_at', 
         'updated_at', 
     ];

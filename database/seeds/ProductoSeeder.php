@@ -17,7 +17,8 @@ class ProductoSeeder extends Seeder
             'producto_botella'      => 'Bidon', 
             'producto_descartable'  => 'retornable', 
             'producto_litros'       => '20', 
-            'producto_precio'       => '300'
+            'producto_precio'       => '300',
+            'cantidad'              => 100
         ]);
 
         Producto::create([
@@ -25,7 +26,8 @@ class ProductoSeeder extends Seeder
             'producto_botella'      => 'Bidon', 
             'producto_descartable'  => 'retornable', 
             'producto_litros'       => '10', 
-            'producto_precio'       => '150'
+            'producto_precio'       => '150',
+            'cantidad'              => 100
         ]);
 
         Producto::create([
@@ -33,7 +35,8 @@ class ProductoSeeder extends Seeder
             'producto_botella'      => 'Botella', 
             'producto_descartable'  => 'descartable', 
             'producto_litros'       => '1', 
-            'producto_precio'       => '50'
+            'producto_precio'       => '50',
+            'cantidad'              => 100
         ]);
     }
 }
