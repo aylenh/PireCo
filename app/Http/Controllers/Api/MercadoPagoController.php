@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Encargo;
 use App\Http\Controllers\Controller;
+use App\Mail\TestPayment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class MercadoPagoController extends Controller
 {
@@ -14,10 +16,11 @@ class MercadoPagoController extends Controller
     }
 
     public function notification(Request $request){
+        Mail::to('diohandres.itoeste@gmail.com')->send(new TestPayment($request));
         switch($request->type) {
             case "payment":
                 $payment = \MercadoPago\Payment::find_by_id($request->data->id);
-                $encargo = Encargo::find($payment->external_reference);
+                $encargo = Encargo::find((int)$payment->external_reference);
                 $encargo->payed = true;
                 $encargo->save();
                 break;

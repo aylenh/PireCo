@@ -152,7 +152,8 @@ class EncargoController extends Controller
         }else{
             $response = array(
                 'link'      => $preference->init_point,
-                'encargo'   => Encargo::with(['detalles', 'distribuidor'])->find($encargo->id)
+                'encargo'   => Encargo::with(['detalles', 'distribuidor'])->find($encargo->id),
+                'notification_url' => $preference->notification_url
             );
         }
 
