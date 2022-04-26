@@ -16,7 +16,6 @@ class MercadoPagoController extends Controller
     }
 
     public function notification(Request $request){
-        Mail::to('diohandres.itoeste@gmail.com')->send(new TestPayment($request));
         switch($request->type) {
             case "payment":
                 $payment = \MercadoPago\Payment::find_by_id($request->data->id);
