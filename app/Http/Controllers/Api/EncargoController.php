@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\DB;
 
 class EncargoController extends Controller
 {
+    public function __construct()
+    {
+        MercadoPago\SDK::setAccessToken(env('MP_ACCESS_TOKEN'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,11 +40,6 @@ class EncargoController extends Controller
      */
     public function store(EncargoRequest $request)
     {
-         // SDK de Mercado Pago
-        require base_path('/vendor/autoload.php');
-         // Agrega credenciales
-        MercadoPago\SDK::setAccessToken('TEST-7110253609417365-110317-d424c5125ab59755a7dcd3ccd1b3d4bb-1011886178');
-        
         $encargo = new Encargo;
         $encargo->nombre = $request->input('nombre');
         $encargo->domicilio = $request->input('domicilio');
