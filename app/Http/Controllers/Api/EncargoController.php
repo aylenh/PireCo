@@ -140,7 +140,7 @@ class EncargoController extends Controller
         // Crea un objeto de preferencia
         $preference = new MercadoPago\Preference();
         $preference->items = $items;
-        $preference->notification_url = 'https://pirencoarg.com/mercadopago/notification';
+        $preference->notification_url = 'https://pirencoarg.com/api/mercadopago/notification';
         $preference->external_reference = $encargo->id;
         $preference->save();
 
