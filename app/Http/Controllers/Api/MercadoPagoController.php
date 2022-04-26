@@ -18,7 +18,7 @@ class MercadoPagoController extends Controller
     public function notification(Request $request){
         switch($request->type) {
             case "payment":
-                $payment = \MercadoPago\Payment::find_by_id($request->data->id);
+                $payment = \MercadoPago\Payment::find_by_id($request->data['id']);
                 $encargo = Encargo::find((int)$payment->external_reference);
                 $encargo->payed = true;
                 $encargo->save();
