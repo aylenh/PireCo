@@ -9,7 +9,6 @@
 <body>
     <div>
         <div>Type: {{ $request->type }}</div>
-        <div>ID: {{ $request->->data->id }}</div>
     </div>
 </body>
 </html>
