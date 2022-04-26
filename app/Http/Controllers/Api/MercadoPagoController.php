@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Encargo;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,9 @@ class MercadoPagoController extends Controller
         switch($request->type) {
             case "payment":
                 $payment = \MercadoPago\Payment::find_by_id($request->data->id);
+                $encargo = Encargo::find($payment->external_reference);
+                $encargo->payed = true;
+                $encargo->save();
                 break;
             case "plan":
                 $plan = \MercadoPago\Plan::find_by_id($request->data->id);

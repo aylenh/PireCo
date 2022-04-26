@@ -141,6 +141,7 @@ class EncargoController extends Controller
         $preference = new MercadoPago\Preference();
         $preference->items = $items;
         $preference->notification_url = url('/mercadopago/notification');
+        $preference->external_reference = $encargo->id;
         $preference->save();
 
         if($preference->error)

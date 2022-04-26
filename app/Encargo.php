@@ -14,7 +14,8 @@ class Encargo extends Model
         'horario_de', 
         'horario_hasta', 
         'total',
-        'distribuidor_id'
+        'distribuidor_id',
+        'payed'
     ];
 
     public function detalles()
