@@ -142,6 +142,13 @@ class EncargoController extends Controller
         $preference->items = $items;
         $preference->notification_url = 'https://pirencoarg.com/api/mercadopago/notification';
         $preference->external_reference = $encargo->id;
+        $preference->auto_return = 'all';
+        $preference->back_urls = [
+            'success' => 'https://pirencoarg.com/api/mercadopago/success',
+            'pending' => 'https://pirencoarg.com/api/mercadopago/failure',
+            'failure' => 'https://pirencoarg.com/api/mercadopago/failure',
+        ];
+
         $preference->save();
 
         if($preference->error)

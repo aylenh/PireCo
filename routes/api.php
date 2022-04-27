@@ -35,6 +35,12 @@ Route::post('pay_cash/{encargo}','Api\EncargoController@payCash');
 Route::prefix('mercadopago')->group(function(){
 
     Route::post('notification', 'Api\MercadoPagoController@notification');
+    Route::post('success', function(){
+        return true;
+    });
+    Route::post('failure', function(){
+        return true;
+    });
 
 });
 
