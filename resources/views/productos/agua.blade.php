@@ -168,7 +168,7 @@
                 },
                 processing:true,
                 info:true,
-                ajax:"{{route('mostrar.productos')}}",
+                ajax:"{{url('mostrarProductos')}}",
                 "pageLength":5,
                 "aLengthMenu":[[5,10,25,50,-1],[5,10,25,50, "Todos"]],
                 columns:[
