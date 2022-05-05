@@ -1,15 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DistribuidorController;
-use App\Http\Controllers\EncargoController;
-use App\Http\Controllers\HRImporterController;
-use App\Http\Controllers\InconsistencieController;
-use App\Http\Controllers\HrController;
-use App\Http\Controllers\ExcelController;
-use App\Http\Controllers\ResumenBidones;
-use App\Http\Controllers\SendinBlueController;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
+
+if (env('APP_ENV') === 'production') {
+    URL::forceSchema('https');
+}
 
 //RUTAS DE CAJA
 
