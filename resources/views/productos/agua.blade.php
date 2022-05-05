@@ -89,7 +89,6 @@
                         @include('productos.editar_producto')
                     </div>
                 </div>
-                {{url('mostrarProductos')}}
                 <!-- /.container-fluid -->
 
             </div>
