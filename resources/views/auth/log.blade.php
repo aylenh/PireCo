@@ -35,7 +35,7 @@
                   </a>
                   <br>
                 <div class="card">
-                    <div style="text-align: center;" class="card-header"><img src="{{asset('images/logoO.jpg')}}" height="75"></div>
+                    <div style="text-align: center;" class="card-header"><img src="{{asset('images/logoOr.jpg')}}" height="75"></div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
