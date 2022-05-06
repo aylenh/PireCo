@@ -49,6 +49,8 @@
                                             <input type="number" class="form-control" name="producto_litros" placeholder="Ingresar Cantidad de litros">
                                             <span class="text-danger error-text producto_litros_error"></span>
                                         </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col">
                                             <label for="floatingInputGrid">Cantidad</label>
                                             <input type="number" class="form-control" name="cantidad"  placeholder="Ingresar Cantidad de litros">
@@ -58,6 +60,11 @@
                                             <label for="floatingInputGrid">Precio</label>
                                             <input type="number" class="form-control" name="producto_precio" placeholder="Ingresar Precio">
                                             <span class="text-danger error-text producto_precio_error"></span>
+                                        </div>
+                                        <div class="col">
+                                            <label for="imagen">Imagen</label>
+                                            <input type="file" class="form-control" name="imagen" required/>
+                                            <span class="text-danger error-text producto_imagen_error"></span>
                                         </div>
                                     </div>
                                     <br>
