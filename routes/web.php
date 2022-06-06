@@ -9,6 +9,7 @@ use App\Http\Controllers\HrController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ResumenBidones;
 use App\Http\Controllers\SendinBlueController;
+use App\Http\Controllers\TerminosController;
 use Illuminate\Http\Request;
 
 //RUTAS DE CAJA
@@ -21,6 +22,9 @@ Route::get('/cash_add/income', 'CashController@addincome')->name('cash.addincome
 Route::get('/cash_add/outcome', 'CashController@addoutcome')->name('cash.addoutcome');
 Route::get('/resumenCaja',    'CashController@resumencaja')->name('resumen.caja');
 Route::post('/FiltrarCaja',    'CashController@resumencajaFiltro')->name('resumencaja.filtro');
+Route::get('/PoliticasPrivacidad',    'TerminosController@index');
+Route::view('/terminos', 'terminos');
+
 
 
 /* Operator's Cash module */
@@ -69,32 +73,16 @@ Route::post('/borrarProducto', 'ProductoController@borrarProducto')->name('borra
 Route::get('Encargos','EncargoController@index')->name('encargos');
 Route::get('/encargo/{encargo}/ver','EncargoController@detallesEncargo')->name('detalles.encargo');
 
-Route::get('/correo', function () {
-    return view('correos.pedidos');
-});
-
-
-Route::get('/', function () { return view('auth.log');});
-
-Route::get('/admin', function () {
-    return view('layouts.admin');
-});
-
-Route::get('/registro', function () {
-    return view('auth.register');
-});
-
-Route::get('/distribuidores', function () {
-    return view('distribuidores.register');
-});
-
-Route::get('/productos', function () {
-    return view('productos.agua');
-});
-
-Route::get('/login', function () {
-    return view('auth.log');
-});
+// Route::get('/correo', function () {
+//     return view('correos.pedidos');
+// });
+Route::view('/correo', 'correos.pedidos');
+Route::view('/', 'auth.log');
+Route::view('/admin', 'layouts.admin');
+Route::view('/distribuidores', 'distribuidores.register');
+Route::view('/productos', 'productos.agua');
+Route::view('/login', 'auth.log');
+Route::view('/', 'auth.log');
 
 Auth::routes();
 
