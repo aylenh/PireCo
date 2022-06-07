@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\DB;
 
 class EncargoController extends Controller
 {
+    public function __construct()
+    {
+        MercadoPago\SDK::setAccessToken(env('MP_ACCESS_TOKEN'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,11 +42,6 @@ class EncargoController extends Controller
      */
     public function store(EncargoRequest $request)
     {
-         // SDK de Mercado Pago
-        require base_path('/vendor/autoload.php');
-         // Agrega credenciales
-        MercadoPago\SDK::setAccessToken('TEST-7110253609417365-110317-d424c5125ab59755a7dcd3ccd1b3d4bb-1011886178');
-        
         $encargo = new Encargo;
         $encargo->nombre = $request->input('nombre');
         $encargo->domicilio = $request->input('domicilio');
@@ -71,7 +71,6 @@ class EncargoController extends Controller
 
             if(!isset($request->directo)){
                 if(empty($distribuidor)){
-                    // return "eeee"; die();
                     $inventario->cel_cliente = $request->input('telefono');
                     $inventario->correo_cliente = $request->input('correo');
                     $inventario->distribuidor_id = $request->input('distribuidor_id');
@@ -99,7 +98,6 @@ class EncargoController extends Controller
                 }
             }else {
                 if(empty($cliente)){
-                    // return "eeee"; die();
                     $inventario->cel_cliente = $request->input('telefono');
                     $inventario->correo_cliente = $request->input('correo');
                     $inventario->estado = 1;
@@ -144,18 +142,29 @@ class EncargoController extends Controller
         // Crea un objeto de preferencia
         $preference = new MercadoPago\Preference();
         $preference->items = $items;
-        $preference->back_urls = array(
-            "success" => "http://localhost:8080/feedback",
-            "failure" => "http://localhost:8080/feedback", 
-            "pending" => "http://localhost:8080/feedback"
-        );
-        $preference->auto_return = "approved";
+        $preference->notification_url = 'https://pirencoarg.com/api/mercadopago/notification';
+        $preference->external_reference = $encargo->id;
+        $preference->auto_return = 'all';
+        $preference->back_urls = [
+            'success' => 'https://pirencoarg.com/api/mercadopago/success',
+            'pending' => 'https://pirencoarg.com/api/mercadopago/failure',
+            'failure' => 'https://pirencoarg.com/api/mercadopago/failure',
+        ];
+
         $preference->save();
 
-        $response = array(
-            'link'      => $preference->init_point,
-            'encargo'   => Encargo::with(['detalles', 'distribuidor'])->find($encargo->id)
-        );
+        if($preference->error)
+        {
+            $response = array(
+                'error' => $preference->error
+            );
+        }else{
+            $response = array(
+                'link'      => $preference->init_point,
+                'encargo'   => Encargo::with(['detalles', 'distribuidor'])->find($encargo->id),
+                'notification_url' => $preference->notification_url
+            );
+        }
 
         return response()->json($response);
     }

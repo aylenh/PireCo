@@ -15,6 +15,7 @@ class Inventario extends Model
         'pago', 
         'correo_cliente',
         'nombre',
+        'estado',
         'created_at', 
         'updated_at', 
     ];

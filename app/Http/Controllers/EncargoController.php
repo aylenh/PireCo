@@ -48,11 +48,8 @@ class EncargoController extends Controller
      */
     public function store(EncargoRequest $request)
     {
-        return response()->json('hols');
-         // SDK de Mercado Pago
-        require base_path('/vendor/autoload.php');
          // Agrega credenciales
-        MercadoPago\SDK::setAccessToken('TEST-7110253609417365-110317-d424c5125ab59755a7dcd3ccd1b3d4bb-1011886178');
+        \MercadoPago\SDK::setAccessToken('TEST-7110253609417365-110317-d424c5125ab59755a7dcd3ccd1b3d4bb-1011886178');
         
         
         $encargo = new Encargo;
@@ -69,33 +66,11 @@ class EncargoController extends Controller
         $items = array();
 
         foreach ($request->productos as $key => $producto) {
-            // Inventario::insert(
-            //     [
-            //         'cantidad' => $producto['cantidad'],
-            //         'cantidad_total' => $producto['cantidad'],
-            //         'producto_id' => $producto['producto_id'], 
-            //         'encargo_id' => $encargo->id,       
-            //     ]
-            // );
 
             $detalles = new DetallesEncargo;
             $detalles->cantidad = $producto['cantidad'];
             $detalles->producto_id = $producto['producto_id'];
             $detalles->encargo_id = $encargo->id;
-
-            // $inventario = new Inventario;
-            // $inventario->cantidad = $producto['cantidad'];
-            // $inventario->producto_id = $producto['producto_id'];
-            // $inventario->encargo_id = $encargo->id;
-
-            // $inventario->save();
-
-            // $consulta = Inventario::where("producto_id",$detalles->producto_id)->get();
-            // foreach ($consulta as $con) {
-            //     $cantidadA = $con->cantidad - $detalles->cantidad;
-            // }
-            // $fin = intval($cantidadA);
-            // $consulta->update(["cantidad" => $fin]);
             
             $detalles->save();
 
@@ -109,16 +84,13 @@ class EncargoController extends Controller
         // Crea un objeto de preferencia
         $preference = new MercadoPago\Preference();
         $preference->items = $items;
-        $preference->back_urls = array(
-            "success" => "http://localhost:8080/feedback",
-            "failure" => "http://localhost:8080/feedback", 
-            "pending" => "http://localhost:8080/feedback"
-        );
-        $preference->auto_return = "approved";
+        $preference->external_reference = $encargo->id;
+        $preference->notification_url = url('/mercadopago/notification');
         $preference->save();
 
         $response = array(
-            'link'      => $preference->init_point,
+            'laink'      => $preference->init_point,
+            'a' => $preference->notification_url,
             'encargo'   => Encargo::with(['detalles', 'distribuidor'])->find($encargo->id)
         );
 
