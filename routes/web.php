@@ -1,13 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
-use Illuminate\Support\Facades\URL;
-
-if (env('APP_ENV') === 'production') {
-    URL::forceScheme('https');
-}
-=======
 use App\Http\Controllers\DistribuidorController;
 use App\Http\Controllers\EncargoController;
 use App\Http\Controllers\HRImporterController;
@@ -18,7 +11,6 @@ use App\Http\Controllers\ResumenBidones;
 use App\Http\Controllers\SendinBlueController;
 use App\Http\Controllers\TerminosController;
 use Illuminate\Http\Request;
->>>>>>> paula
 
 //RUTAS DE CAJA
 
@@ -30,12 +22,7 @@ Route::get('/cash_add/income', 'CashController@addincome')->name('cash.addincome
 Route::get('/cash_add/outcome', 'CashController@addoutcome')->name('cash.addoutcome');
 Route::get('/resumenCaja',    'CashController@resumencaja')->name('resumen.caja');
 Route::post('/FiltrarCaja',    'CashController@resumencajaFiltro')->name('resumencaja.filtro');
-<<<<<<< HEAD
-=======
 Route::get('/PoliticasPrivacidad',    'TerminosController@index');
-Route::view('/terminos', 'terminos');
-
->>>>>>> paula
 
 
 /* Operator's Cash module */
