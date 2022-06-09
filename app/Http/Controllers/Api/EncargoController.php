@@ -238,5 +238,6 @@ class EncargoController extends Controller
         return response()->json(array(
             'message' => 'El Correo fue enviado con exito para el encargo '.$encargo->id.'!'
         ));
+        // ensayo de comit
     }
 }

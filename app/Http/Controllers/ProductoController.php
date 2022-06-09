@@ -17,22 +17,15 @@ class ProductoController extends Controller
             'producto_descartable'  => 'required',
             'producto_litros'       => 'required',
             'cantidad'              => 'required',
-            'producto_precio'       => 'required',
-            'imagen'                => 'required'
+            'producto_precio'       => 'required'
         ]);
 
-        $path = $request->file('imagen')->store('productos','public');
-
-        if(!$validator->passes()){
-            return response()->json(['code'=>0, 'error'=>$validator->errors()->toArray() ]);
-        }else{
             $producto = new Producto();
             $producto->producto_botella     = $request->producto_botella;
             $producto->producto_descartable = $request->producto_descartable;
             $producto->producto_litros      = $request->producto_litros;
             $producto->producto_precio      = $request->producto_precio;
             $producto->cantidad             = $request->cantidad;
-            $producto->imagen               = url("storage/$path");
     
             $consulta = $producto->save();
 
@@ -41,7 +34,6 @@ class ProductoController extends Controller
             }else{
                 return response()->json(['code' => 1, 'msg'=>'¡Producto guardado exitosamente!']);
             }
-        }
     }
 
 
