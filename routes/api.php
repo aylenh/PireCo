@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 //Api Pedidos
 Route::resource('getPedidos', 'PedidoController');
@@ -32,15 +32,15 @@ Route::resource('productos', 'Api\ProductoController');
 // Pagar en Efectivo
 Route::post('pay_cash/{encargo}','Api\EncargoController@payCash');
 
-Route::prefix('mercadopago')->group(function(){
+// Route::prefix('mercadopago')->group(function(){
 
-    Route::post('notification', 'Api\MercadoPagoController@notification');
-    Route::post('success', function(){
-        return true;
-    });
-    Route::post('failure', function(){
-        return true;
-    });
+//     Route::post('notification', 'Api\MercadoPagoController@notification');
+//     Route::post('success', function(){
+//         return true;
+//     });
+//     Route::post('failure', function(){
+//         return true;
+//     });
 
-});
+// });
 

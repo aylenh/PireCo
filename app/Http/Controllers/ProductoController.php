@@ -32,7 +32,7 @@ class ProductoController extends Controller
             if(!$consulta){
                 return response()->json(['code' => 0, 'msg'=>'¡No se pudo guardar el producto!']);
             }else{
-                return response()->json(['code' => 1, 'msg'=>'¡Producto guardado exitosamente!']);
+                return response()->json(['code' => 1, 'msg'=>'¡Producto guardado exitosame!']);
             }
     }
 

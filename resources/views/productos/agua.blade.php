@@ -27,7 +27,7 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Agregar un nuevo producto</h6>
                             </div>
                             <div class="card-body">
-                                <form id="guardarProducto" action="{{ route('save.producto') }}" method="post" >
+                                <form id="guardarProducto" action="{{ route('save.producto') }}" method="POST" >
                                     @csrf
                                     <div class="row">
                                         <div class="col">
