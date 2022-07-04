@@ -65,6 +65,8 @@ Route::post('/ActualizarProducto', 'ProductoController@actualizarProducto')->nam
 Route::post('/borrarProductos', 'ProductoController@borrarProductosCheck')->name('borrar.producto.check');
 Route::post('/borrarProducto', 'ProductoController@borrarProducto')->name('borrar.producto');
 
+// QR 
+Route::view('/DescargarApp', 'qr.redireccion');
 
 //RUTAS ENCARGOS
 
