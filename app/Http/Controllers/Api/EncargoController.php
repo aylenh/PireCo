@@ -21,7 +21,7 @@ class EncargoController extends Controller
 {
     public function __construct()
     {
-        MercadoPago\SDK::setAccessToken(env('MP_ACCESS_TOKEN'));
+        MercadoPago\SDK::setAccessToken( config('mercadopago.access_token') );
     }
 
     /**
@@ -57,7 +57,7 @@ class EncargoController extends Controller
             $encargo->distribuidor_id = $request->input('distribuidor_id');
             $distribuidor = Inventario::where('distribuidor_id', $request->input('distribuidor_id'))->first();
         }
-      
+
         $encargo->save();
         $cliente = Inventario::where('cel_cliente', $request->input('telefono'))->first();
 // return $cliente; die();
@@ -75,10 +75,10 @@ class EncargoController extends Controller
                     $inventario->correo_cliente = $request->input('correo');
                     $inventario->distribuidor_id = $request->input('distribuidor_id');
                     $inventario->estado = 1;
-                    
+
                     $inventario->nombre = $request->input('nombre');
 
-    
+
                     if($producto['producto_id'] == 1){
                         $inventario->bidon10 = $producto['cantidad'];
                     }else if($producto['producto_id'] == 2){
@@ -87,7 +87,7 @@ class EncargoController extends Controller
                     $inventario->save();
                 }else{
                     if ($request->input('distribuidor_id') == $distribuidor->distribuidor_id) {
-                        
+
                         if($producto['producto_id'] == 1){
                             $distribuidor->bidon10 = $distribuidor->bidon10 + $producto['cantidad'];
                         }else if($producto['producto_id'] == 2){
@@ -102,7 +102,7 @@ class EncargoController extends Controller
                     $inventario->correo_cliente = $request->input('correo');
                     $inventario->estado = 1;
                     $inventario->nombre = $request->input('nombre');
-    
+
                     if($producto['producto_id'] == 1){
                         $inventario->bidon10 = $producto['cantidad'];
                     }else if($producto['producto_id'] == 2){
@@ -111,7 +111,7 @@ class EncargoController extends Controller
                     $inventario->save();
                 }else{
                     if ($request->input('telefono') == $cliente->cel_cliente) {
-                        
+
                         if($producto['producto_id'] == 1){
                             $cliente->bidon10 = $cliente->bidon10 + $producto['cantidad'];
                         }else if($producto['producto_id'] == 2){
@@ -121,7 +121,7 @@ class EncargoController extends Controller
                     }
                 }
             }
-           
+
 
             $consulta = Producto::where("id",$detalles->producto_id)->get();
             foreach ($consulta as $con) {
@@ -129,7 +129,7 @@ class EncargoController extends Controller
             }
             $fin = intval($cantidad);
             Producto::where("id",$detalles->producto_id)->update(["cantidad" => $fin]);
-            
+
             $detalles->save();
 
             $item = new MercadoPago\Item();
@@ -202,15 +202,15 @@ class EncargoController extends Controller
     {
         $encargo = Encargo::findOrFail($id);
         $encargo->delete();
-        
+
         return response()->json('Encargo eliminado con exito!');
     }
 
     public function payCash(Encargo $encargo, Request $request){
         $pago = $request->pago;
-   
+
         $dato = Encargo::with('distribuidor')->select('correo','distribuidor_id')->where('id',$encargo->id)->get();
-        
+
         $pagos = Encargo::where('id',$encargo->id)->first();
         $pagos->update(
             [
