@@ -14,7 +14,7 @@ var userAgent = navigator.userAgent || navigator.vendor || window.opera;
  	// }
 
 	if (/android/i.test(userAgent)) {
-		location.replace("https://play.google.com/store/apps/details?id=com.whatsapp&hl=es_CO&gl=US");
+		location.replace("https://play.google.com/store/apps/details?id=com.whatsapp");
 	}
 
 	if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
