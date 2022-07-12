@@ -59,6 +59,10 @@
                                             <input type="number" class="form-control" name="producto_precio" placeholder="Ingresar Precio">
                                             <span class="text-danger error-text producto_precio_error"></span>
                                         </div>
+                                        <div col="col"> 
+                                            <label for="floatingInputGrid">Imagen</label>
+                                            <input type="file" name="imagen" id="imagen" class="form-control">
+                                        </div>
                                     </div>
                                     <br>
                                     <button type="submit" class="btn btn-primary">Guardar</button>
@@ -77,6 +81,7 @@
                                         <th>Litros</th>
                                         <th>Unidades</th>
                                         <th>Precio</th>
+                                        <th>Imagen</th>
                                         <th>Acciones <button class="btn btn-sm btn-danger d-none" id="borrarTodo">Borrar todo</button></th>
                                     </thead>
                                     <tbody>
@@ -178,6 +183,13 @@
                     {data:'producto_litros', name:'producto_litros'},
                     {data:'cantidad', name:'cantidad'},
                     {data:'producto_precio', name:'producto_precio'},
+                    {
+                        data:'imagen', 
+                        render:function(data,type, row)
+                        {
+                            return '<center><img src="' + data +'"width="50" height="50"></center>';
+                        }
+                    },
                     {data:'Acciones', name:'Acciones', orderable:false, searchable:false},
                 ]
                 // seleccionar solo los registros de una paginacion 
@@ -201,6 +213,8 @@
                     $('.editarProductomodal').find('input[name="producto_litros"]').val(data.editar.producto_litros);
                     $('.editarProductomodal').find('input[name="cantidad"]').val(data.editar.cantidad);
                     $('.editarProductomodal').find('input[name="producto_precio"]').val(data.editar.producto_precio);
+                    var data_img = data.editar.imagen;
+                    $('.editarProductomodal #imagen1').attr("src", data_img);
                     $('.editarProductomodal').modal('show');
                 },'json');
             });

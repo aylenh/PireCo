@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Producto;
 use DataTables; 
+use Illuminate\Support\Str;
+use Illuminate\Http\UploadedFile;
 
 class ProductoController extends Controller
 {
@@ -26,7 +28,17 @@ class ProductoController extends Controller
             $producto->producto_litros      = $request->producto_litros;
             $producto->producto_precio      = $request->producto_precio;
             $producto->cantidad             = $request->cantidad;
+
+            if($request->hasFile("imagen")){
+
+                $imagen = $request->file("imagen");
+                $ruta = public_path("storage/productos/");
+                $nombreimagen = Str::slug($request->producto_botella).uniqid().'.'.$imagen->guessExtension();
     
+                //$imagen->move($ruta,$nombreimagen);
+                copy($imagen->getRealPath(),$ruta.$nombreimagen);
+                $producto->imagen   = 'http://127.0.0.1:8000/storage/productos/'.$nombreimagen; 
+            }
             $consulta = $producto->save();
 
             if(!$consulta){
@@ -44,20 +56,20 @@ class ProductoController extends Controller
         $productos = Producto::all();
     
         return DataTables::of($productos)
-                                    ->addIndexColumn()
-                                    ->addColumn('Acciones', function($row){
-                                        return ' 
-                                        <div class="btn-group">
-                                            <button class="btn btn-sm btn-primary" data-id="'.$row['id'].'" id="editarProducto">Editar</button>
-                                            <button class="btn btn-sm btn-danger" data-id="'.$row['id'].'" id="eliminarProducto">Eliminar</button>
-                                        </div>
-                                        ';
-                                    })
-                                    ->addColumn('checkbox', function($row){
-                                        return '<input type="checkbox" name="check_producto" id="check_producto" data-id="'.$row['id'].'" ><label for=""></label>';
-                                    })
-                                    ->rawColumns(['Acciones','checkbox'])
-                                    ->make(true);
+            ->addIndexColumn()
+            ->addColumn('Acciones', function($row){
+                return ' 
+                <div class="btn-group">
+                    <button class="btn btn-sm btn-primary" data-id="'.$row['id'].'" id="editarProducto">Editar</button>
+                    <button class="btn btn-sm btn-danger" data-id="'.$row['id'].'" id="eliminarProducto">Eliminar</button>
+                </div>
+                ';
+            })
+            ->addColumn('checkbox', function($row){
+                return '<input type="checkbox" name="check_producto" id="check_producto" data-id="'.$row['id'].'" ><label for=""></label>';
+            })
+            ->rawColumns(['Acciones','checkbox'])
+            ->make(true);
     }
 
     // funcion creada por paula 
@@ -92,7 +104,16 @@ class ProductoController extends Controller
             $producto->producto_litros = $request->producto_litros;
             $producto->producto_precio = $request->producto_precio;
             $producto->cantidad = $request->cantidad;
+            if($request->hasFile("imagen")){
+
+                $imagen = $request->file("imagen");
+                $ruta = public_path("storage/productos/");
+                $nombreimagen = Str::slug($request->producto_botella).uniqid().'.'.$imagen->guessExtension();
     
+                //$imagen->move($ruta,$nombreimagen);
+                copy($imagen->getRealPath(),$ruta.$nombreimagen);
+                $producto->imagen   = 'http://127.0.0.1:8000/storage/productos/'.$nombreimagen; 
+            }
             $consulta = $producto->save();
 
             if(!$consulta){
