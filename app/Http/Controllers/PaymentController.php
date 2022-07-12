@@ -10,7 +10,7 @@ class PaymentController extends Controller
 
     public function __construct()
     {
-        \MercadoPago\SDK::setAccessToken(env('MP_ACCESS_TOKEN'));
+        \MercadoPago\SDK::setAccessToken( config('mercadopago.access_token') );
     }
     /**
      * Display a listing of the resource.
@@ -22,7 +22,7 @@ class PaymentController extends Controller
 
     }
 
-    public function payment(Request $request){  
+    public function payment(Request $request){
 
       $preference = new \MercadoPago\Preference();
       $items = [];
@@ -36,12 +36,12 @@ class PaymentController extends Controller
       }
 
       $preference->items = $items;
-      
+
       $preference->save();
 
       return response()->json([
                 'init_point' => $preference->init_point
               ]);
-    }  
-      
+    }
+
 }
