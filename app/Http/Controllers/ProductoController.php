@@ -37,7 +37,7 @@ class ProductoController extends Controller
     
                 //$imagen->move($ruta,$nombreimagen);
                 copy($imagen->getRealPath(),$ruta.$nombreimagen);
-                $producto->imagen   = 'http://127.0.0.1:8000/storage/productos/'.$nombreimagen; 
+                $producto->imagen   = 'https://pirencoarg.com/storage/productos/'.$nombreimagen; 
             }
             $consulta = $producto->save();
 
