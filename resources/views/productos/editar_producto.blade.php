@@ -49,6 +49,13 @@
                                 <input type="text" name="producto_precio" id="producto_precio" class="form-control" placeholder="" aria-describedby="helpId">
                                 <span class="text-danger error-text producto_precio_error"> </span>
                           </div>
+                          <div class="col-12">
+                            <label for="">Imagen</label>
+                            <img src="" id="imagen1" alt="" width="60px" height="60px">
+                            {{-- <input type="text" name="imagen" id="imagen"> --}}
+                            <input type="file" name="imagen" id="imagen" class="form-control" placeholder="" aria-describedby="helpId">
+                            <span class="text-danger error-text imagen_precio_error"> </span>
+                      </div>
                         </div>
                         <br>
                         <div class="form-group">
