@@ -15,7 +15,7 @@ class AddForeignKeyDeleteCascadeOnEncargosTable extends Migration
     {
         Schema::table('encargos', function (Blueprint $table) {
             $table->dropForeign('encargos_distribuidor_id_foreign');
-            $table->foreign('distribuidor_id')->references('id')->on('distribuidores')->onDelete('cascade');
+            $table->foreign('distribuidor_id')->references('id')->on('distribuidores')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
