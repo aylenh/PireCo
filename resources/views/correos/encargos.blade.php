@@ -384,7 +384,7 @@ a {text-decoration: none;}
                                     cellspacing="0" cellpadding="0" bgcolor="#3D3C44" align="center">
                                     <tr style="border-collapse:collapse">
                                         <td align="left">
-                                                        <img src="http://147.182.255.209/images/logo3.jpg" width="100%" height="100%" alt="">
+                                                        <img src="https://147.182.255.209/images/logo3.JPG" width="100%" height="100%" alt="">
                                                     </td>
                                             
                                             <!--[if mso]></td><td style="width:20px"></td><td style="width:170px" valign="top"><![endif]-->
