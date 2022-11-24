@@ -14,11 +14,11 @@ var userAgent = navigator.userAgent || navigator.vendor || window.opera;
  	// }
 
 	if (/android/i.test(userAgent)) {
-		location.replace("https://play.google.com/store/apps/details?id=com.whatsapp");
+		location.replace("https://play.google.com/store/apps/details?id=com.appPirenco");
 	}
 
 	if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
-		location.replace("https://apps.apple.com/es/app/whatsapp-messenger/id310633997");
+		location.replace("https://apps.apple.com/ar/app/pirenco/id1617291739");
 	}
 </script>
 {{-- redireccionamiento app  --}}
