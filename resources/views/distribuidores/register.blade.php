@@ -427,6 +427,8 @@
                 $.get(url, {
                     distribuidor_id: distribuidor_id
                 }, function(data) {
+                    var lat = data.result.distribuidor_latitude;
+                    var lng = data.result.distribuidor_longitude;
                     //alert(data.result.distribuidor_local);
                     var distribuidor_modal = $('.editDistribuidorModal');
                     $(distribuidor_modal).find('form').find('input[name="pid"]').val(data.result.id);
@@ -434,13 +436,12 @@
                     $(distribuidor_modal).find('form').find('input[name="distribuidor_correo"]').val(data.result.distribuidor_correo);
                     $(distribuidor_modal).find('form').find('input[name="distribuidor_contacto"]').val(data.result.distribuidor_contacto);
                     $(distribuidor_modal).find('form').find('input[name="distribuidor_ubicacion"]').val(data.result.distribuidor_ubicacion);
-                    $(distribuidor_modal).find('form').find('.img-holder-update').html('<img src="/storage/files/'+data.result.distribuidor_imagen+'" class="img-fluid" style="max-width:100px;margin-botton:10px;">');
-                    $(distribuidor_modal).find('form').find('input[type="file"]').attr('data-value', '<img src="/storage/files/'+data.result.distribuidor_imagen+'" class="img-fluid" style="max-width:100px;margin-botton:10px;">');
+                    $(distribuidor_modal).find('form').find('input[name="distribuidor_latitude"]').val(data.result.distribuidor_latitude);
+                    $(distribuidor_modal).find('form').find('input[name="distribuidor_longitude"]').val(data.result.distribuidor_longitude);
                     $(distribuidor_modal).find('form').find('input[type="file"]').val('');
                     $(distribuidor_modal).find('form').find('span.error-text').text('');
                     $(distribuidor_modal).modal('show');
                 }, 'json');
-                //alert(distribuidor_id);
             });
             $('input[type="file"][name="distribuidor_imagen_update"]').on('change', function(){
                 var img_path = $(this)[0].value;
@@ -553,27 +554,9 @@
                 }
             });
         });
+       
     </script>
 
-<script>
-    $(function() {
-        $('#updateMap').locationpicker({
-            location: {
-                latitude: -34.60568597314354,
-                longitude: -58.39267297656248
-            },
-            radius: 0,
-            inputBinding: {
-                latitudeInput: $('#updateLat'),
-                longitudeInput: $('#updateLng'),
-                locationNameInput: $('#updateLocation')
-            },
-            enableAutocomplete: true,
-            onchanged: function(currentLocation, radius, isMarkerDropped) {
-            }
-        });
-    });
-</script>
 
 <script>
     $(document).ready(function() {

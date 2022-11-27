@@ -51,4 +51,22 @@
             }
         });
     });
+    
+    $(function() {
+        $('#updateMap').locationpicker({
+            location: {
+                latitude: -34.60568597314354,
+                longitude: -58.39267297656248
+            },
+            radius: 0,
+            inputBinding: {
+                latitudeInput: $('#updateLat'),
+                longitudeInput: $('#updateLng'),
+                locationNameInput: $('#updateLocation')
+            },
+            enableAutocomplete: true,
+            onchanged: function(currentLocation, radius, isMarkerDropped) {
+            }
+        });
+    });
 </script>
