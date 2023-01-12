@@ -24,6 +24,7 @@ class ResumenBidones extends Controller
         return view('bidones.cajaBidones', $blue);
      
     }
+    
     public function verResumenCaja(){
         $blue['bidones'] = Inventario::with('distribuidores')->orderBy('created_at', 'DESC')->get();
         $blue['producto'] = Producto::select('id','cantidad')->whereIn('id', [1,2])->get();

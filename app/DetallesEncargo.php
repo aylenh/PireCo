@@ -10,7 +10,13 @@ class DetallesEncargo extends Model
     protected $fillable = [
         'cantidad',
         'encargo_id',
-        'producto_id'
+        'producto_id',
+        'name',
+        'type',
+        'price',
+        'liters',
+        'total'
+
     ];
 
     protected $appends = ['sub_total'];

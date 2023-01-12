@@ -61,6 +61,12 @@ class ProductoController extends Controller
                 return ' 
                 <div class="btn-group">
                     <button class="btn btn-sm btn-primary" data-id="'.$row['id'].'" id="editarProducto">Editar</button>
+                </div>
+                ';
+            })
+            ->addColumn('Acciones2', function($row){
+                return ' 
+                <div class="btn-group">
                     <button class="btn btn-sm btn-danger" data-id="'.$row['id'].'" id="eliminarProducto">Eliminar</button>
                 </div>
                 ';
@@ -68,7 +74,7 @@ class ProductoController extends Controller
             ->addColumn('checkbox', function($row){
                 return '<input type="checkbox" name="check_producto" id="check_producto" data-id="'.$row['id'].'" ><label for=""></label>';
             })
-            ->rawColumns(['Acciones','checkbox'])
+            ->rawColumns(['Acciones', 'Acciones2','checkbox'])
             ->make(true);
     }
 
