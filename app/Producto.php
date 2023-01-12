@@ -13,6 +13,7 @@ class Producto extends Model
         'producto_litros', 
         'producto_precio',
         'imagen',
+        'accion',
         'cantidad'
     ];
 

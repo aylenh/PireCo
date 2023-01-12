@@ -18,8 +18,8 @@ class CreateProductosTable extends Migration
             $table->string('producto_botella');
             $table->string('producto_descartable');
             $table->string('producto_litros');
-            $table->string('producto_precio');
             $table->string('imagen');
+            $table->float('producto_precio', 1);
             $table->bigInteger('cantidad');
             $table->timestamps();
         });

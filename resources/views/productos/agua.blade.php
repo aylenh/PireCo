@@ -82,7 +82,8 @@
                                         <th>Unidades</th>
                                         <th>Precio</th>
                                         <th>Imagen</th>
-                                        <th>Acciones <button class="btn btn-sm btn-danger d-none" id="borrarTodo">Borrar todo</button></th>
+                                        <th>Editar</th>
+                                        <th>Elimitar <button class="btn btn-sm btn-danger d-none" id="borrarTodo">Borrar todo</button></th>
                                     </thead>
                                     <tbody>
 
@@ -191,6 +192,16 @@
                         }
                     },
                     {data:'Acciones', name:'Acciones', orderable:false, searchable:false},
+                    {data:'Acciones2', 
+                        render:function(data,type, row)
+                        {
+                            if (row.accion == 1) {
+                                return 'No admitido por ahora';
+                            } else {
+                                return data;
+                            }
+                        }
+                    },
                 ]
                 // seleccionar solo los registros de una paginacion 
             }).on('draw', function(){

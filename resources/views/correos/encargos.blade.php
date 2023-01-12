@@ -9,24 +9,8 @@
     <meta name="x-apple-disable-message-reformatting">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="telephone=no" name="format-detection">
-    <title>Nueva plantilla de correo electrC3B3nico 2021-12-23</title>
-    <!--[if (mso 16)]>
-<style type="text/css">
-a {text-decoration: none;}
-</style>
-<![endif]-->
-    <!--[if gte mso 9]><style>sup { font-size: 100% !important; }</style><![endif]-->
-    <!--[if gte mso 9]>
-<xml>
-<o:OfficeDocumentSettings>
-<o:AllowPNG></o:AllowPNG>
-<o:PixelsPerInch>96</o:PixelsPerInch>
-</o:OfficeDocumentSettings>
-</xml>
-<![endif]-->
-    <!--[if !mso]><!-- -->
+    <title>Correo pirenco</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
-    <!--<![endif]-->
     <style type="text/css">
         #outlook a {
             padding: 0;
@@ -306,11 +290,6 @@ a {text-decoration: none;}
 <body
     style="width:100%;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0">
     <div class="es-wrapper-color" style="background-color:#5A5C69">
-        <!--[if gte mso 9]>
-<v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
-<v:fill type="tile" color="#5A5C69"></v:fill>
-</v:background>
-<![endif]-->
         <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0"
             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;padding:0;Margin:0;width:100%;height:100%;background-repeat:repeat;background-position:center top">
             <tr style="border-collapse:collapse">
@@ -325,7 +304,6 @@ a {text-decoration: none;}
                                     <tr style="border-collapse:collapse">
                                         <td align="left"
                                             style="Margin:0;padding-left:10px;padding-right:10px;padding-top:15px;padding-bottom:15px">
-                                            <!--[if mso]><table style="width:580px" cellpadding="0" cellspacing="0"><tr><td style="width:282px" valign="top"><![endif]-->
                                             <table class="es-left" cellspacing="0" cellpadding="0" align="left"
                                                 style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left">
                                                 <tr style="border-collapse:collapse">
@@ -345,7 +323,6 @@ a {text-decoration: none;}
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <!--[if mso]></td><td style="width:20px"></td><td style="width:278px" valign="top"><![endif]-->
                                             <table class="es-right" cellspacing="0" cellpadding="0" align="right"
                                                 style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right">
                                                 <tr style="border-collapse:collapse">
@@ -367,7 +344,6 @@ a {text-decoration: none;}
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <!--[if mso]></td></tr></table><![endif]-->
                                         </td>
                                     </tr>
                                 </table>
@@ -386,8 +362,6 @@ a {text-decoration: none;}
                                         <td align="left">
                                                         <img src="https://147.182.255.209/images/logo3.JPG" width="100%" height="100%" alt="">
                                                     </td>
-                                            
-                                            <!--[if mso]></td><td style="width:20px"></td><td style="width:170px" valign="top"><![endif]-->
                                             <table cellspacing="0" cellpadding="0" align="right"
                                                 style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                 <tr class="es-hidden" style="border-collapse:collapse">
@@ -417,7 +391,6 @@ a {text-decoration: none;}
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <!--[if mso]></td></tr></table><![endif]-->
                                         </td>
                                     </tr>
                                 </table>
@@ -776,7 +749,6 @@ a {text-decoration: none;}
                                     <tr style="border-collapse:collapse">
                                         <td align="left"
                                             style="Margin:0;padding-top:35px;padding-bottom:35px;padding-left:35px;padding-right:35px">
-                                            <!--[if mso]><table style="width:530px" cellpadding="0" cellspacing="0"><tr><td style="width:340px" valign="top"><![endif]-->
                                             <table class="es-left" cellspacing="0" cellpadding="0" align="left"
                                                 style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left">
                                                 <tr style="border-collapse:collapse">
@@ -795,7 +767,6 @@ a {text-decoration: none;}
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <!--[if mso]></td><td style="width:20px"></td><td style="width:170px" valign="top"><![endif]-->
                                             <table cellspacing="0" cellpadding="0" align="right"
                                                 style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                 <tr class="es-hidden" style="border-collapse:collapse">
@@ -830,7 +801,6 @@ a {text-decoration: none;}
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <!--[if mso]></td></tr></table><![endif]-->
                                         </td>
                                     </tr>
                                 </table>

@@ -57,7 +57,7 @@
                                                 {{ $encargo->detalles->sum('cantidad') }}
                                             </td>
                                             <td>
-                                                ${{ $encargo->detalles->sum('SubTotal') }}
+                                                ${{ $encargo->detalles->sum('total') }}
                                             </td>
                                             <td>
                                                 <a href="{{route('detalles.encargo', $encargo )}}"><i class="fas fa-search"></i> Ver</a>

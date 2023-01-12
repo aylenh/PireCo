@@ -183,28 +183,19 @@ hr {
                                 <i class="fas fa-phone-alt"></i>
                               </span>
                             </a>
-                          </li><li>
+                          </li>
+                          <li>
                             <a >
                               <span align="center">
-                                  <strong>Fecha inicio:</strong><br>
-                                  <u style="color:#4B70DC;">{!! $encargos->horario_de !!}</u>
+                                  <strong>Rango de horarios:</strong><br>
+                                  <u style="color:#4B70DC;">{!! $encargos->horario_de !!} - {!! $encargos->horario_hasta !!}</u>
                                   </span>
                               <span>
                                 <i class="fas fa-calendar-day"></i>
                               </span>
                             </a>
                           </li>
-                          <li>
-                            <a >
-                              <span align="center">
-                                  <strong>Fecha fin:</strong><br>
-                                  <u style="color:#4B70DC;">{!! $encargos->horario_hasta !!}</u>
-                                  </span>
-                              <span>
-                                <i class="fas fa-calendar-week"></i>
-                              </span>
-                            </a>
-                          </li>
+                          
                       </ul>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -226,21 +217,13 @@ hr {
                                 <tbody>
                                     @foreach ($encargos->detalles as $de)
                                         <tr>
-                                            <td>{{ $de->producto->producto_botella }}</td>
-                                            <td>{{ $de->producto->producto_descartable }}</td>
-                                            <td>
-                                              @if($de->producto_id == 1)
-                                                  10L
-                                              @elseif ($de->producto_id == 2)
-                                                  20L
-                                              @else
-                                                  1L
-                                              @endif
-                                            </td>
+                                            <td>{{ $de->name }}</td>
+                                            <td>{{ $de->type }}</td>
+                                            <td>{{ $de->liters }}</td>
                                             <td>{{ $de->cantidad }}</td>
-                                            <td>${{ $de->producto->producto_precio }}</td>
+                                            <td>${{ $de->price }}</td>
                                             <td>
-                                              ${{$de->SubTotal}}
+                                              ${{$de->total}}
                                             </td>
 
                                         </tr>
@@ -254,16 +237,15 @@ hr {
                                 <div>
                                     @foreach ($encargos->detalles as $de)
                                       @php
-                                          $sub_total[] = $de->SubTotal;
+                                          $sub_total[] = $de->total;
                                       @endphp
                                     @endforeach
                                     @php
                                     $total = array_sum((array) $sub_total);
                                         echo '<p style="color:#E64738;">'.'$'.$total.'</p> ';
                                     @endphp
-                                    
                                 </td>
-                                   </h5>
+                                </h5>
                                 </div>
                            </div>
                         </div>

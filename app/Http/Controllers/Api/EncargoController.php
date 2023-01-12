@@ -60,14 +60,22 @@ class EncargoController extends Controller
 
         $encargo->save();
         $cliente = Inventario::where('cel_cliente', $request->input('telefono'))->first();
-// return $cliente; die();
+
         $items = array();
 
-        foreach ($request->productos as $key => $producto) {
+        foreach ($request->productos as $producto) {
             $detalles = new DetallesEncargo();
+            $detalles->cantidad = $producto['cantidad'];
             $detalles->cantidad = $producto['cantidad'];
             $detalles->producto_id = $producto['producto_id'];
             $detalles->encargo_id = $encargo->id;
+
+            $pro = Producto::find($producto['producto_id']);
+            $detalles->name     = $pro['producto_botella'];
+            $detalles->type     = $pro['producto_descartable'];
+            $detalles->price    = $pro['producto_precio'];
+            $detalles->liters   = $pro['producto_litros'];
+            $detalles->total    = $pro['producto_precio'] * $producto['cantidad'];
 
             if(!isset($request->directo)){
                 if(empty($distribuidor)){
@@ -77,7 +85,6 @@ class EncargoController extends Controller
                     $inventario->estado = 1;
 
                     $inventario->nombre = $request->input('nombre');
-
 
                     if($producto['producto_id'] == 1){
                         $inventario->bidon10 = $producto['cantidad'];
@@ -124,10 +131,13 @@ class EncargoController extends Controller
 
 
             $consulta = Producto::where("id",$detalles->producto_id)->get();
+
             foreach ($consulta as $con) {
                 $cantidad = $con->cantidad - $detalles->cantidad;
             }
+
             $fin = intval($cantidad);
+            
             Producto::where("id",$detalles->producto_id)->update(["cantidad" => $fin]);
 
             $detalles->save();
@@ -206,12 +216,13 @@ class EncargoController extends Controller
         return response()->json('Encargo eliminado con exito!');
     }
 
-    public function payCash(Encargo $encargo, Request $request){
+    public function payCash(Encargo $encargo, Request $request)
+    {
         $pago = $request->pago;
-
         $dato = Encargo::with('distribuidor')->select('correo','distribuidor_id')->where('id',$encargo->id)->get();
 
-        $pagos = Encargo::where('id',$encargo->id)->first();
+        $pagos = Encargo::findOrFail($encargo->id);
+
         $pagos->update(
             [
                 'pago' => $request->pago
@@ -227,6 +238,7 @@ class EncargoController extends Controller
                 $correo_cliente       = $d->correo;
             }
         }
+        
         if(isset($correo_distribuidor)){
             $destinatarios = [ $correo_cliente,$correo_distribuidor ];
         }else{
@@ -235,9 +247,55 @@ class EncargoController extends Controller
 
         $correo = new EncargosEmail($encargo, $pago);
         Mail::to($destinatarios)->send($correo);
+        
+        if($pago == 'fallo'){
+            foreach($encargo->detalles as $d){
+                $pro = Producto::findOrFail($d->producto_id);
+                $pro->cantidad  = $pro->cantidad + $d->cantidad;
+                $pro->save();
+
+                if(isset($encargo->distribuidor_id)){
+                    $inv = Inventario::where('distribuidor_id', $encargo->distribuidor_id)->first();
+                    if($d->producto_id == 1){
+                        $inv->bidon10 = $inv->bidon10 - $d->cantidad;
+                    }else if($d->producto_id == 2){
+                        $inv->bidon20 = $inv->bidon20 - $d->cantidad;
+                    }
+         
+                    $inv->save();
+                    
+                }else{
+                    $inv = Inventario::where('cel_cliente', $encargo->telefono)->first();
+                    if($d->producto_id == 1){
+                        $inv->bidon10 = $inv->bidon10 - $d->cantidad;
+                    }else if($d->producto_id == 2){
+                        $inv->bidon20 = $inv->bidon20 - $d->cantidad;
+                    }
+                  
+                    $inv->save();
+                }
+            }
+            
+            $pagos->delete();
+            return response()->json(array(
+                'message' => $encargo->detalles
+            ));
+        }else if(empty($pago)){
+            foreach($encargo->detalles as $d){
+                $pro = Producto::findOrFail($d->producto_id);
+                $pro->cantidad  = $pro->cantidad + $d->cantidad;
+                $pro->save();
+            }
+            $pagos->delete();
+            return response()->json(array(
+                'message' => 'El encargo se elimino por que no se recibio una respuesta de mercado pago '.$pago.'!'
+            ));
+        }else{
+
         return response()->json(array(
-            'message' => 'El Correo fue enviado con exito para el encargo '.$encargo->id.'!'
+            'message' => 'El Correo fue enviado con exito para el encargo '
         ));
         // ensayo de comit
     }
+}
 }
