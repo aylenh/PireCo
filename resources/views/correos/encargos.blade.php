@@ -360,7 +360,7 @@
                                     cellspacing="0" cellpadding="0" bgcolor="#3D3C44" align="center">
                                     <tr style="border-collapse:collapse">
                                         <td align="left">
-                                                        <img src="https://147.182.255.209/images/logo3.JPG" width="100%" height="100%" alt="">
+                                                        <img src="https://pirencoaguas.com/images/logo3.JPG" width="100%" height="100%" alt="">
                                                     </td>
                                             <table cellspacing="0" cellpadding="0" align="right"
                                                 style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
@@ -432,15 +432,18 @@
                                                                     <h2
                                                                         style="Margin:0;line-height:36px;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:30px;font-style:normal;font-weight:bold;color:#333333">
                                                                         ¡{{$encargo->nombre}}, Gracias por su compra!</h2>
-                                                                        <h4 style="color: #71C5E8">
-                                                                            @if ($pago == 'null')
-                                                                                El pago ha sido realizado en efectivo.
-                                                                            @elseif($pago == 'exito')
-                                                                                El pago fue realizado exitosamente por MercadoPago.
+                                                                        
+                                                                            
+                                                                            @if($pago == 'exito')
+                                                                            <h4 style="color: #71C5E8"> El pago fue realizado exitosamente por MercadoPago.</h4>
                                                                             @elseif($pago == 'fallo')
-                                                                                Desafortunadamente el pago por MercadoPago falló.
+                                                                            <h4 style="color: red">Desafortunadamente el encargo ha sido cancelado por que el pago por MercadoPago falló.</h4>
+                                                                            @elseif($pago == 'null')
+                                                                            <h4 style="color: #71C5E8"> El pago ha sido realizado en efectivo.</h4>
+                                                                            @else
+                                                                            <h4 style="color: red">Desafortunamente el pago ha sido cancelado por que no recibimos una respuesta de MercadoPago.</h4>
                                                                             @endif
-                                                                        </h4>
+                                                                        
                                                                 </td>
                                                             </tr>
                                                            
