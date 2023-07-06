@@ -129,7 +129,6 @@ class EncargoController extends Controller
                 }
             }
 
-
             $consulta = Producto::where("id",$detalles->producto_id)->get();
 
             foreach ($consulta as $con) {
@@ -236,13 +235,14 @@ class EncargoController extends Controller
                 $correo_distribuidor = $d->distribuidor->distribuidor_correo;
             }else{
                 $correo_cliente       = $d->correo;
+                $correo_pireco       = "paulacaicedo0322@gmail.com";
             }
         }
         
         if(isset($correo_distribuidor)){
-            $destinatarios = [ $correo_cliente,$correo_distribuidor ];
+            $destinatarios = [$correo_cliente, $correo_distribuidor ];
         }else{
-            $destinatarios = $correo_cliente;
+            $destinatarios = [$correo_cliente, $correo_pireco];
         }
 
         $correo = new EncargosEmail($encargo, $pago);
