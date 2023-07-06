@@ -66,7 +66,7 @@ Route::post('/borrarProductos', 'ProductoController@borrarProductosCheck')->name
 Route::post('/borrarProducto', 'ProductoController@borrarProducto')->name('borrar.producto');
 
 // QR 
-Route::view('/Instagram.', 'qr.redireccion');
+Route::view('/DescargarApp', 'qr.redireccion');
 
 //RUTAS ENCARGOS
 
